@@ -4,10 +4,10 @@
 
 Term: Spring 2017
 
-+ Team #
++ Team 11
 + Projec title: Lorem ipsum dolor sit amet
 + Team members
-	+ team member 1
+	+ Ziwei Meng
 	+ team member 2
 	+ team member 3
 	+ team member 4
