@@ -5,7 +5,7 @@
 Term: Spring 2017
 
 + Team 11
-+ Projec title: Lorem ipsum dolor sit amet
++ Projec title: Comparison of Algorithms on Author Disambiguation
 + Team members
 	+ Ziwei Meng
 	+ team member 2
