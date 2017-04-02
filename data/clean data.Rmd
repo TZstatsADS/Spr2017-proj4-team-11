@@ -1,0 +1,47 @@
+---
+title: "proj 4 clean data"
+author: "Yuxin Zhu"
+date: "2017/4/2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Step 0: Load the packages, specify directories
+```{r}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(text2vec, dplyr, qlcMatrix, kernlab, knitr)
+setwd("~/Documents/Columbia /2017 spring/ADS/proj 4")
+# setwd("~/Dropbox/Project4_WhoIsWho/doc")
+```
+
+## Step 1: Load data
+```{r}
+setwd("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset")
+filenames <- list.files(pattern = ".*txt")
+names <- substr(filenames,1,nchar(filenames)-4)
+for (i in names){
+  filepath <- file.path("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset",paste(i,".txt",sep=""))
+  assign(i,data.frame(scan(filepath,
+                      what = list(Coauthor = "", Paper = "", Journal = ""),
+                      sep=">", quiet=TRUE),stringsAsFactors=FALSE))
+}
+```
+
+## Process data 
+```{r}
+# extract canonical author id befor "_"
+AKumar$AuthorID <- sub("_.*","",AKumar$Coauthor)
+# extract paper number under same author between "_" and first whitespace
+AKumar$PaperNO <- sub(".*_(\\w*)\\s.*", "\\1", AKumar$Coauthor)
+# delete "<" in AKumar$Coauthor, you may need to further process the coauthor
+# term depending on the method you are using
+AKumar$Coauthor <- gsub("<","",sub("^.*?\\s","", AKumar$Coauthor))
+# delete "<" in AKumar$Paper
+AKumar$Paper <- gsub("<","",AKumar$Paper)
+# add PaperID for furthur use, you may want to combine all the nameset files and 
+# then assign the unique ID for all the citations
+AKumar$PaperID <- rownames(AKumar)
+```
