@@ -16,7 +16,7 @@ pacman::p_load(text2vec, dplyr, qlcMatrix, kernlab, knitr)
 setwd("~/Documents/Columbia /2017 spring/ADS/proj 4")
 ```
 
-## Step 1: Load data
+## Step 1: Load data (not used)
 ```{r}
 setwd("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset")
 filenames <- list.files(pattern = ".*txt")
@@ -59,7 +59,11 @@ cleandata2 <- function(df){
   uplength <- gregexpr(";",df$Coauthor[1],fixed=TRUE)[[1]][1]
   pattern1 <- substr(df$Coauthor[1],start=1,stop=uplength-1)
   a <- strsplit(pattern1," ")
-  pattern <- paste(a[[1]][1],rep("[a-z]*[[:space:]]*",5),a[[1]][2],";*",sep='')
+  aa <-substr(a[[1]][1],1,1)
+  b <-length(a[[1]])
+ ## 修改
+  pattern <- paste(aa,"[a-z]*[[:space:]]*[a-z]*[[:space:]]*[a-z]*[[:space:]]*[a-z]*[[:space:]]*[a-z]*[[:space:]]*",a[[1]][b],";*",sep='')
+ ##
   df$Author <- regmatches(df$Coauthor,regexpr(pattern,df$Coauthor))
   df$Author <- gsub("[[:punct:]]","",df$Author)
   df$Coauthor <- gsub(pattern,"",df$Coauthor)
@@ -69,15 +73,22 @@ cleandata2 <- function(df){
   df <- df[,-1]
   return(df)
 }
-AGuptacl <- cleandata1(AGupta)
-CChencl <- cleandata1(CChen)
 
-Cchhencl <- cleandata2(CChencl)
-# AGuptacl <- cleandata2(AGuptacl)
-# write.csv(AGuptacl,file="AGuptacl.csv")
+#AKumarcl <- cleandata1(AKumar)
+#AGuptacl <- cleandata1(AGupta)
+#CChencl <- cleandata1(CChen)
+#AGuptacl[145,1] <- "anoop gupta;wolf dietrich weber ;todd c mowry"
+#AGuptacl[145,3] <- NA
+# Aguptacl 145 no author name 
+#AKumarcl <- cleandata2(AKumarcl)
+#CChencl <- cleandata2(CChencl)
+#AGuptacl <- cleandata2(AGuptacl)
+#write.csv(AKumarcl,file="AKumarcl.csv")
+#write.csv(AGuptacl,file="AGuptacl.csv")
+#write.csv(CChencl,file="CChencl.csv")
 ```
 
-### pattern
+### pattern(not use)
 ```{R}
 # paste 
 uplength <- gregexpr(";",df$Coauthor[1],fixed=TRUE)[[1]][1]
@@ -88,6 +99,36 @@ pattern <- paste(a[[1]][1],"([a-z][[:space:]]){0,10}",a[[1]][2],";*",sep='')
 pattern_real <- "c([a-z][[:space:]]){0,10}chen;*"
 ```
 
+
+### write a for loop
+```{r}
+library(plyr)
+setwd("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset")
+filenames <- list.files(pattern = ".*txt")
+names <- substr(filenames,1,nchar(filenames)-4)
+a.list <- NULL
+
+for (i in names){
+  filepath <- file.path("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset",paste(i,".txt",sep=""))
+  temp <- stringr::str_replace_all(readLines(filepath),"[^a-zA-Z0-9_;<>\\s]", " ")
+  temp2 <- strsplit(temp,"<>")
+  temp3 <- plyr::ldply(temp2,rbind)
+  colnames(temp3) <- c("Coauthor","Paper","Journal")
+  a.list[[i]] <- temp3
+}
+
+# manually modifed data
+b.list <- llply(a.list,cleandata1)
+b.list[[1]][145,1] <- "anoop gupta;wolf dietrich weber ;todd c mowry"
+b.list[[1]][145,3] <- NA
+b.list[[5]][1342,1] <- "marinos  l   papazoglou  m     j lee"
+b.list[[5]][1342,2] <- " using a unifying mediator in an environment of distributed heterogeneous databases"
+b.list[[5]][1344,1] <-"c dellarocas  j lee  t w malone  k crowston  and b pentland"
+b.list[[5]][1344,2] <-" using a process handbook to design organizational processes "
+c.list <- llply(b.list,cleandata2)
+list2env(c.list,envir = .GlobalEnv)
+```
+
 ### Single-link Agglomerative clustering
 ```{R}
 library(cluster)
@@ -95,5 +136,4 @@ agn <- agnes(x=predictorX[1:25,], diss = FALSE, stand = TRUE,
       method = "single")
 DendAgn <-as.dendrogram(agn)
 plot(DendAgn)
-
 ```
