@@ -14,7 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(text2vec, dplyr, qlcMatrix, kernlab, knitr)
 setwd("~/Documents/Columbia /2017 spring/ADS/proj 4")
-# setwd("~/Dropbox/Project4_WhoIsWho/doc")
 ```
 
 ## Step 1: Load data
@@ -22,26 +21,79 @@ setwd("~/Documents/Columbia /2017 spring/ADS/proj 4")
 setwd("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset")
 filenames <- list.files(pattern = ".*txt")
 names <- substr(filenames,1,nchar(filenames)-4)
+
+# method 1 
 for (i in names){
   filepath <- file.path("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset",paste(i,".txt",sep=""))
   assign(i,data.frame(scan(filepath,
                       what = list(Coauthor = "", Paper = "", Journal = ""),
-                      sep=">", quiet=TRUE),stringsAsFactors=FALSE))
+                      sep=">", quiet=TRUE,quote = ""),stringsAsFactors=FALSE))
 }
+
+# method 2 (better)
+for (i in names){
+  filepath <- file.path("~/Documents/Columbia /2017 spring/ADS/proj 4/nameset",paste(i,".txt",sep=""))
+  temp <- stringr::str_replace_all(readLines(filepath),"[^a-zA-Z0-9_;<>\\s]", " ")
+  temp2 <- strsplit(temp,"<>")
+  temp3 <- plyr::ldply(temp2,rbind)
+  colnames(temp3) <- c("Coauthor","Paper","Journal")
+  assign(i,temp3)
+}
+
 ```
 
 ## Process data 
 ```{r}
-# extract canonical author id befor "_"
-AKumar$AuthorID <- sub("_.*","",AKumar$Coauthor)
-# extract paper number under same author between "_" and first whitespace
-AKumar$PaperNO <- sub(".*_(\\w*)\\s.*", "\\1", AKumar$Coauthor)
-# delete "<" in AKumar$Coauthor, you may need to further process the coauthor
-# term depending on the method you are using
-AKumar$Coauthor <- gsub("<","",sub("^.*?\\s","", AKumar$Coauthor))
-# delete "<" in AKumar$Paper
-AKumar$Paper <- gsub("<","",AKumar$Paper)
-# add PaperID for furthur use, you may want to combine all the nameset files and 
-# then assign the unique ID for all the citations
-AKumar$PaperID <- rownames(AKumar)
+library(dplyr)
+cleandata1 <- function(df){
+  df$AuthorId <- sub("_.*","",df$Coauthor)
+  df$PaperNo <- sub(".*_(\\w*)\\s.*", "\\1", df$Coauthor)
+  df$Paper <- gsub("[[:punct:]]","",df$Paper)
+  df$Journal <-  gsub("[[:punct:]]","",df$Journal)
+  df$Coauthor <- gsub("<","",sub("^.*?\\s","", df$Coauthor))
+  df <- mutate_each(df,funs(tolower))
+  return(df)
+}
+
+cleandata2 <- function(df){
+  uplength <- gregexpr(";",df$Coauthor[1],fixed=TRUE)[[1]][1]
+  pattern1 <- substr(df$Coauthor[1],start=1,stop=uplength-1)
+  a <- strsplit(pattern1," ")
+  pattern <- paste(a[[1]][1],rep("[a-z]*[[:space:]]*",5),a[[1]][2],";*",sep='')
+  df$Author <- regmatches(df$Coauthor,regexpr(pattern,df$Coauthor))
+  df$Author <- gsub("[[:punct:]]","",df$Author)
+  df$Coauthor <- gsub(pattern,"",df$Coauthor)
+  df$Coauthor <- gsub("&|-","",df$Coauthor)
+  temp <- plyr::ldply(strsplit(df$Coauthor,";"),rbind)
+  df <- cbind(df,temp)
+  df <- df[,-1]
+  return(df)
+}
+AGuptacl <- cleandata1(AGupta)
+CChencl <- cleandata1(CChen)
+
+Cchhencl <- cleandata2(CChencl)
+# AGuptacl <- cleandata2(AGuptacl)
+# write.csv(AGuptacl,file="AGuptacl.csv")
+```
+
+### pattern
+```{R}
+# paste 
+uplength <- gregexpr(";",df$Coauthor[1],fixed=TRUE)[[1]][1]
+pattern1 <- substr(df$Coauthor[1],start=1,stop=uplength-1)
+a <- strsplit(pattern1," ")
+pattern <- paste(a[[1]][1],"([a-z][[:space:]]){0,10}",a[[1]][2],";*",sep='')
+# real 
+pattern_real <- "c([a-z][[:space:]]){0,10}chen;*"
+```
+
+### Single-link Agglomerative clustering
+```{R}
+library(cluster)
+agn <- agnes(x=predictorX[1:25,], diss = FALSE, stand = TRUE,
+      method = "single")
+DendAgn <-as.dendrogram(agn)
+plot(DendAgn)
+
 ```
