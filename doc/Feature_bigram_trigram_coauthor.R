@@ -1,6 +1,7 @@
 # This script contains three feature selection functions given a dataframe with partition
 
 load("../data/data.RData")
+library(stringr)
 
 # Use AGupta as an example, simulate a partition T
 # by randomly putting about 200 of the 577 observations into cluster 1 and the other rest into cluster 2
@@ -8,7 +9,7 @@ load("../data/data.RData")
 df <- data[[1]]
 t <- sample(1:2, 577, prob = c(200/577, 377/577), replace = TRUE)
 
-# Fuction f_bigram(dataframe) outputs total number of pairwise overlapping title bigrams in each cluster
+# Fuction f_bigram(dataframe) outputs average number of pairwise overlapping title bigrams in each cluster
 f_bigram <- function(df, t){
   df$t <- t
   bigram_score <- rep(0, length(unique(df$t)))
@@ -56,13 +57,13 @@ f_bigram <- function(df, t){
         }
       }
     }
-    
+    bigram_score[j] <- bigram_score[j]/nrow(df_t)
   }
   return(bigram_score)
 }
 
 
-# Function f_trigram(dataframe) outputs total number of pairwise overlapping title trigrams in each cluster
+# Function f_trigram(dataframe) outputs average number of pairwise overlapping title trigrams in each cluster
 f_trigram <- function(df, t){
   df$t <- t
   trigram_score <- rep(0, length(unique(df$t)))
@@ -101,13 +102,13 @@ f_trigram <- function(df, t){
         }
       }
     }
-    
+    bigram_score[j] <- bigram_score[j]/nrow(df_t)
   }
   return(trigram_score)
 }
 
 
-# Function f_coauthor(dataframe) outputs total number of pairwise overlapping coauthorsin each cluster
+# Function f_coauthor(dataframe) outputs average number of pairwise overlapping coauthorsin each cluster
 f_coauthor <- function (df, t) {
   df$t <- t
   coauthor_score <- rep(0, length(unique(df$t)))
@@ -134,8 +135,7 @@ f_coauthor <- function (df, t) {
         }
       }
     }
-    
+    bigram_score[j] <- bigram_score[j]/nrow(df_t) 
   }
-    
   return(coauthor_score)
 }
