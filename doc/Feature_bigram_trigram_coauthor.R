@@ -1,13 +1,12 @@
 # This script contains three feature selection functions given a dataframe with partition
 
-load("C:/Users/Lloyd/Documents/GitHub/Spr2017-proj4-team-11/data/myfile.RData")
-list2env(c.list, envir = .GlobalEnv)
+load("../data/data.RData")
 
-# Use AGupta as an example, simulate a partition T with two clusters
-# Cluster assignment is appended as a new column "t", taking value 1 or 2.
-num_t1 <- sample(1:nrow(AGupta), 1)
-AGupta[ , ncol(AGupta)+1] <- sample(1:2, nrow(AGupta), prob = c(num_t1/nrow(AGupta), 1-(num_t1/nrow(AGupta)) ), replace = TRUE)
-names(AGupta)[ncol(AGupta)] <- "t"
+# Use AGupta as an example, simulate a partition T
+# by randomly putting about 200 of the 577 observations into cluster 1 and the other rest into cluster 2
+# Cluster assignment is appended as column "t", taking value 1 or 2
+df <- data[[1]]
+df$t <- sample(1:2, 577, prob = c(200/577, 377/577), replace = TRUE)
 
 # Fuction f_bigram(dataframe) outputs total number of pairwise overlapping title bigrams in each cluster
 f_bigram <- function(df){
@@ -18,9 +17,11 @@ f_bigram <- function(df){
     index <- 1:(nrow(df_t)-1)
     
     for (i in 1:nrow(df_t)) {
-      title_list[[i]] <- strsplit(df_t[i, 1], split = " ")
+      title_list[[i]] <- strsplit(df_t[i, 3], split = " ")
+      title_list[[i]] <- tolower(unlist(title_list[[i]]))
+      title_list[[i]] <- str_replace_all(title_list[[i]],"[[:punct:]]","") 
       temp_vec <- unlist(title_list[[i]])
-      title_list[[i]] <- temp_vec[temp_vec != "" 
+      title_list[[i]] <- temp_vec[temp_vec != ""
                                   & temp_vec != "a" 
                                   & temp_vec != "an" 
                                   & temp_vec != "and"
