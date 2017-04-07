@@ -6,10 +6,11 @@ load("../data/data.RData")
 # by randomly putting about 200 of the 577 observations into cluster 1 and the other rest into cluster 2
 # Cluster assignment is appended as column "t", taking value 1 or 2
 df <- data[[1]]
-df$t <- sample(1:2, 577, prob = c(200/577, 377/577), replace = TRUE)
+t <- sample(1:2, 577, prob = c(200/577, 377/577), replace = TRUE)
 
 # Fuction f_bigram(dataframe) outputs total number of pairwise overlapping title bigrams in each cluster
-f_bigram <- function(df){
+f_bigram <- function(df, t){
+  df$t <- t
   bigram_score <- rep(0, length(unique(df$t)))
   for (j in sort(unique(df$t)) ) {
     df_t <- df[df$t == j, ]
@@ -62,7 +63,8 @@ f_bigram <- function(df){
 
 
 # Function f_trigram(dataframe) outputs total number of pairwise overlapping title trigrams in each cluster
-f_trigram <- function(df){
+f_trigram <- function(df, t){
+  df$t <- t
   trigram_score <- rep(0, length(unique(df$t)))
   for (j in sort(unique(df$t)) ) {
     df_t <- df[df$t == j, ]
@@ -106,7 +108,8 @@ f_trigram <- function(df){
 
 
 # Function f_coauthor(dataframe) outputs total number of pairwise overlapping coauthorsin each cluster
-f_coauthor <- function (df) {
+f_coauthor <- function (df, t) {
+  df$t <- t
   coauthor_score <- rep(0, length(unique(df$t)))
   
   for (j in sort(unique(df$t)) ) {
