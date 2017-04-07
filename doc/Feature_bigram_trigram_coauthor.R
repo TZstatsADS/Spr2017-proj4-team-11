@@ -14,7 +14,6 @@ f_bigram <- function(df){
   for (j in sort(unique(df$t)) ) {
     df_t <- df[df$t == j, ]
     title_list <- list(NA)
-    index <- 1:(nrow(df_t)-1)
     
     for (i in 1:nrow(df_t)) {
       title_list[[i]] <- strsplit(df_t[i, 3], split = " ")
@@ -36,6 +35,7 @@ f_bigram <- function(df){
                                   & temp_vec != "why"]
     }
     
+    index <- 1:(nrow(df_t)-1)
     for (m in index) {
       for (n in index[-(1:m)]) {
         for (a in 1:(length(unlist(title_list[[m]]))-1) ) {
@@ -67,12 +67,13 @@ f_trigram <- function(df){
   for (j in sort(unique(df$t)) ) {
     df_t <- df[df$t == j, ]
     title_list <- list(NA)
-    index <- 1:(nrow(df_t)-1)
     
     for (i in 1:nrow(df_t)) {
-      title_list[[i]] <- strsplit(df_t[i, 1], split = " ")
+      title_list[[i]] <- strsplit(df_t[i, 3], split = " ")
+      title_list[[i]] <- tolower(unlist(title_list[[i]]))
+      title_list[[i]] <- str_replace_all(title_list[[i]],"[[:punct:]]","") 
       temp_vec <- unlist(title_list[[i]])
-      title_list[[i]] <- temp_vec[temp_vec != "" 
+      title_list[[i]] <- temp_vec[temp_vec != ""
                                   & temp_vec != "a" 
                                   & temp_vec != "an" 
                                   & temp_vec != "and"
@@ -87,6 +88,7 @@ f_trigram <- function(df){
                                   & temp_vec != "why"]
     }
     
+    index <- 1:(nrow(df_t)-1)
     for (m in index) {
       for (n in index[-(1:m)]) {
         for (a in 1:(length(unlist(title_list[[m]]))-2) ) {
@@ -107,19 +109,16 @@ f_trigram <- function(df){
 f_coauthor <- function (df) {
   coauthor_score <- rep(0, length(unique(df$t)))
   
-  for (i in 6:(ncol(df)-1)) {
-    df[,i] <- as.character(df[,i])
-  }
-  
   for (j in sort(unique(df$t)) ) {
     df_t <- df[df$t == j, ]
     coauthor_list <- list(NA)
     
     for (i in 1:nrow(df_t)) {
-      coauthor_list[[i]] <- paste(df_t[i, 6:(ncol(df_t)-1)])
+      coauthor_list[[i]] <- unlist(df_t[i,5])
       coauthor_list[[i]] <- coauthor_list[[i]][coauthor_list[[i]] != "NA"]
     }
     coauthor_list <- coauthor_list[lapply(coauthor_list,length) > 0]
+    
     index <- 1:(length(coauthor_list)-1)
     
     for (m in index) {
