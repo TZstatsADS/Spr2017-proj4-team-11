@@ -1,1 +1,2 @@
 load("/Users/yuxin/Spr2017-proj4-team-11/data/myfile.RData")
+load("/Users/yuxin/Spr2017-proj4-team-11/data/profclean.RData")

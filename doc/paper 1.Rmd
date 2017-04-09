@@ -22,17 +22,32 @@ load("profclean.RData")
 
 ```{r}
 singlecluster <- function(df){
-n <- length(df)
-
+n <- nrow(df)
 # a matrix of the number of same coauthors 
-csim <- matrix(rep(0,n*n),ncol=n)
+ssim <- matrix(rep(NA,n*n),ncol=n)
+
 for (i in 1:n){
   for (j in 1:n){
-   csim[i,j] <- length(which(df[[i]][[3]]==df[[j]][[3]]))
+    lengthi <- length(unlist(df[[5]][i]))
+    lengthj <- length(unlist(df[[5]][j]))
+    if (lengthi >0 & lengthj >0 ){
+      aaa <- matrix(0,nrow=lengthi,ncol=lengthj)
+      for (a in 1:lengthi){
+        for (b in 1:lengthj){
+          aaa[a,b] <- ifelse((df[[5]][[i]][a] ==   df[[5]][[j]][b]),aaa[a,b]+1,aaa[a,b])
+           # ssim[i,j] <- sum(aaa)
+        }
+      }
+      ssim[i,j] <- sum(aaa)
+    }
+   
   }
+      
 }
 
-Lm <- as.data.frame(csim*(-1))
+
+Lm <- as.data.frame(ssim*(-1))
+Lm[is.na(Lm)] <- 0
 N <- nrow(Lm)
 merge <- matrix(0, N-1, 2)
 height <- vector(length = N-1)
@@ -115,4 +130,9 @@ load("Myfile.RData")
 list2env(c.list,envir = .GlobalEnv)
 AGupta <- cbind(AGupta,cluster.result)
 A <- AGupta[,c(3,21)]
+```
+
+```{r}
+source("evaluation_measures.R")
+matching_matrix(a,df)
 ```
