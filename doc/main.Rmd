@@ -1,6 +1,6 @@
 ---
 title: "Project 4 - Example Main Script"
-author: "Jing Wu, Tian Zheng"
+author: "Team 11"
 date: "3/22/2017"
 output: pdf_document
 ---
