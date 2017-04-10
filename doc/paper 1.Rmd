@@ -16,8 +16,8 @@ library(plyr)
 
 ```{r}
 # load data 
-setwd("~/Documents/Columbia /2017 spring/ADS/proj 4")
-load("profclean.RData")
+setwd("~/Spr2017-proj4-team-11/data")
+load("data.RData")
 ```
 
 ```{r}
@@ -119,20 +119,50 @@ splitcluster <- function(df){
   return(cluster.result)
 }
 
-bc.list <- NULL
-bc.list <- llply(b.list,splitcluster)
+# bc.list <- NULL
+# bc.list <- llply(b.list,splitcluster)
 # save(bc.list,file="paper1datapart2.RData")
 ```
 
+
 ```{r}
-# test 
-load("Myfile.RData")
-list2env(c.list,envir = .GlobalEnv)
-AGupta <- cbind(AGupta,cluster.result)
-A <- AGupta[,c(3,21)]
+source("../lib/evaluation_measures.R")
+a <- singlecluster(df)
+aa <- splitcluster(a)
+resultmatrix <- matching_matrix(df$authorNum,aa)
+resultmatrix
+performance_statistics(resultmatrix)
+clustering_errors(resultmatrix)
 ```
 
 ```{r}
-source("evaluation_measures.R")
-matching_matrix(a,df)
+# combine all singl-element cluster into one cluster
+comninecluster <- function(df){
+  abc <- as.data.frame(table(df))
+  abc <- abc[order(abc$Freq,decreasing = T),]
+  # n <- nrow(df)
+  n <- length(df)
+  ncluster <- nrow(abc)
+  cluster.result <- matrix(0,nrow=n,ncol=1)
+    for (i in 1:ncluster){
+      if (abc$Freq[i] > 1){
+       a <- which(df==abc$df[i])
+      cluster.result[a] <- i
+      }
+      else{
+        cluster.result[a] <- 0
+      }
+     
+    }
+  return(cluster.result)
+}
+
+```
+
+```{r}
+abcd <- comninecluster(a)
+resultmatrix <- matching_matrix(df$authorNum,abcd)
+resultmatrix
+performance_statistics(resultmatrix)
+clustering_errors(resultmatrix)
 ```

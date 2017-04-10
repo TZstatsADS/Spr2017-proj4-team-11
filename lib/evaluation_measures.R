@@ -54,3 +54,9 @@ performance_statistics <- function(result_matrix){
   accuracy <- (result_matrix[1,1]+result_matrix[2,2])/sum(result_matrix)
   return(list(precision=precision, recall=recall, f1=f1, accuracy=accuracy))
 }
+
+clustering_errors <- function(result_matrix){
+  over_clustering_error <- result_matrix[1,2]/sum(result_matrix)
+  under_clustering_error <- result_matrix[2,1]/sum(result_matrix)
+  return(list(over_clustering_error=over_clustering_error,under_clustering_error=under_clustering_error))
+}
