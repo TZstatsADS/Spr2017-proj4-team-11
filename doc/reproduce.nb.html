@@ -177,6 +177,7 @@ $(document).ready(function () {
 <li><a href="#load-packages-and-specify-the-directory">Load packages and specify the directory</a></li>
 <li><a href="#clean-up-data">Clean up data</a></li>
 <li><a href="#feature-engineering">Feature Engineering</a></li>
+<li><a href="#basic-explore">Basic Explore</a></li>
 <li><a href="#modeling">Modeling</a></li>
 <li><a href="#present-result">Present Result</a></li>
 </ul>
@@ -187,15 +188,10 @@ $(document).ready(function () {
 <h1>Load packages and specify the directory</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpbnN0YWxsIHRoZSBwYWNrYWdlIGlmIG5vdCBpbnN0YWxsZWRcbmlmICghcmVxdWlyZShcInBhY21hblwiKSkgaW5zdGFsbC5wYWNrYWdlcyhcInBhY21hblwiKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpbnN0YWxsIHRoZSBwYWNrYWdlIGlmIG5vdCBpbnN0YWxsZWRcbmlmICghcmVxdWlyZShcInBhY21hblwiKSkgaW5zdGFsbC5wYWNrYWdlcyhcInBhY21hblwiKVxucGFjbWFuOjpwX2xvYWQoZHBseXIscGx5cixkYXRhLnRhYmxlLHRtKVxuIyBzZXQgZGlyZWN0b3J5XG5zZXR3ZCgnL1VzZXJzL1pvZS9kb2N1bWVudHMvc3ByaW5nMjAxNy9HUjUyNDMvTXlQcmpzL1NwcjIwMTctcHJvajQtdGVhbS0xMS9kb2MnKVxuYGBgIn0= -->
 <pre class="r"><code># install the package if not installed
-if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBwYWNtYW5cbiJ9 -->
-<pre><code>Loading required package: pacman</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFjbWFuOjpwX2xvYWQoZHBseXIscGx5cixkYXRhLnRhYmxlKVxuIyBzZXQgZGlyZWN0b3J5XG5zZXR3ZCgnL1VzZXJzL1pvZS9kb2N1bWVudHMvc3ByaW5nMjAxNy9HUjUyNDMvTXlQcmpzL1NwcjIwMTctcHJvajQtdGVhbS0xMS9kb2MnKVxuYGBgIn0= -->
-<pre class="r"><code>pacman::p_load(dplyr,plyr,data.table)
+if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load(dplyr,plyr,data.table,tm)
 # set directory
 setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')</code></pre>
 <!-- rnb-source-end -->
@@ -206,8 +202,44 @@ setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
 <h1>Clean up data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9hZCgnLi4vZGF0YS9wcm9mY2xlYW4uUkRhdGEnKVxuYGBgIn0= -->
-<pre class="r"><code>load('../data/profclean.RData')</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2xvYWQoJy4uL2RhdGEvcHJvZmNsZWFuLlJEYXRhJylcbmxvYWQoJy4uL2RhdGEvZGF0YS5SRGF0YScpXG4jIGRvIGl0IHdpdGggdGhlIGZpcnN0IGRhdGFmcmFtZSAoMTQgaW4gdG90YWwpXG5pIDwtIDFcbmRmIDwtIGRhdGFbW2ldXVxuaGVhZChkZilcbmBgYCJ9 -->
+<pre class="r"><code>#load('../data/profclean.RData')
+load('../data/data.RData')
+# do it with the first dataframe (14 in total)
+i &lt;- 1
+df &lt;- data[[i]]
+head(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUE4MVZVVy9iTmhCV25kcXgzYVliMEQzMDhURHNiYk9CN1RIQTBIcU8yeWlaazhBMjRteDdPa2xuaTdWRUdpVGxMSDNhVDk0djZIYVNTTVAydGlJUEd6QURNblZIM24zZmZVZFNrN083NzdwMzNTQUlHc0hSVVNOb0hQSHIwd2IvUFFtZUJwMXkvRFVJamw3eVM1T2ZGL3kwM253VlZML0hqajd1OWUvTzc1eHYybTc4M0kxZnVQSFZOcTZjYVRraXY5eU1SOU5UV0d1eEVSa3RDWEtVUzF4U1R0SUN5Z1JJTHBTT2E5czhHRXM1c0FNTXhZVW1TSVN4V2tTRnBRUTBHVlh3VWpBcGFpR1g0Q0J1aCtwR3E1aU1PWVVCWE9BR2V4RWFEaGpKamRCS1ZxbkxuRU9WWlJncGpWWnNDRndNakZGNlB0Y2IwbUJUZ2psRlB2djFZSi84STdnL2h2VERqR0dNV3RoNzVESlJ4Nm13Rk51eTVqS3prSmIwMmpHTVZaNFhVc1RNVzBrRGFnSGhKRHpsZFJDV3l5UlpWM0FWaFhGVlhra0NKUU5uaEZxV3lJNmhJL0JxckF5S0dMNkd1OWt0Zk0vaVRHZ2o2TjdQOXhtamwzNER1S3ZvTmlrbFJVMW5tM1cvN1pQd2JYamo2RlhyTUlPM2xKQ3VnMHFWd2xLOHZMWmRMMHFXYzZXemhObklCV2txb2NJWnpKVEtqTXZjNHQ1Y2tmVTQ4OUVzSEk3S3FKVkoxWnA3amxGVzVwbFJuRXFWcWFVZ1UySnA1S1lVdGNKLzNReWpXbTloeVB6bm1iOGNxbnpObTBNRDEzRmZwcTlhSGs3UHJtQmFxZWxYOWdmRE1WencvaW5sNDdhUHZPcHNUdHpHTWxDblkyWWM4YkxxUWQyTHRzdlMvZ0V1TjR4QXpuNGV3by9jYXNsSVFucFZML2tjWkEvT09oN0RkV2FVbjN3MmdYR3hXbUdPR1RwWGR3TERGUE9JdE9mYW1jQ2M5N0FrbitUWkZLNVF2dWZqWGlTTzBiRm5OSVJieWd0ZGVQUnpMcHdTWjUyY3d5QktLT3ZOTWNYb2J3bDJ4bkNacWt6UTRwOHBNdjZac0JaWHVCSC9XMFg4ZWVrTTRDZFZHTE10NlBtd3VvMTRaOUYyczdkSE1MV0s3NEZQQ25VQmM1RWx1MVhvaHdPMDlvQlBIRVpwOFcvMVkwK1BmYTI3QTNpbjVBZk02SVBYY2dEbm1JdmtFNVUrdHJJdGdmWVUzcVVvS1hkMjh3NSs1dkwyUDRwTmlUbWZ3cHBmMHl1UGhVMlZ2aXA4YUh1TmE5cXh1NVU5RXpiYmJwZjM5WkhjOWJWalZTYzZ3T3hvZGQvM3VDZjhOSDZyUDVLdFEzSnhoc2FUODg1dWdoYjdmTVBreE5iSGc1Qmp0YTYrQ0p6VWYrcDNnNS9vQThkbmhTeVpKTDA0TGVTcTkyMEpVRTNYejRrYld6dnZ6UnF5OGNlQmFpMlNTeUY5OFUyKzd5aHp4Z3V1dUNxNHo3ZWU5QjN0c3RmMHJiTG8xM1ZqdnRTZHA2b3QrUGduNmhwZTlOZ0lBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["authorNum"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["paperNum"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["paperTitle"],"name":[3],"type":["chr"],"align":["left"]},{"label":["journalTitle"],"name":[4],"type":["chr"],"align":["left"]},{"label":["coauthor"],"name":[5],"type":["list"],"align":["right"]}],"data":[{"1":"10","2":"1","3":"PMES: privilege mangagement and enforcement system for secure distributed resource sharing","4":"IFIP International Federation for Information Processing World Conference IT Tools","5":"<chr [8]>","_rn_":"1"},{"1":"10","2":"2","3":"CoProcess: A Java-based Environment for Collaborative Process Management Over the Web","4":"WebNet","5":"<chr [7]>","_rn_":"2"},{"1":"10","2":"3","3":"A privilege management and enforcement system for distributed resource sharing","4":"WETICE Workshop Enabling Technologies Infrastructure for Collaborative Enterprises","5":"<chr [8]>","_rn_":"3"},{"1":"10","2":"4","3":"The software architecture and interprocess communications of IRI: an Internet-based interactive distance learning system","4":"WETICE Workshop Enabling Technologies Infrastructure for Collaborative Enterprises","5":"<chr [6]>","_rn_":"4"},{"1":"10","2":"5","3":"Mosaic + XTV = CoReview","4":"Computer Networks and ISDN Systems","5":"<chr [6]>","_rn_":"5"},{"1":"10","2":"6","3":"IRI-h, a Java-based distance education system","4":"ACM Journal of Educational Resources Computing","5":"<chr [8]>","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb2F1dGhvciBuYW1lcyB0byBsb3dlcmNhc2VcbmRmJGNvYXV0aG9yIDwtIGxhcHBseShkZiRjb2F1dGhvcix0b2xvd2VyKVxuIyBKb3VybmFsVGl0bGUgdG8gbGlzdCBvZiB3b3JkcyBhbmQgdG8gbG93ZXJjYXNlLCByZW1vdmUgc3RvcHdvcmRzXG5zdG9wX3dvcmRzIDwtIGMoJ2EnLCdhbicsJ2FuZCcsJ29yJywnZm9yJywndG8nLCdvZicsJ3RoZScsJ2luJywnd2hhdCcsJ2hvdycsJ3doeScpXG4nJW5pbiUnIDwtIE5lZ2F0ZSgnJWluJScpXG5kZiRqb3VybmFsVGl0bGUgPC0gZGYkam91cm5hbFRpdGxlICU+JSBsYXBwbHkoZnVuY3Rpb24oeCl7XG4gIHQ8LXRvbG93ZXIodW5saXN0KHN0cnNwbGl0KHgsXCIgXCIpKSkgXG4gIHRbdCAlbmluJSBzdG9wX3dvcmRzXX0pXG4jICMgY29udmVydCBsaXN0IG90IGEgZGF0YWZyYW1lXG4jIGxpc3RUb0RGIDwtIGZ1bmN0aW9uKGwsbnJvd3MsbmNvbHMpe1xuIyAgIGRmIDwtIGRhdGEuZnJhbWUobWF0cml4KHJlcCgtMSxucm93cyoobmNvbHMtMSkpLG5yb3dzLG5jb2xzLTEpKVxuIyAgIGNvYXV0aG9yLmxpc3QgPC0gbGlzdCgpXG4jICAgY29sbmFtZXMoZGYpIDwtIGMoJ2F1dGhvci5pZCcsJ3BhcGVyLmlkJywndGl0bGUnLCdqb3VybmFsJylcbiMgICBmb3IgKGogaW4gMTpucm93cyl7XG4jICAgICBkZltqLF0gPC0gbFtbal1dW2MoMSwyLDQsNSldXG4jICAgICBjb2F1dGhvci5saXN0IDwtIGMoY29hdXRob3IubGlzdCxsW1tqXV1bM10pXG4jICAgfVxuIyAgIGRmJGNvYXV0aG9yIDwtIGNvYXV0aG9yLmxpc3RcbiMgICByZXR1cm4oZGYpXG4jIH1cbiMgXG4jIGRmIDwtIGxpc3RUb0RGKGwsbnIsbmMpXG5gYGAifQ== -->
+<pre class="r"><code># coauthor names to lowercase
+df$coauthor &lt;- lapply(df$coauthor,tolower)
+# JournalTitle to list of words and to lowercase, remove stopwords
+stop_words &lt;- c('a','an','and','or','for','to','of','the','in','what','how','why')
+'%nin%' &lt;- Negate('%in%')
+df$journalTitle &lt;- df$journalTitle %&gt;% lapply(function(x){
+  t&lt;-tolower(unlist(strsplit(x,&quot; &quot;))) 
+  t[t %nin% stop_words]})
+# # convert list ot a dataframe
+# listToDF &lt;- function(l,nrows,ncols){
+#   df &lt;- data.frame(matrix(rep(-1,nrows*(ncols-1)),nrows,ncols-1))
+#   coauthor.list &lt;- list()
+#   colnames(df) &lt;- c('author.id','paper.id','title','journal')
+#   for (j in 1:nrows){
+#     df[j,] &lt;- l[[j]][c(1,2,4,5)]
+#     coauthor.list &lt;- c(coauthor.list,l[[j]][3])
+#   }
+#   df$coauthor &lt;- coauthor.list
+#   return(df)
+# }
+# 
+# df &lt;- listToDF(l,nr,nc)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -216,6 +248,55 @@ setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
 <h1>Feature Engineering</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBmZWF0dXJlIDE6IG9uZSBncmFtIG92ZXJsYXBwaW5nXG5jbU9uZUdyYW0gPC0gZnVuY3Rpb24oZCxmZWF0dXJlPSdjb2F1dGhvcicpe1xuICAjIGQgaXMgYSBwYWlyIG9mIHJlY29yZHMgaW4gZGF0YWZyYW1lXG4gICMgZmVhdHVyZSBpcyB0aGUgZmVhdHVyZSB5b3Ugd2FudCB0byBjYWN1bGF0ZSBvdmVybGFwcGluZ1xuICBjbS53IDwtIGxlbmd0aChpbnRlcnNlY3QoZFsxLGZlYXR1cmVdW1sxXV0sZFsyLGZlYXR1cmVdW1sxXV0pKVxuICByZXR1cm4oY20udylcbn1cbiMgaG93IG1hbnkgY29hdXRob3JzIGluIGF2ZXJhZ2UgZG9lcyBhIGNsdXN0ZXIgb2YgYXV0aG9ycyBzaGFyZT9cbiMgaG93IGxpa2VseSBhcmUgMiBjbHVzdGVycyBzaGFyZSBzYW1lIGpvdXJuYWxzP1xuIyBjb21sZXhpdHkgaXMgTyhOXjIpXG5ncnAuY21PbmVHcmFtIDwtIGZ1bmN0aW9uKGQsZmVhdHVyZT0nY29hdXRob3InLHR5cGU9J2F2Zycpe1xuICAjIGQgaXMgYSBzdWItZGF0YWZyYW1lIGNvbnRhaW5zIG4gcmVjb3Jkc1xuICAjIHR5cGUgaXMgb25lIG9mIHsnYXZnJywncmF0aW8nfSByYXJpbyBpcyBjb21tb24gbnVtYmVyIG9mIHJlY29yZHMgbm9ybWFsaXplZCBieSBsZW5ndGggb2YgdGhhdCBmZWF0dXJlKGUuZy4gI2NvbW1vbiBjby1hdXRob3IvI3RvdGFsIGNvLWF1dGhvcilcbiAgbiA8LSBkaW0oZClbMV1cbiAgaWYgKG48Mil7XG4gICAgZCA8LSByYmluZChkLGQpXG4gICAgbiA8LSBkaW0oZClbMV1cbiAgfVxuICBpbmQubWF0IDwtIGNvbWJuKG4sMilcbiAgb3V0cHV0IDwtIGFwcGx5KGluZC5tYXQsMixmdW5jdGlvbih4KXt0PC1jbU9uZUdyYW0oZFt4LF0sZmVhdHVyZSl9KVxuICAjIG15RnVuYyA8LSBmdW5jdGlvbih4KXt0PC1jbU9uZUdyYW0oZFtpbmQubWF0Wyx4XSxdLGZlYXR1cmUpfVxuICAjIG91dHB1dCA8LSBmb3JlYWNoKGk9MTooZGltKGluZC5tYXQpWzJdKSwgLmNvbWJpbmUgPSBjLCAuZXhwb3J0ID0gJ2NtT25lR3JhbScpICVkb3BhciUge215RnVuYyhpKX1cbiAgc3VtX2dycCA8LSBSZWR1Y2Uoc3VtLG91dHB1dClcbiAgYXZnX2dycCA8LSBzdW1fZ3JwL2Nob29zZShuLDIpXG4gIHJldHVybihhdmdfZ3JwKVxufVxuYGBgIn0= -->
+<pre class="r"><code># feature 1: one gram overlapping
+cmOneGram &lt;- function(d,feature='coauthor'){
+  # d is a pair of records in dataframe
+  # feature is the feature you want to caculate overlapping
+  cm.w &lt;- length(intersect(d[1,feature][[1]],d[2,feature][[1]]))
+  return(cm.w)
+}
+# how many coauthors in average does a cluster of authors share?
+# how likely are 2 clusters share same journals?
+# comlexity is O(N^2)
+grp.cmOneGram &lt;- function(d,feature='coauthor',type='avg'){
+  # d is a sub-dataframe contains n records
+  # type is one of {'avg','ratio'} rario is common number of records normalized by length of that feature(e.g. #common co-author/#total co-author)
+  n &lt;- dim(d)[1]
+  if (n&lt;2){
+    d &lt;- rbind(d,d)
+    n &lt;- dim(d)[1]
+  }
+  ind.mat &lt;- combn(n,2)
+  output &lt;- apply(ind.mat,2,function(x){t&lt;-cmOneGram(d[x,],feature)})
+  # myFunc &lt;- function(x){t&lt;-cmOneGram(d[ind.mat[,x],],feature)}
+  # output &lt;- foreach(i=1:(dim(ind.mat)[2]), .combine = c, .export = 'cmOneGram') %dopar% {myFunc(i)}
+  sum_grp &lt;- Reduce(sum,output)
+  avg_grp &lt;- sum_grp/choose(n,2)
+  return(avg_grp)
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="basic-explore" class="section level1">
+<h1>Basic Explore</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyAjIHBhcmFsbGVsIHByb2Nlc3NpbmdcbiMgY2wgPC0gbWFrZUNsdXN0ZXIoNCwgdHlwZSA9ICdTT0NLJylcbiMgcmVnaXN0ZXJEb1NOT1coY2wpXG51bmlxX2F1dGhvciA8LSBsZW5ndGgodW5pcXVlKGRmJGF1dGhvck51bSkpXG5jYXQoJ3dlIGhhdmUnLHVuaXFfYXV0aG9yLCdkaWZmZXJlbnQgYXV0aG9ycyBpbiB0b3RhbCcpXG5gYGAifQ== -->
+<pre class="r"><code># # parallel processing
+# cl &lt;- makeCluster(4, type = 'SOCK')
+# registerDoSNOW(cl)
+uniq_author &lt;- length(unique(df$authorNum))
+cat('we have',uniq_author,'different authors in total')</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoid2UgaGF2ZSAyNiBkaWZmZXJlbnQgYXV0aG9ycyBpbiB0b3RhbFxuIn0= -->
+<pre><code>we have 26 different authors in total</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG1fY29hdXRob3IgPC0gTkFcbnRtX2NvYXV0aG9yIDwtIHN5c3RlbS50aW1lKGF2Z19jb2F1dGhvciA8LSBncnAuY21PbmVHcmFtKGRmLCdjb2F1dGhvcicpKVxuYGBgIn0= -->
+<pre class="r"><code>tm_coauthor &lt;- NA
+tm_coauthor &lt;- system.time(avg_coauthor &lt;- grp.cmOneGram(df,'coauthor'))</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -223,6 +304,15 @@ setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
 <h1>Modeling</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbHVzdGVyIG9mIHJlY29yZHMgdG8gYSBrLWRpbSBmZWF0dXJlXG5jbHVzdGVyMnZlYyA8LSBmdW5jdGlvbihkKXtcbiAgIyBkIGlzIGEgc3ViLWRhdGFmcmFtZSBjb250YWlucyBuIHJlY29yZHNcbiAgazEgPC0gZ3JwLmNtT25lR3JhbShkLCdjb2F1dGhvcicpXG4gIGsyIDwtIGdycC5jbU9uZUdyYW0oZCwnam91cm5hbFRpdGxlJylcbiAgcmV0dXJuKGMoazEsazIpKVxufVxuYGBgIn0= -->
+<pre class="r"><code># cluster of records to a k-dim feature
+cluster2vec &lt;- function(d){
+  # d is a sub-dataframe contains n records
+  k1 &lt;- grp.cmOneGram(d,'coauthor')
+  k2 &lt;- grp.cmOneGram(d,'journalTitle')
+  return(c(k1,k2))
+}</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -231,7 +321,7 @@ setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXV0aG9yIERpc2FtYmlndWF0aW9uIgphdXRob3I6ICJaaXdlaSBNZW5nIgpEYXRlOiAiMjAxNy0wNC0wNyIKb3V0cHV0OiAKICAgIGh0bWxfbm90ZWJvb2s6CiAgICAgICAgdG9jOiBUUlVFCiAgICAgICAgdGhlbWU6IGpvdXJuYWwKLS0tCiMgTG9hZCBwYWNrYWdlcyBhbmQgc3BlY2lmeSB0aGUgZGlyZWN0b3J5CmBgYHtyfQojIGluc3RhbGwgdGhlIHBhY2thZ2UgaWYgbm90IGluc3RhbGxlZAppZiAoIXJlcXVpcmUoInBhY21hbiIpKSBpbnN0YWxsLnBhY2thZ2VzKCJwYWNtYW4iKQpwYWNtYW46OnBfbG9hZChkcGx5cixwbHlyLGRhdGEudGFibGUpCgojIHNldCBkaXJlY3RvcnkKc2V0d2QoJy9Vc2Vycy9ab2UvZG9jdW1lbnRzL3NwcmluZzIwMTcvR1I1MjQzL015UHJqcy9TcHIyMDE3LXByb2o0LXRlYW0tMTEvZG9jJykKYGBgCgojIENsZWFuIHVwIGRhdGEKYGBge3J9CmxvYWQoJy4uL2RhdGEvcHJvZmNsZWFuLlJEYXRhJykKCiMgZG8gaXQgd2l0aCBmaXJzdCB0YWJsZSgxNCB0YWJsZXMgaW4gdG90YWwpCmkgPC0gMQpsIDwtIGRhdGFfbGlzdFtbaV1dCm5yIDwtIGxlbmd0aChsKQpuYyA8LSBsZW5ndGgobFtbMV1dKQoKIyBjb252ZXJ0IGxpc3Qgb3QgYSBkYXRhZnJhbWUKbGlzdFRvREYgPC0gZnVuY3Rpb24obCxucm93cyxuY29scyl7CiAgZGYgPC0gZGF0YS5mcmFtZShtYXRyaXgocmVwKC0xLG5yb3dzKihuY29scy0xKSksbnJvd3MsbmNvbHMtMSkpCiAgY29hdXRob3IubGlzdCA8LSBsaXN0KCkKICBjb2xuYW1lcyhkZikgPC0gYygnYXV0aG9yLmlkJywncGFwZXIuaWQnLCd0aXRsZScsJ2pvdXJuYWwnKQogIGZvciAoaiBpbiAxOm5yb3dzKXsKICAgIGRmW2osXSA8LSBsW1tqXV1bYygxLDIsNCw1KV0KICAgIGNvYXV0aG9yLmxpc3QgPC0gYyhjb2F1dGhvci5saXN0LGxbW2pdXVszXSkKICB9CiAgZGYkY29hdXRob3IgPC0gY29hdXRob3IubGlzdAogIHJldHVybihkZikKfQoKZGYgPC0gbGlzdFRvREYobCxucixuYykKYGBgCgoKIyBGZWF0dXJlIEVuZ2luZWVyaW5nCmBgYHtyfQoKYGBgCgoKIyBNb2RlbGluZwpgYGB7cn0KCmBgYAoKCiMgUHJlc2VudCBSZXN1bHQ=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXV0aG9yIERpc2FtYmlndWF0aW9uIgphdXRob3I6ICJaaXdlaSBNZW5nIgpEYXRlOiAiMjAxNy0wNC0wNyIKb3V0cHV0OiAKICAgIGh0bWxfbm90ZWJvb2s6CiAgICAgICAgdG9jOiBUUlVFCiAgICAgICAgdGhlbWU6IGpvdXJuYWwKLS0tCiMgTG9hZCBwYWNrYWdlcyBhbmQgc3BlY2lmeSB0aGUgZGlyZWN0b3J5CmBgYHtyfQojIGluc3RhbGwgdGhlIHBhY2thZ2UgaWYgbm90IGluc3RhbGxlZAppZiAoIXJlcXVpcmUoInBhY21hbiIpKSBpbnN0YWxsLnBhY2thZ2VzKCJwYWNtYW4iKQpwYWNtYW46OnBfbG9hZChkcGx5cixwbHlyLGRhdGEudGFibGUsdG0sUmNwcCxmb3JlYWNoLGRvU05PVykKCiMgc2V0IGRpcmVjdG9yeQpzZXR3ZCgnL1VzZXJzL1pvZS9kb2N1bWVudHMvc3ByaW5nMjAxNy9HUjUyNDMvTXlQcmpzL1NwcjIwMTctcHJvajQtdGVhbS0xMS9kb2MnKQpgYGAKCiMgQ2xlYW4gdXAgZGF0YQpgYGB7cn0KI2xvYWQoJy4uL2RhdGEvcHJvZmNsZWFuLlJEYXRhJykKbG9hZCgnLi4vZGF0YS9kYXRhLlJEYXRhJykKCiMgZG8gaXQgd2l0aCB0aGUgZmlyc3QgZGF0YWZyYW1lICgxNCBpbiB0b3RhbCkKaSA8LSAxCmRmIDwtIGRhdGFbW2ldXQpoZWFkKGRmKQoKIyBjb2F1dGhvciBuYW1lcyB0byBsb3dlcmNhc2UKZGYkY29hdXRob3IgPC0gbGFwcGx5KGRmJGNvYXV0aG9yLHRvbG93ZXIpCiMgSm91cm5hbFRpdGxlIHRvIGxpc3Qgb2Ygd29yZHMgYW5kIHRvIGxvd2VyY2FzZSwgcmVtb3ZlIHN0b3B3b3JkcwpzdG9wX3dvcmRzIDwtIGMoJ2EnLCdhbicsJ2FuZCcsJ29yJywnZm9yJywndG8nLCdvZicsJ3RoZScsJ2luJywnd2hhdCcsJ2hvdycsJ3doeScpCiclbmluJScgPC0gTmVnYXRlKCclaW4lJykKZGYkam91cm5hbFRpdGxlIDwtIGRmJGpvdXJuYWxUaXRsZSAlPiUgbGFwcGx5KGZ1bmN0aW9uKHgpewogIHQ8LXRvbG93ZXIodW5saXN0KHN0cnNwbGl0KHgsIiAiKSkpIAogIHRbdCAlbmluJSBzdG9wX3dvcmRzXX0pCgoKIyAjIGNvbnZlcnQgbGlzdCBvdCBhIGRhdGFmcmFtZQojIGxpc3RUb0RGIDwtIGZ1bmN0aW9uKGwsbnJvd3MsbmNvbHMpewojICAgZGYgPC0gZGF0YS5mcmFtZShtYXRyaXgocmVwKC0xLG5yb3dzKihuY29scy0xKSksbnJvd3MsbmNvbHMtMSkpCiMgICBjb2F1dGhvci5saXN0IDwtIGxpc3QoKQojICAgY29sbmFtZXMoZGYpIDwtIGMoJ2F1dGhvci5pZCcsJ3BhcGVyLmlkJywndGl0bGUnLCdqb3VybmFsJykKIyAgIGZvciAoaiBpbiAxOm5yb3dzKXsKIyAgICAgZGZbaixdIDwtIGxbW2pdXVtjKDEsMiw0LDUpXQojICAgICBjb2F1dGhvci5saXN0IDwtIGMoY29hdXRob3IubGlzdCxsW1tqXV1bM10pCiMgICB9CiMgICBkZiRjb2F1dGhvciA8LSBjb2F1dGhvci5saXN0CiMgICByZXR1cm4oZGYpCiMgfQojIAojIGRmIDwtIGxpc3RUb0RGKGwsbnIsbmMpCmBgYAoKCiMgRmVhdHVyZSBFbmdpbmVlcmluZwpgYGB7cn0KIyBmZWF0dXJlIDE6IG9uZSBncmFtIG92ZXJsYXBwaW5nCmNtT25lR3JhbSA8LSBmdW5jdGlvbihkLGZlYXR1cmU9J2NvYXV0aG9yJyl7CiAgIyBkIGlzIGEgcGFpciBvZiByZWNvcmRzIGluIGRhdGFmcmFtZQogICMgZmVhdHVyZSBpcyB0aGUgZmVhdHVyZSB5b3Ugd2FudCB0byBjYWN1bGF0ZSBvdmVybGFwcGluZwogIGQgPC0gZFssZmVhdHVyZV0KICBjbS53IDwtIGxlbmd0aChpbnRlcnNlY3QoZFtbMV1dLGRbWzJdXSkpCiAgcmV0dXJuKGNtLncpCn0KIyBob3cgbWFueSBjb2F1dGhvcnMgaW4gYXZlcmFnZSBkb2VzIGEgY2x1c3RlciBvZiBhdXRob3JzIHNoYXJlPwojIGhvdyBsaWtlbHkgYXJlIDIgY2x1c3RlcnMgc2hhcmUgc2FtZSBqb3VybmFscz8KIyBjb21sZXhpdHkgaXMgTyhOXjIpCmdycC5jbU9uZUdyYW0gPC0gZnVuY3Rpb24oZCxmZWF0dXJlPSdjb2F1dGhvcicsdHlwZT0nYXZnJyl7CiAgIyBkIGlzIGEgc3ViLWRhdGFmcmFtZSBjb250YWlucyBuIHJlY29yZHMKICAjIHR5cGUgaXMgb25lIG9mIHsnYXZnJywncmF0aW8nfSByYXJpbyBpcyBjb21tb24gbnVtYmVyIG9mIHJlY29yZHMgbm9ybWFsaXplZCBieSBsZW5ndGggb2YgdGhhdCBmZWF0dXJlKGUuZy4gI2NvbW1vbiBjby1hdXRob3IvI3RvdGFsIGNvLWF1dGhvcikKICBuIDwtIGRpbShkKVsxXQogIGlmIChuPDIpewogICAgZCA8LSByYmluZChkLGQpCiAgICBuIDwtIGRpbShkKVsxXQogIH0KICBpbmQubWF0IDwtIGNvbWJuKG4sMikKICBvdXRwdXQgPC0gYXBwbHkoaW5kLm1hdCwyLGZ1bmN0aW9uKHgpe3Q8LWNtT25lR3JhbShkW3gsXSxmZWF0dXJlKX0pCiAgIyBteUZ1bmMgPC0gZnVuY3Rpb24oeCl7dDwtY21PbmVHcmFtKGRbaW5kLm1hdFsseF0sXSxmZWF0dXJlKX0KICAjIG91dHB1dCA8LSBmb3JlYWNoKGk9MTooZGltKGluZC5tYXQpWzJdKSwgLmNvbWJpbmUgPSBjLCAuZXhwb3J0ID0gJ2NtT25lR3JhbScpICVkb3BhciUge215RnVuYyhpKX0KICBzdW1fZ3JwIDwtIFJlZHVjZShzdW0sb3V0cHV0KQogIGF2Z19ncnAgPC0gc3VtX2dycC9jaG9vc2UobiwyKQogIHJldHVybihhdmdfZ3JwKQp9CgpgYGAKCiMgQmFzaWMgRXhwbG9yZQpgYGB7cn0KIyAjIHBhcmFsbGVsIHByb2Nlc3NpbmcKIyBjbCA8LSBtYWtlQ2x1c3Rlcig0LCB0eXBlID0gJ1NPQ0snKQojIHJlZ2lzdGVyRG9TTk9XKGNsKQoKdW5pcV9hdXRob3IgPC0gbGVuZ3RoKHVuaXF1ZShkZiRhdXRob3JOdW0pKQpjYXQoJ3dlIGhhdmUnLHVuaXFfYXV0aG9yLCdkaWZmZXJlbnQgYXV0aG9ycyBpbiB0b3RhbCcpCnRtX2NvYXV0aG9yIDwtIE5BCnRtX2NvYXV0aG9yIDwtIHN5c3RlbS50aW1lKGF2Z19jb2F1dGhvciA8LSBncnAuY21PbmVHcmFtKGRmLCdjb2F1dGhvcicpKQp0bV9qb3VybmFsIDwtIE5BCnRtX2pvdXJuYWwgPC0gc3lzdGVtLnRpbWUoYXZnX2pvdXJuYWwgPC0gZ3JwLmNtT25lR3JhbShkZiwnam91cm5hbFRpdGxlJykpCnByaW50KHRtX2NvYXV0aG9yKQpwcmludCh0bV9qb3VybmFsKQpjYXQoJ2F2ZXJhZ2UgY29tbW9uIGNvYXV0aG9ycyBpcycsYXZnX2NvYXV0aG9yKQpjYXQoJ2F2ZXJhZ2UgY29tbW9uIGpvdXJuYWwgaXMnLGF2Z19qb3VybmFsKQpgYGAKCgojIE1vZGVsaW5nCmBgYHtyfQojIGNsdXN0ZXIgb2YgcmVjb3JkcyB0byBhIGstZGltIGZlYXR1cmUKY2x1c3RlcjJ2ZWMgPC0gZnVuY3Rpb24oZCl7CiAgIyBkIGlzIGEgc3ViLWRhdGFmcmFtZSBjb250YWlucyBuIHJlY29yZHMKICBrMSA8LSBncnAuY21PbmVHcmFtKGQsJ2NvYXV0aG9yJykKICBrMiA8LSBncnAuY21PbmVHcmFtKGQsJ2pvdXJuYWxUaXRsZScpCiAgcmV0dXJuKGMoazEsazIpKQp9CiMgY29tcGFyZSAyIHBhcnRpdGlvbnMKIyMgZ2VuZXJhdGUgVDAgcGFydGl0aW9uIG1hdHJpeApsYWJlbDJtYXQgPC0gZnVuY3Rpb24odCl7CiAgbiA8LSBsZW5ndGgodCkKICBtIDwtIGRpYWcobikKICBmb3IgKGkgaW4gMToobi0xKSl7CiAgICBmb3IgKGogaW4gKGkrMSk6bil7CiAgICAgIGlmICh0W2pdPT10W2ldKXsKICAgICAgICBtW2ksal0gPC0gMQogICAgICB9CiAgICB9CiAgfQogIG0gPC0gbSArIHQobSkgLSBkaWFnKG4pCiAgcmV0dXJuKG0pCn0KbWF0MmxhYmVsIDwtIGZ1bmN0aW9uKG0pewogIG4gPC0gZGltKG0pWzFdCiAgdCA8LSBpbnRlZ2VyKG4pIAogIGsgPC0gMQogIGZvciAoaSBpbiAxOm4pewogICAgaWYgKHRbaV09PTApewogICAgICB0W21baSxdPT0xXSA8LSBrCiAgICAgIGsgPC0gayArIDEKICAgIH0KICB9CiAgcmV0dXJuKHQpCn0KIyMgdHJ1ZSBzY29yZSBmdW5jdGlvbgpzY29yZS50cnVlIDwtIGZ1bmN0aW9uKG0sbTApewogIGFncmVlLnBhaXJzIDwtIDAKICBuIDwtIGRpbShtKVsxXQogIGZvciAoaSBpbiAxOihuLTEpKXsKICAgIGZvciAoaiBpbiAoaSsxKTpuKXsKICAgICAgaWYgKG1baSxqXT09bTBbaSxqXSl7CiAgICAgICAgYWdyZWUucGFpcnMgPC0gYWdyZWUucGFpcnMgKyAxCiAgICAgIH0KICAgIH0KICB9CiAgcyA8LSBhZ3JlZS5wYWlycy9jaG9vc2UobiwyKQogIHJldHVybihzKQp9CiMjIG91ciBzY29yZSBmdW5jdGlvbgpzY29yZS51c3IgPC0gZnVuY3Rpb24obSxkZixsYW1iZGE9YygwLjA1LDAuMDUpKXsKICAjIG0gaXMgdGhlIHBhcnRpdGlvbiBtYXRyaXgsIGxhbWJkYSBpcyB0aGUgcGFyYW1ldGVyIHZlY3RvcgogICMgd2UgdXNlIHN1bSBzbyBpdCBjYW4gb25seSBjb21wYXJlIHBhcnRpdGlvbnMgaW4gdGhlIHNhbWUgbmVpZ2hib3VyaG9vZAogIHQgPC0gbWF0MmxhYmVsKG0pCiAgbl9jIDwtIGxlbmd0aCh1bmlxdWUodCkpCiAgcyA8LSAwCiAgZm9yIChpIGluIDE6bl9jKXsKICAgIGQgPC0gZGZbdD09aSxdCiAgICBmIDwtIGNsdXN0ZXIydmVjKGQpCiAgICBzdWJfcyA8LSB0KGFzLm1hdHJpeChmKSklKiVhcy5tYXRyaXgobGFtYmRhKQogICAgcyA8LSBzICsgc3ViX3MKICB9CiAgcmV0dXJuKHMpCn0KCiMgbWVyZ2UgMiBuZWFyZXN0IGNsdXN0ZXJzIHRvIGdldCBuZXcgcGFydGl0aW9uCiMjIGRlZmluZSBkaXN0YW5jZSBidHdlZW4gMiBjbHVzdGVycwpjbHN0ci5kaXN0IDwtIGZ1bmN0aW9uKGQxLGQyLHR5cGU9J2NlbnRlcicpewogICMgY29tcHV0ZXIgZGlzdGFuY2UgYmV0d2VlbiAyIGNsdXN0ZXJzIGFzIGRpc3RhbmNlIGJldHdlZW4gdGhlaXIgY2VudHJvaWRzCiAgZjEgPC0gY2x1c3RlcjJ2ZWMoZDEpCiAgZjIgPC0gY2x1c3RlcjJ2ZWMoZDIpCiAgcmV0dXJuKHN1bSgoZjEtZjIpXjIpKQp9CiMgc2VsZWN0IGEgbmVhcmVzdCBwYWlyIG9mIGNsdXN0ZXJzIGFuZCBtZXJnZSB0aGVtCm1lcmdlLmNsc3RyIDwtIGZ1bmN0aW9uKHQsZGYpewogIGNsc3RyLmxpc3QgPC0gbGlzdCgpCiAgbl9jIDwtIGxlbmd0aCh1bmlxdWUodCkpCiAgbWluX2luZCA8LSBjKC0xLC0xKQogIG1pbl9kaXN0IDwtIDk5OTk5CiAgZm9yIChpIGluIDE6KG5fYy0xKSl7CiAgICBmb3IgKGogaW4gKGkrMSk6bl9jKXsKICAgICAgbmV3X2Rpc3QgPC0gY2xzdHIuZGlzdChkZlt0PT1pLF0sZGZbdD09aixdKQogICAgICBpZiAobmV3X2Rpc3Q8bWluX2Rpc3QpewogICAgICAgIG1pbl9kaXN0IDwtIG5ld19kaXN0CiAgICAgICAgbWluX2luZCA8LSBjKGksaikKICAgICAgfQogICAgfQogIH0KICB0W3Q9PWpdIDwtIGkgCiAgcmV0dXJuKHQpCn0KCiMgdXBkYXRlIHBhcmFtZXRlcnMKIyMgd2hlbiBhbiBlcnJvciBvY2N1cnMKCiMgYWxnb3JpdGhtCnRfc3RhciA8LSBkZiRhdXRob3JOdW0KdDAgPC0gYygxOjU3NykKbTAgPC0gbGFiZWwybWF0KHQwKQoKYGBgCgoKIyBQcmVzZW50IFJlc3VsdA==</div>
 
 
 

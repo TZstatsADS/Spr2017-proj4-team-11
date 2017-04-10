@@ -11,7 +11,7 @@ output:
 ```{r}
 # install the package if not installed
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(dplyr,plyr,data.table)
+pacman::p_load(dplyr,plyr,data.table,tm,Rcpp,foreach,doSNOW)
 
 # set directory
 setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
@@ -19,39 +19,192 @@ setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
 
 # Clean up data
 ```{r}
-load('../data/profclean.RData')
+#load('../data/profclean.RData')
+load('../data/data.RData')
 
-# do it with first table(14 tables in total)
+# do it with the first dataframe (14 in total)
 i <- 1
-l <- data_list[[i]]
-nr <- length(l)
-nc <- length(l[[1]])
+df <- data[[i]]
+head(df)
 
-# convert list ot a dataframe
-listToDF <- function(l,nrows,ncols){
-  df <- data.frame(matrix(rep(-1,nrows*(ncols-1)),nrows,ncols-1))
-  coauthor.list <- list()
-  colnames(df) <- c('author.id','paper.id','title','journal')
-  for (j in 1:nrows){
-    df[j,] <- l[[j]][c(1,2,4,5)]
-    coauthor.list <- c(coauthor.list,l[[j]][3])
-  }
-  df$coauthor <- coauthor.list
-  return(df)
-}
+# coauthor names to lowercase
+df$coauthor <- lapply(df$coauthor,tolower)
+# JournalTitle to list of words and to lowercase, remove stopwords
+stop_words <- c('a','an','and','or','for','to','of','the','in','what','how','why')
+'%nin%' <- Negate('%in%')
+df$journalTitle <- df$journalTitle %>% lapply(function(x){
+  t<-tolower(unlist(strsplit(x," "))) 
+  t[t %nin% stop_words]})
 
-df <- listToDF(l,nr,nc)
+
+# # convert list ot a dataframe
+# listToDF <- function(l,nrows,ncols){
+#   df <- data.frame(matrix(rep(-1,nrows*(ncols-1)),nrows,ncols-1))
+#   coauthor.list <- list()
+#   colnames(df) <- c('author.id','paper.id','title','journal')
+#   for (j in 1:nrows){
+#     df[j,] <- l[[j]][c(1,2,4,5)]
+#     coauthor.list <- c(coauthor.list,l[[j]][3])
+#   }
+#   df$coauthor <- coauthor.list
+#   return(df)
+# }
+# 
+# df <- listToDF(l,nr,nc)
 ```
 
 
 # Feature Engineering
 ```{r}
+# feature 1: one gram overlapping
+cmOneGram <- function(d,feature='coauthor'){
+  # d is a pair of records in dataframe
+  # feature is the feature you want to caculate overlapping
+  d <- d[,feature]
+  cm.w <- length(intersect(d[[1]],d[[2]]))
+  return(cm.w)
+}
+# how many coauthors in average does a cluster of authors share?
+# how likely are 2 clusters share same journals?
+# comlexity is O(N^2)
+grp.cmOneGram <- function(d,feature='coauthor',type='avg'){
+  # d is a sub-dataframe contains n records
+  # type is one of {'avg','ratio'} rario is common number of records normalized by length of that feature(e.g. #common co-author/#total co-author)
+  n <- dim(d)[1]
+  if (n<2){
+    d <- rbind(d,d)
+    n <- dim(d)[1]
+  }
+  ind.mat <- combn(n,2)
+  output <- apply(ind.mat,2,function(x){t<-cmOneGram(d[x,],feature)})
+  # myFunc <- function(x){t<-cmOneGram(d[ind.mat[,x],],feature)}
+  # output <- foreach(i=1:(dim(ind.mat)[2]), .combine = c, .export = 'cmOneGram') %dopar% {myFunc(i)}
+  sum_grp <- Reduce(sum,output)
+  avg_grp <- sum_grp/choose(n,2)
+  return(avg_grp)
+}
 
+```
+
+# Basic Explore
+```{r}
+# # parallel processing
+# cl <- makeCluster(4, type = 'SOCK')
+# registerDoSNOW(cl)
+
+uniq_author <- length(unique(df$authorNum))
+cat('we have',uniq_author,'different authors in total')
+tm_coauthor <- NA
+tm_coauthor <- system.time(avg_coauthor <- grp.cmOneGram(df,'coauthor'))
+tm_journal <- NA
+tm_journal <- system.time(avg_journal <- grp.cmOneGram(df,'journalTitle'))
+print(tm_coauthor)
+print(tm_journal)
+cat('average common coauthors is',avg_coauthor)
+cat('average common journal is',avg_journal)
 ```
 
 
 # Modeling
 ```{r}
+# cluster of records to a k-dim feature
+cluster2vec <- function(d){
+  # d is a sub-dataframe contains n records
+  k1 <- grp.cmOneGram(d,'coauthor')
+  k2 <- grp.cmOneGram(d,'journalTitle')
+  return(c(k1,k2))
+}
+# compare 2 partitions
+## generate T0 partition matrix
+label2mat <- function(t){
+  n <- length(t)
+  m <- diag(n)
+  for (i in 1:(n-1)){
+    for (j in (i+1):n){
+      if (t[j]==t[i]){
+        m[i,j] <- 1
+      }
+    }
+  }
+  m <- m + t(m) - diag(n)
+  return(m)
+}
+mat2label <- function(m){
+  n <- dim(m)[1]
+  t <- integer(n) 
+  k <- 1
+  for (i in 1:n){
+    if (t[i]==0){
+      t[m[i,]==1] <- k
+      k <- k + 1
+    }
+  }
+  return(t)
+}
+## true score function
+score.true <- function(m,m0){
+  agree.pairs <- 0
+  n <- dim(m)[1]
+  for (i in 1:(n-1)){
+    for (j in (i+1):n){
+      if (m[i,j]==m0[i,j]){
+        agree.pairs <- agree.pairs + 1
+      }
+    }
+  }
+  s <- agree.pairs/choose(n,2)
+  return(s)
+}
+## our score function
+score.usr <- function(m,df,lambda=c(0.05,0.05)){
+  # m is the partition matrix, lambda is the parameter vector
+  # we use sum so it can only compare partitions in the same neighbourhood
+  t <- mat2label(m)
+  n_c <- length(unique(t))
+  s <- 0
+  for (i in 1:n_c){
+    d <- df[t==i,]
+    f <- cluster2vec(d)
+    sub_s <- t(as.matrix(f))%*%as.matrix(lambda)
+    s <- s + sub_s
+  }
+  return(s)
+}
+
+# merge 2 nearest clusters to get new partition
+## define distance btween 2 clusters
+clstr.dist <- function(d1,d2,type='center'){
+  # computer distance between 2 clusters as distance between their centroids
+  f1 <- cluster2vec(d1)
+  f2 <- cluster2vec(d2)
+  return(sum((f1-f2)^2))
+}
+# select a nearest pair of clusters and merge them
+merge.clstr <- function(t,df){
+  clstr.list <- list()
+  n_c <- length(unique(t))
+  min_ind <- c(-1,-1)
+  min_dist <- 99999
+  for (i in 1:(n_c-1)){
+    for (j in (i+1):n_c){
+      new_dist <- clstr.dist(df[t==i,],df[t==j,])
+      if (new_dist<min_dist){
+        min_dist <- new_dist
+        min_ind <- c(i,j)
+      }
+    }
+  }
+  t[t==j] <- i 
+  return(t)
+}
+
+# update parameters
+## when an error occurs
+
+# algorithm
+t_star <- df$authorNum
+t0 <- c(1:577)
+m0 <- label2mat(t0)
 
 ```
 

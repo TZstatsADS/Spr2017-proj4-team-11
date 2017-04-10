@@ -1,0 +1,578 @@
+authorNum,paperNum,paperTitle,journalTitle,coauthor
+10,1,PMES: privilege mangagement and enforcement system for secure distributed resource sharing ,ifip|international|federation|information|processing|world|conference|it|tools,b kvande|i levinstein|k maly|m olson|r mukkamala|r chambers|r whitney|s nanjangud
+10,2,CoProcess: A Java-based Environment for Collaborative Process Management Over the Web ,webnet,c vemuru|h syed|h abdel-wahab|k maly|m kholief|r mukkamala|s dittakavi
+10,3,A privilege management and enforcement system for distributed resource sharing ,wetice|workshop|enabling|technologies|infrastructure|collaborative|enterprises,b kvande|i levinstein|k maly|m olson|r mukkamala|r chambers|r whitney|s nanjangud
+10,4,The software architecture and interprocess communications of IRI: an Internet-based interactive distance learning system ,wetice|workshop|enabling|technologies|infrastructure|collaborative|enterprises,a youssef|c overstreet|e stoica|h abdel-wahab|j wild|k mary
+10,5,Mosaic + XTV = CoReview ,computer|networks|isdn|systems,a prabhu|c vemuru|h syed|h abdel-wahab|k maly|r mukkamala
+10,6,"IRI-h, a Java-based distance education system ",acm|journal|educational|resources|computing,a gonzalez|a hamid|c overstreet|h abdel-wahab|j wild|k maly|s ghanem|x zhu
+10,7,BTU: A Host Communication Benchmark ,ieee|computer,k maly|s mynam
+10,8,Interactive Distance Learning over Intranets ,ieee|internet|computing,a youssef|c overstreet|e al-shaer|e stoica|h abdel-wahab|j wild|k maly
+10,9,Performance trade-offs for a multimedia distributed application ,hpn|high|performance|networking,c overstreet|h abdel-wahab|k maly|m kumar|r srivastava
+11,1,A Security Architecture for Tenet Scheme ,idms|interactive|distributed|multimedia|systems|telecommunication|services,m moran|r bettati|r oppliger
+11,2,Dynamic Resource Allocation Migration for Multiparty Real-Time Communications ,icdcs|international|conference|distributed|computing|systems,r bettati
+11,3,Connection Establishment for Multi-Party Real-Time Communication ,nossdav|network|operating|system|support|digital|audio|video,d ferrari|m moran|q nguyen|r yavatkar|r bettati|w heffner|w howe
+11,4,Distributed Advance Reservation of Real-Time Connections ,nossdav|network|operating|system|support|digital|audio|video,d ferrari|g ventre
+11,5,Resource Sharing for Multi-Party Real-Time Communication ,infocom|conference|computer|communications,m moran|q nguyen|w howe
+11,6,Distributed Advance Reservation of Real-Time Connections ,multimedia|syst,d ferrari|g ventre
+11,7,Resource partitioning for real-time communication ,ieee|acm|trans|netw,d ferrari
+11,8,Failure Recovery for Multi-Party Real-Time Communication ,icmcs|international|conference|multimedia|computing|systems,k rothermel
+12,20,"A self-stabilizing algorithm for the maximum flow problem,",|th|annual|ieee|international|conference|computers|communication,s ghosh|s pemmaraju
+12,21,"PMM: A parallel architecture for production systems,",acm|southeastcon,c mazumdar
+12,22,"A partially shared parallel Rete network for faster execution of production systems,",froniters|knowledge|based|computing|vijay|p|bhatkar|kiran|m|rege|ed|narosa|publishing|house,c mazumdar
+12,23,"A simulator for distributed self-stabilizing algorithms,",adcom|international|conference|advanced|computing|communication|bhubaneswar,n gururaj
+12,24,"Fast parallel algorithms for the balanced decomposition of series-parallel graphs,",congressus|numerantium,m kortright|r borie
+12,25,"Design and implementation of a Linux-based IPv -IPv Bridge,",cit|bhubaneswar,v madhu|p singhal
+12,26,Estimating Link Characteristics of Internet Paths With FPathchar ,international|conference|internet|computing,a nandi
+12,27,"Combining diverse checkpoint and recovery algorithms for distributed systems,",|rd|international|workshop|distributed|computing|calcutta,h paul|r badrinath
+12,28,"Hierarchical coordinated checkpointing algorithms,",pdcs|parallel|distributed|computing|systems|iasted|international|conference|parallel|distributed|computing|systems,h paul|r badrinath
+12,29,"A heterogeneous checkpoint and recovery protocol,",pdpta|parallel|distributed|processing|techniques|applications|international|conference|parallel|distributd|processing|techniques|applications|las|vegas,h paul|r badrinath
+12,1,"Online transcoding of web pages for mobile devices,",hci|human|computer|interaction|udine,s banerjee|a basu
+12,2,Adaptive Fault Tolerant Hospital Resource Scheduling ,coopis|doa|international|symposium|distributed|objects|applications|odbase|international|conference|ontologies|databases|applications|semantics,a basu|u deshpande
+12,3,Online Transcoding of Web Pages for Mobile Devices ,hci|human|computer|interaction,a basu|s banerjee
+12,4,"Intellegent mobile agent based framework for resource discovery and transcoding,",intelligent|computing|vlsi|very|large|scale|integration|allied|publishers,a basu
+12,5,"Balanced decomposition for partial-k trees,",congressus|numerantium,r borie
+12,6,"Coordinated problem solving through resource sharing in a distributed environment,",|ieee|transactions|systems|man|cybernatics,u deshpande|a basu
+12,7,"A coordination mechanism for hospital resource scheduling using a multi-agent framework,",|rd|international|workshop|distributed|computing|calcutta,u deshpande|a basu
+12,8,"Adaptive fault tolerant hospital resource scheduling,",international|conference|cooperative|information|systems|lncs,u deshpande|a basu
+12,9,"A distributed hospital resource scheduling system using a multi-agent framework,",iete|technical|review,u deshpande|a basu
+12,30,A Heterogeneous Checkpoint and Recovery Protocol in Cluster-Based Distributed Systems ,pdpta|parallel|distributed|processing|techniques|applications,h paul|r badrinath
+12,31,"Evaluation of different classes of checkpoint and recovery potocols iwth dPSIM,",cit|th|international|conference|information|technology|gopalpur|sea,h paul|r badrinath
+12,32,"Performance comparison of checkpoint and recovery protocols,",|concurrency|computation|practice|experience,h paul|r badrinath
+12,33,"Simulation and performance estimation of checkpoint and recovery protocols,",poster|presentation|hpc|asia|bangalore,h paul|r badrinath
+12,34,Fault-containing network protocols ,sac|selected|areas|cryptography,s pemmaraju|s ghosh
+12,35,Fault-Containing Self-Stabilizing Algorithms ,podc|symposium|principles|distributed|computing,s pemmaraju|s ghosh|t herman
+12,36,A Self-Stabilizing Algorithm for the Maximum Flow Problem ,distributed|computing,s pemmaraju|s ghosh
+12,37,"Adaptive mobile agents: modeling and a case study,",|workshop|distributed|computing|calcutta,s ranjan|a basu|a meka|a chaturvedi
+12,38,"Online transcoding of news pages for handheld devices,",international|conference|computer|sciences,s shekhar|s banerjee
+12,10,"Performance improvement of contract net based using instance based learning,",international|workshop|distributed|computing|kolkata|proceedings|springer|verlag|s|lncs|series,u deshpande|a basu
+12,11,"Task assignment in a collaborative system with imprecise information,",kbcs|mumbai,u deshpande|a basu
+12,12,"Fault-containing network protocols,",annual|acm|symposium|applied|computing|san|jose,s ghosh|s pemmaraju
+12,13,"A fault-containing self-stabiling spanning tree algorithm,",journal|computing|information,s ghosh|s pemmaraju
+12,14,"Fault-containing self-stabilizing protocols,",|th|annual|acm|symposium|principles|distributed|computing,s ghosh|t herman|s pemmaraju
+12,15,"An exercise in fault-containment: Self-stabilizing leader election,",information|processing|letters,s ghosh
+12,16,"Randomized algorithms in graph theory,",technical|report|tr|department|computer|science|university|city,s ghosh|s pemmaraju
+12,17,"Self-stabilizing dynamic programming algorithms on trees,",|workshop|self|stabilizing|systems|las|vegas,s ghosh|m karaata|s pemmaraju
+12,18,"A self-stabilizing algorithm for maximal matching on trees,",technical|report|tr|department|computer|science|university|city,s ghosh|m karaata|s pemmaraju
+12,19,"A self-stabilizing algorithm for the maximum flow problem,",distributed|computing,s ghosh|s pemmaraju
+13,1,A Cooperative Framework for Segmentation Using D Active Contours and D Hybrid Models as Applied to Branching Cylindrical Structures ,iccv|international|conference|computer|vision,m dubuisson-jolly|t o'donnell
+13,2,Optimal Polyline Tracking for Artery Motion Compensation in Coronary Angiography ,iccv|international|conference|computer|vision,c liang|m dubuisson-jolly
+13,3,A new model for the recovery of cylindrical structures from medical image data ,cvrmed,t boult|t o'donnell
+13,4,Introduction to the Special Issue on Innovative Applications of Computer Vision ,mach|vis|appl,b bhanu|d michael|t boult
+13,5,Global Models with Parametric Offsets as Applied to Cardiac Motion Recovery ,cvpr|computer|vision|pattern|recognition,t boult|t o'donnell
+13,6,The use of hybrid models to recover cardiac wall motion in tagged MR images ,cvpr|computer|vision|pattern|recognition,g funka-lea
+13,7,Multi-Modality Model-Based Registration in the Cardiac Domain ,cvpr|computer|vision|pattern|recognition,g funka-lea|r white|s halliburton|s aharon|t o'donnell
+14,1,Fairness performance of dynamic weights in the ATM ABR service ,perform|eval,j chew
+14,2,Improving Fairness of Long VCs Using Active Fairness in the ATM ABR Service ,icc|international|conference|communications,j chew
+14,3,Controlling Isochronous Traffic in CRMA/ATM Interworking ,icc|international|conference|communications,x wang
+14,4,A New Consolidation Algorithm for Point-to-Multipoint ABR Service in ATM Networks ,icn|international|competition|network,b lee|m shamsuzzaman
+14,5,Analysis of a Packet Switch with Input and Output Buffers and Speed Constraints ,infocom|conference|computer|communications,n georganas
+14,6,Priority Performance of ATM Packet Switches ,infocom|conference|computer|communications,n georganas
+14,7,Switching Modules for ATM Switching Systems and Their Interconnection Networks ,computer|networks|isdn|systems,l orozco-barbosa|n georganas
+15,30,"Pricing Virtual Private Networks - An Economic, Engineering and Experimental Approach,",business|modelling|multidisciplinary|approach|essays|honor|andrew|b|whinston|c|holsapple|v|jacob|h|r|rao|eds|kluwer|academic|publishers|forthcoming,b ukic|p konana
+15,31,"Priority Pricing of Integrated Services Networks, in Internet Economics, L W McKnight and J P Bailey, eds , MIT Press, Cambridge, MA, , - ",,d stahl|a whinston
+15,32," A Priority Pricing Approach to Manage Multi-Service Class Networks in Real-Time,",|journal|electronic|publishing,d stahl|a whinston
+15,33,"A Stochastic Equilibrium Model of Internet Pricing,",journal|economic|dynamics|control,d stahl|a whinston
+15,34," Estimating Internet Users' Demand Characteristics,",computational|economics,b jukic|m li|d stahl|a whinston
+15,35," Streamlining the Digital Economy: How to Avert a Tragedy of the Commons,",ieee|internet|computing,b jukic|m parameswaran|d stahl|a whinston
+15,36," The Economics of Network Management,",communications|acm,d stahl|a whinston
+15,37,The Internet: A Future Tragedy of the Commons?,computational|approaches|economic|problems|h|amman|b|rustem|b|whinston|eds|kluwer|academic|publishers|dordrecht,d stahl|a whinston
+15,38,"Transient S ensitivity Analysis in Computer Simulation,",proceedings|european|simulation|multiconference|barcelona|nominated|best|paper|award,d morrice
+15,39," Integrating User Preferences and Real-time Workload in Electronic Commerce,",information|systems|research,p konana|a whinston
+15,40,"Pricing and Real-Time Database Applications for Information Services: A Framework and Economic Justification,",proceedings|icis|international|conference|information|systems|dcember|winner|runners|up|award|best|paper,p konana|d stahl|a whinston
+15,41,"Research Issues in Real-time DBMS in the Context of Electronic Commerce,",proceedings|acm|workshop|databases|active|real|time|association|with|th|international|conference|information|knowledge|management,p konana|d stahl|a whinston
+15,42,Streamlining the Digital Economy: How to Avert a Tragedy of the Commons ,ieee|internet|computing,a whinston|b jukic|d stahl|m parameswaran
+15,43,The Economics of Network Management ,commun|acm,a whinston|d stahl
+15,10,"Simulating Online Yankee Auctions to Optimize Sellers Revenue,",proceedings|hicss|international|conference|system|sciences|maui,r bapna|p goes
+15,11,"User Heterogeneity and its Impact on Electronic Auction Market Design: An Empirical Exploration,",forthcoming|management|information|systems|quarterly,r bapna|p goes|y jin
+15,12," A Theoretical and Empirical Investigation of Multi-item On-line Auctions,",information|technology|management,r bapna|p goes
+15,13,"Managing Computing Resources in Active Intranets ,",international|journal|network|management,r chellappa|g gupta|a a
+15,14,"Database Design in the Modern Organization - Identifying Robust Structures Under Changing Query Patterns and Arrival Rate Conditions,",forthcoming|decision|support|systems|article|press|version,a chen|p goes|j marsden
+15,15,Insights and Analyses of Online Auctions ,commun|acm,p goes|r bapna
+15,16,Simulating Online Yankee Auctions to Optimize Sellers Revenue ,hicss|international|conference|system|sciences,p goes|r bapna
+15,17,Minitrack Introduction ,hicss|international|conference|system|sciences,r gopal
+15,18,"Trading Higher Software Piracy for Higher Profits: The Case of Phantom Piracy,",proceedings|hicss|international|conference|system|sciences|big|island|nominated|best|paper|award,r gopal
+15,19," Benefits and Costs of Adopting Usage Based Pricing in a Subnetwork,",information|technology|management,l linden|d stahl|a whinston
+15,1,"Towards Comprehensive Bidder Support in Online Combinatorial Auctions,",proceedings|wits|workshop|information|technologies|systems,g adomavicius
+15,2," Comparative Analysis of Multi-Item Online Auctions: Evidence from the Laboratory,",decision|support|system,r bapna|p goes
+15,3,"Online Mercantile Processes: A Closer Look at B C Online Auctions, in Handbook of Electronic Commerce in Business and Society, P B Lowry, R J Watson, and J O Cherrington eds , St Lucie Press, Boca Raton, FL, , - ",,r bapna
+15,4,"Online Mercantile Processes for Digital Products under Quality-of-Service and Uncertain Demand,",proceedings|wits|workshop|information|technologies|systems|sydney,r bapna|p goes
+15,5," Analysis and Design of Business-to-Consumer Online Auctions,",management|science,r bapna|p goes
+15,6," Insights and Analysis of Online Auctions,",communications|acm,r bapna|p goes
+15,7,"Predictive Calibration of Online Multi-Unit Ascending Auctions,",proceedings|wits|workshop|information|technologies|systems|barcelona|nominated|best|paper|award,r bapna|p goes|g aruga
+15,8,"Optimal Design of the Online Auction Channel: Analytical, Empirical and Computational Insights,",decision|sciences|prepublication|version,r bapna|p goes|g karuga
+15,9," Replicating Online Yankee Auctions to Analyze Auctioneers' and Bidders' Strategies,",information|systems|research,r bapna|p goes
+15,20,"A Conceptual Framework for Applying Parallel Computing to Flexible Manufacturing Systems,",proceedings|nsf|conference|design|manufacturing,d stahl|a whinston
+15,21,"Economic Analysis of Consumer Purchase Intentions in Electronic and Traditional Retail Channels: Competitive and Strategic Implications,",forthcoming|decision|support|systems,b su|z walter
+15,22,"Economic Issues in Electronic Commerce,",readings|electronic|ravi|kalakota|andrew|b|whinston|eds|wesley|parts|reprinted|under|same|title|legal|issues|electronic|r|l|ed|captus|press,d stahl|a whinston
+15,23,"A Decentralized Approach to Estimate Activity Based Costs and Near-Optimal Resource Allocation in Flexible Manufacturing Systems,",international|journal|flexible|manufacturing|systems,d stahl|a whinston
+15,24," Digital Signature: Use and Modification to Achieve Success in Next Generational E-Business Processes,",forthcoming|information|management,y tung|j marsden
+15,25," Managing Computing Resources in Intranets: An Electronic Commerce Perspective,",decision|support|systems,d stahl|a whinston
+15,26," Extracting Consumers' Private Information for Implementing Incentive Compatible Internet Traffic Pricing,",journal|management|information|systems,b jukic|d stahl|a whinston
+15,27,"An Economic Approach to Network Computing with Priority Classes,",journal|organizational|computing|electronic,d stahl|a whinston
+15,28,"Application of Parallel Computing to Resource Pricing and Scheduling in Flexible Manufacturing Systems,",operations|research|methods|models|applications|j|e|aronson|s|zionts|eds|quorum|books,d stahl|a whinston
+15,29,"Pricing of Services on The Internet,",impact|ic|research|affects|public|policy|business|markets|quorum|books|forthcoming,d stahl|a whinston
+16,1,Combining Decision Diagrams and SAT Procedures for Efficient Symbolic Model Checking ,cav|computer|aided|verification,a biere|e clarke|p williams
+16,2,SAT Based Abstraction-Refinement Using ILP and Machine Learning Techniques ,cav|computer|aided|verification,e clarke|j kukula|o shrichman
+16,3,Dynamic Detection and Removal of Inactive Clauses in SAT with Application in Image,computation|dac|design|automation|conference,a gupta|a gupta|z yang|p ashar
+16,4,Dynamic Detection and Removal of Inactive Clauses in SAT with Application in Image Computation ,dac|design|automation|conference,p ashar|z yang
+16,5,SAT-Based Image Computation with Application in Reachability Analysis ,fmcad|formal|methods|computer|aided|design,p ashar|z yang
+16,6,A slew rate enhancement technique for operational amplifiers based on a tunable active Gm-based capacitance multiplication circuit ,acm|great|lakes|symposium|vlsi|very|large|scale|integration,r suryanarayan|t blalock
+16,7,Combining Decision Diagrams and SAT Procedures for Efficient Symbolic Model Checking,cav|computer|aided|verification,p williams|a biere|e clarke
+17,1,Width minimization of two-dimensional CMOS cells using integer programming ,iccad|international|conference|computer|aided|design,j hayes
+17,2,Optimal -D cell layout with integrated transistor folding ,iccad|international|conference|computer|aided|design,j hayes
+17,3,CLIP: An Optimizing Layout Generator for Two-Dimensional CMOS Cells ,dac|design|automation|conference,j hayes
+17,4,CLIP: integer-programming-based optimal layout synthesis of D CMOS cells ,acm|trans|design|autom|electr|syst,j hayes
+18,1,XMLTK: An XML Toolkit for Scalable XML Stream Processing,|planx,a gupta|i avila-campillo|t green|a gupta|m onizuka|d raven|d suciu
+18,2,Compressing SQL workloads ,sigmod|international|conference|management|data|conference,s chaudhuri|v narasayya
+18,3,View Selection for Stream Processing,webdb,a gupta|a gupta|a halevy|d suciu
+18,4,Stream Processing of XPath Queries with Predicates,sigmod|international|conference|management|data,a gupta|a gupta|d suciu
+18,5,The View Selection Problem for Stream Processing,pods|symposium|principles|database|systems,a gupta|a gupta|d suciu|a halevy
+18,6,View Selection for Stream Processing ,webdb,a halevy|d suciu
+18,7,The view selection problem for XML content based routing ,pods|symposium|principles|database|systems,a halevy|d suciu
+18,8,Stream Processing of XPath Queries with Predicates ,sigmod|international|conference|management|data|conference,d suciu
+19,1,A Silicon Compiler for Fault-Tolerant ROMs ,dft|defect|fault|tolerance|vlsi|systems,k chakraborty|p mazumder
+19,2,A Physical Design Tool for Built-in Self-Repairable Static RAMs ,date|design|automation|test|europe,k chakraborty|m bhattacharya|p mazumder|s kulkarni
+19,3,Supply chain agent decision aid system SCADAS ,winter|simulation|conference,l whitman|r agarwal
+1,103,Scheduling and Page Migration for Multiprocessor Compute Servers ,asplos|architectural|support|programming|languages|operating|systems,b verghese|m rosenblum|r chandra|s devine
+1,16,Memory System Performance of UNIX on CC-NUMA Multiprocessors ,sigmetrics|measurement|modeling|computer|systems,j chapin|m rosenblum|s herrod
+1,104,Cache Invalidation Patterns in Shared-Memory Multiprocessors ,ieee|trans|computers,w weber
+1,17,"The VMP Multiprocessor: Initial Experience, Refinements and Performance Evlauation ",isca|international|symposium|computer|architecture,d cheriton|h goosen|p boyle
+1,105,Exploring the Benefits of Multiple Hardware Contexts in a Multiprocessor Architecture: Preliminary Results ,isca|international|symposium|computer|architecture,w weber
+1,50,Memory Consistency and Event Ordering in Scalable Shared-Memory Multiprocessors ,isca|international|symposium|computer|architecture,d lenoski|j laudon|j hennessy|k gharachorloo|p gibbons
+1,18,Distributed meetings: a meeting capture and broadcasting system ,acm|multimedia,a colburn|i tashev|j cadiz|l he|r cutler|s silverberg|y rui|z zhang|z liu
+1,106,Analysis of Cache Invalidation Patterns in Multiprocessors ,asplos|architectural|support|programming|languages|operating|systems,w weber
+1,51,The Directory-Based Cache Coherence Protocol for the DASH Multiprocessor ,isca|international|symposium|computer|architecture,d lenoski|j laudon|j hennessy|k gharachorloo
+1,19,"Distributed meetings,",|acm,r cutler|y rui|j cadiz|i tashev|l he|a colburn|z zhang|z liu|s silverberg
+1,107,"Reducing Memory and Traffic Requirements for Scalable Directory Based Cache Coherence Schemes,",|anoop|gupta,w weber|t mowry
+1,52,The DASH Prototype: Logic Overhead and Performance ,ieee|trans|parallel|distrib|syst,d lenoski|d nakahira|j laudon|j hennessy|l stevens|t joe
+1,108,"The SPLASH Programs,",|isca|international|symposium|computer|architecture,s woo|m ohara|e torrie|j singh
+1,53,The DASH Prototype: Implementation and Performance ,isca|international|symposium|computer|architecture,d lenoski|d nakahira|j laudon|j hennessy|l stevens|t joe
+1,54,The Stanford Dash Multiprocessor ,ieee|computer,d lenoski|j laudon|j hennessy|k gharachorloo|m horowitz|m lam|w weber
+1,55,Effectiveness of Trace Sampling for Performance Debugging Tools ,sigmetrics|measurement|modeling|computer|systems,m martonosi|t anderson
+1,56,MemSpy: Analyzing Memory System Bottlenecks in Programs ,sigmetrics|measurement|modeling|computer|systems,m martonosi|t anderson
+1,57,Tuning Memory Performance of Sequential and Parallel Programs ,ieee|computer,m martonosi|t anderson
+1,90,Comparative Performance Evaluation of Cache-Coherent NUMA and COMA Architectures ,isca|international|symposium|computer|architecture,p stenstr&ouml|m m|t joe
+1,58,Tradeoffs in Message Passing and Shared Memory Implementations of a Standard Cell Router ,icpp|international|conference|parallel|processing,m martonosi
+1,91,Suitability of Message Passing Computers for Implementing Production Systems ,aaai|national|conference|artificial|intelligence,m tambe
+1,59,Reducing Memory and Traffic Requirements for Scalable Directory-Based Cache Coherence Schemes ,icpp|international|conference|parallel|processing,t mowry|w weber
+1,92,Hive: Fault Containment for Shared-Memory Multiprocessors ,sosp|symposium|operating|systems|principles,d teodosiu|j chapin|m rosenblum|s devine|t lahiri
+1,93,Implementing Efficient Fault Containment for Multiprocessors: Confining Faults in a Shared-Memory Multiprocessor Environment ,commun|acm,d teodosiu|j chapin|m rosenblum|s devine|t lahiri
+1,94,The SPLASH- Programs: Characterization and Methodological Considerations ,isca|international|symposium|computer|architecture,e torrie|j singh|m ohara|s woo
+1,95,Benefits of Cache-Affinity Scheduling in Shared-Memory Multiprocessors: A Summary ,sigmetrics|measurement|modeling|computer|systems,a tucker|j torrellas
+1,96,Evaluating the Performance of Cache-Affinity Scheduling in Shared-Memory Multiprocessors ,j|parallel|distrib|comput,a tucker|j torrellas
+1,97,Exploiting Variable Grain Parallelism at Runtime ,ppopp|principles|practice|parallel|programming|ppeals|symposium|principles|practice|parallel|programming,a tucker
+1,98,Process Control and Scheduling Issues for Multiprogrammed Shared-Memory Multiprocessors ,sosp|symposium|operating|systems|principles,a tucker
+1,99,The Impact of Operating System Scheduling Policies and Synchronization Methods of the Performance of Parallel Application ,sigmetrics|measurement|modeling|computer|systems,a tucker|s urushibara
+1,20,"Initial Assessment of Architectures for Production Systems,",|aaai|national|conference|artificial|intelligence,c forgy|a newell|r wedig
+1,21,Static and Run-Time Characteristics of OPS Production Systems ,j|parallel|distrib|comput,c forgy
+1,22,"Memory Consistency and Event Ordering in Scalable SharedMemory Multiprocessors Retrospectives and Reprints ,",,k gharachorloo|d lenoski|j laudon|p gibbons|j hennessy
+1,23,Performance evaluation of hybrid hardware and software distributed shared memory protocols ,international|conference|supercomputing,k gharachorloo|r chandra|v soundararajan
+1,24,"Performance Evaluation of Memory Consistency Models for Shared Memory Multiprocessors,",|asplos|architectural|support|programming|languages|operating|systems,k gharachorloo|j hennessy
+1,25,Designing presentations for on-demand viewing ,cscw|conference|computer|supported|cooperative|work,j grudin|l he
+1,26,"Parallel Algorithms and Architectures for RuleBased Systems,",|isca|international|symposium|computer|architecture,c forgy|a newell|r wedig
+1,27,"Suitability of Message Passing Computers for Implementing Production Systems,",|aaai|national|conference|artificial|intelligence,m tambe
+1,60,Tolerating Latency Through Software-Controlled Prefetching in Shared-Memory Multiprocessors ,j|parallel|distrib|comput,t mowry
+1,28,The Design and Analysis of a Cache Architecture for Texture Mapping ,isca|international|symposium|computer|architecture,z hakura
+1,61,The Performance Impact of Flexibility in the Stanford FLASH Multiprocessor ,asplos|architectural|support|programming|languages|operating|systems,d nakahira|d ofelt|j singh|j kuskin|j baxter|j heinlein|j hennessy|k gharachorloo|m heinrich|m horowitz|m rosenblum|r simoni
+1,29,Building an intelligent camera management system ,acm|multimedia,l he|q liu|y rui
+1,62,The Stanford FLASH Multiprocessor ,isca|international|symposium|computer|architecture,d nakahira|d ofelt|j kuskin|j baxter|j chapin|j heinlein|j hennessy|k gharachorloo|m heinrich|m horowitz|m rosenblum|r simoni
+1,63,Comparison of the Rete and Treat Production Matchers for Soar ,aaai|national|conference|artificial|intelligence,p nayak|p rosenbloom
+1,64,High-Speed Implementations of Rule-Based Systems ,acm|trans|comput|syst,a newell|c forgy
+1,65,Initial Assessment of Architectures for Production Systems ,aaai|national|conference|artificial|intelligence,a newell|c forgy|r wedig
+1,66,Parallel Algorithms and Architectures for Rule-Based Systems ,isca|international|symposium|computer|architecture,a newell|c forgy|r wedig
+1,67,Parallel OPS on the Encore Multimax ,icpp|international|conference|parallel|processing,a newell|c forgy|d kalp|m tambe
+1,68,Soar/PSM-E: Investigating Match Parallelism in a Learning Production System ,ppopp|principles|practice|parallel|programming|ppeals|symposium|principles|practice|parallel|programming,a newell|b milnes|c forgy|d kalp|m tambe
+1,69,Modeling Communication in Parallel Algorithms: A Fruitful Interaction Between Theory and Systems?,spaa|acm|symposium|parallel|algorithms|architectures,e rothberg|j singh
+1,30,Exploring benefits of non-linear time compression ,acm|multimedia,l he
+1,31,"Auto summarization of audiovideo presentations,",,l he|e sanocki|j grudin
+1,32,Coherent Block Data Transfer in the FLASH Multiprocessor ,ipps|international|parallel|processing|symposium,j heinlein|k gharachorloo|m rosenblum|r bosch
+1,33,Integration of Message Passing and Shared Memory in the Stanford FLASH Multiprocessor ,asplos|architectural|support|programming|languages|operating|systems,j heinlein|k gharachorloo|s dresser
+1,34,Characterizing the Caching and Synchronization Performance of a Multiprocessor Operating System ,asplos|architectural|support|programming|languages|operating|systems,j hennessy|j torrellas
+1,35,COOL: An Object-Based Language for Parallel Programming ,ieee|computer,j hennessy|r chandra
+1,36,Comparative Evaluation of Latency Reducing and Tolerating Techniques ,isca|international|symposium|computer|architecture,j hennessy|k gharachorloo|t mowry|w weber
+1,37,Data Locality and Load Balancing in COOL ,ppopp|principles|practice|parallel|programming,j hennessy|r chandra
+1,70,Experiences Implementing a Parallel ATMS on a Shared-Memory Multiprocessor ,ijcai|international|joint|conference|artificial|intelligence,e rothberg
+1,38,Hiding Memory Latency using Dynamic Scheduling in Shared-Memory Multiprocessors ,isca|international|symposium|computer|architecture,j hennessy|k gharachorloo
+1,71,"Working Sets Cache Sizes,",|isca|international|symposium|computer|architecture,e rothberg|j singh
+1,39,A Quantitative Analysis of the Performance and Scalability of Distributed Shared Memory ,ieee|trans|computers,j hennessy|m heinrich|v soundararajan
+1,72,"Working Sets, Cache Sizes, and Node Granularity Issues for Large-Scale Multiprocessors ",isca|international|symposium|computer|architecture,e rothberg|j singh
+1,1,Stanford DASH Multiprocessor: The Hardware and Software Approach ,parle|parallel|architectures|languages|europe,
+1,73,Parallel ICCG on a hierarchical memory multiprocessor - Addressing the triangular solve bottleneck ,parallel|computing,e rothberg
+1,2,Automatically extracting highlights for TV Baseball programs ,acm|multimedia,a acero|y rui
+1,74,Techniques for improving the performance of sparse matrix factorization on multiprocessor workstations ,supercomputing,e rothberg
+1,3,Implementation of Production Systems on Message-Passing Computers ,ieee|trans|parallel|distrib|syst,a acharya|m tambe
+1,75,An efficient block-oriented approach to parallel sparse Cholesky factorization ,supercomputing,e rothburg
+1,4,Memory-Reference Characteristics of Multiprocessor Applications under MACH ,sigmetrics|measurement|modeling|computer|systems,a agarwal
+1,76,"Building an intelligent camera management system,",|acm,y rui|l he|q liu
+1,5,Variable Compression Using JPEG ,icmcs|international|conference|multimedia|computing|systems,a agrawal|n chaddha|t meng
+1,77,"Automatically extracting highlights for TV Baseball programs,",|acm,y rui|a acero
+1,6,Distance learning through distributed collaborative video viewing ,cscw|conference|computer|supported|cooperative|work,a balachandran|e sanocki|g jancke|j grudin|j cadiz
+1,78,Browsing digital video ,chi|conference|human|factors|computing|systems,e sanocki|f li|l he|y rui
+1,7,Run-Time Prediction for Production Systems ,aaai|national|conference|artificial|intelligence,f barachini|h mistelberger
+1,8,Annotations for Streaming Video on the Web: System Design and Usage Studies ,computer|networks,d bargeron|e sanocki|j grudin
+1,79,Comparing presentation summaries: slides vs reading vs listening ,chi|conference|human|factors|computing|systems,e sanocki|j grudin|l he
+1,9,Asynchronous Collaboration around Multimedia and its Application to On-Demand Training ,hicss|international|conference|system|sciences,d bargeron|e sanocki|f li|j grudin
+1,40,Performance Evaluation of Memory Consistency Models for Shared Memory Multiprocessors ,asplos|architectural|support|programming|languages|operating|systems,j hennessy|k gharachorloo
+1,41,Programming for Different Memory Consistency Models ,j|parallel|distrib|comput,j hennessy|k gharachorloo|m hill|s adve
+1,42,Two Techniques to Enhance the Performance of Memory Consistency Models ,icpp|international|conference|parallel|processing,j hennessy|k gharachorloo
+1,43,"Load Balancing and Data locality in Adaptive Hierarchical N-Body Methods: Barnes-Hut, Fast Multipole, and Rasiosity ",j|parallel|distrib|comput,c holt|j singh|j hennessy|t totsuka
+1,44,A parallel adaptive fast multipole method ,supercomputing,c holt|j singh|j hennessy
+1,45,Designing and deploying an information awareness interface ,cscw|conference|computer|supported|cooperative|work,g jancke|g venolia|j cadiz
+1,46,Linking public spaces: technical and social issues ,chi|conference|human|factors|computing|systems,g jancke|g venolia|j grudin|j cadiz
+1,47,Presenting to local and remote audiences: design and use of the TELEP system ,chi|conference|human|factors|computing|systems,g jancke|j grudin
+1,80,Evolving Use of a System for Education at a Distance ,hicss|international|conference|system|sciences,e sanocki|g kimberly|h chesley|j grudin|s white
+1,48,Design and Evaluation of a Compiler Algorithm for Prefetching ,asplos|architectural|support|programming|languages|operating|systems,m lam|t mowry
+1,81,"Time-Compression: Systems Concerns, Usage, and Benefits ",chi|conference|human|factors|computing|systems,e sanocki|j grudin|l he|n omoigui
+1,49,Interleaving: A Multithreading Technique Targeting Multiprocessors and Workstations ,asplos|architectural|support|programming|languages|operating|systems,j laudon|m horowitz
+1,82,Auto-summarization of audio-video presentations ,acm|multimedia,e sanocki|j grudin|l he
+1,83,Implications of Hierarchical N-Body Methods for Multiprocessor Architectures,acm|trans|comput|syst,j singh|j hennessy
+1,84,An empirical comparison of the Kendall Square Research KSR- and Stanford DASH multiprocessors ,supercomputing,j singh|j hennessy|t joe
+1,85,Parallel Visualization Algorithms: Performance and Architectural Implications ,ieee|computer,j singh|m levoy
+1,86,Scaling Parallel Programs for Multiprocessors: Methodology and Examples ,ieee|computer,j singh|j hennessy
+1,87,What's in the future for parallel architectures?,supercomputing,b smith|d douglas|d maier|f darema|j ratner|o lubeck|p messina
+1,88,Characterization of Parallelism and Deadlocks in Distributed Digital Logic Simulation ,dac|design|automation|conference,l soul&eacute
+1,89,An Evaluation of the Chandy-Misra-Bryant Algorithm for Digital Logic Simulation ,acm|trans|model|comput|simul,l soul&eacute
+1,10,Notification for shared annotation of digital documents ,chi|conference|human|factors|computing|systems,a brush|d bargeron|j grudin
+1,11,Robust annotation positioning in digital documents ,chi|conference|human|factors|computing|systems,a brush|d bargeron|j cadiz
+1,12,The Impact of Architectural Trends on Operating System Performance ,sosp|symposium|operating|systems|principles,e bugnion|e witchel|m rosenblum|s herrod
+1,100,Flexible Use of Memory for Replication/Migration in Cache-Coherent DSM Multiprocessors ,isca|international|symposium|computer|architecture,b verghese|j hennessy|k gharachorloo|m heinrich|v soundararajan
+1,13,Viewing meeting captured by an omni-directional camera ,chi|conference|human|factors|computing|systems,j cadiz|y rui
+1,101,Performance Isolation: Sharing and Isolation in Shared-Memory Multiprocessors ,asplos|architectural|support|programming|languages|operating|systems,b verghese|m rosenblum
+1,14,Automating camera management for lecture room environments ,chi|conference|human|factors|computing|systems,j cadiz|q liu|y rui
+1,102,Operating System Support for Improving Data Locality on CC-NUMA Compute Servers ,asplos|architectural|support|programming|languages|operating|systems,b verghese|m rosenblum|s devine
+1,15,"Scheduling and Page Migration for Multiprocessor Compute Servers,",|asplos|architectural|support|programming|languages|operating|systems,r chandra|s devine|b verghese|m rosenblum
+20,1,Range Addressable Network: A P P Cache Architecture for Data Ranges ,peer|peer|computing,a kothari|d agrawal|s suri
+20,2,Approximate Range Selection Queries in Peer-to-Peer Systems ,cidr|conference|innovative|data|systems|research,a abbadi|d agrawal
+20,3,Passive and Active Assistance for Human Performance of a Simulated Underactuated Dynamic Task ,haptics,m o'malley
+21,1,Automated Multi-Cycle Symbolic Timing Verification of Microprocessor-Based Designs ,dac|design|automation|conference,d siewiorek
+21,2,ASSURE: Automated Design for Dependability ,dac|design|automation|conference,a brennan|d siewiorek|p edmond
+21,3,The MICON System for Computer Design ,dac|design|automation|conference,d siewiorek|w birmingham
+22,1,Xprof: Profiling the Execution of X Window Programs ,sigmetrics|measurement|modeling|computer|systems,w hwu
+22,2,An execution Profiler for Window-oriented Applications ,softw|pract|exper,w hwu
+22,3,Garbage Collection in a Distributed Object-Oriented System ,ieee|trans|knowl|data|eng,w fuchs
+23,1,Performance Analysis of Time Warp with Homogeneous Processors and Exponential Task Times ,sigmetrics|measurement|modeling|computer|systems,i akyildiz|r fujimoto
+23,2,Performance Analysis of Time Warp With Multiple Homogeneous Processors ,ieee|trans|software|eng,i akyildiz|r fujimoto
+24,1,An object-oriented representation for product and design processes ,computer|aided|design,a wong|g kim|r sriram|s gorti
+24,2,Incremental Loading in the Persistent C++ Language E ,joop|journal|object|oriented|programming,m vemulapati|r sriram
+25,1,An Approach for Detecting Self-propagating Email Using Anomaly Detection ,raid,r sekar
+25,2,Specification-based anomaly detection: a new approach for detecting network intrusions ,acm|conference|computer|communications|security,a tiwari|h yang|j frullo|r sekar|s zhou|t shanbhag
+26,1,Towards Bringing Database Management Task in the Realm of IT non-Experts ,icde|international|conference|data|engineering,m bhide|m mohania
+26,2,Dynamic Access Control Framework Based On Events ,icde|international|conference|data|engineering,m bhide|m mohania|s pandey
+2,30,Semantic queries with pictures: the VIMSYS model,|proc|international|conference|very|large|data|bases|barcelona|edited|by|lohman|g|m|sernadas|camps|r|san|mateo|computer|animation|morgan|kaufmann,t weymouth|r jain
+2,31, A System for Managing Alternate Models in Model-based Mediation,|british|national|conference|databases|bncod|british|national|conference|databases,b lud�scher|m martone|x qian|j tran|i zaslavsky
+2,32, The Many Faces of Process Interaction Graphs: A Data Management Perspective,|omics|journal|integrative|biology,b lud�scher
+2,33, Toward a Feature Algebra for Visual Databases: a Case Study with Histogram Algebra,|vdb|visual|database|systems|int|conf|visual|databases|tokyo,s santini
+2,34, Towards a Formalization of Disease-Specific Ontologies for Neuroinformatics,|neural|networks|press,b lud�scher|j grethe|m martone
+2,35,Virage Video Engine ,storage|retrieval|image|video|databases|spie|international|society|optical|engineering,a hampapur|b horowitz|c fuller|c shu|j bach|m gorkani|r jain
+2,36,Virage Image Search Engine: An Open Framework for Image Management ,storage|retrieval|image|video|databases|spie|international|society|optical|engineering,a hampapur|b horowitz|c fuller|c shu|j bach|r jain|r humphrey
+2,37,Computer Vision and Visual Information Retrieval,|book|chapter|advances|image|understanding|festschrift|prof|azriel|rosenfeld|ieee|computer|society|press,r jain
+2,70, A Cell-Centered Database for Electron Tomographic Data,|journal|structural|biology,m martone|m wong|x qian|g sosinsky|s lamont|b lud�scher|m ellisman
+2,38,Visual Information Retrieval ,commun|acm,r jain
+2,71, Federation of brain data through knowledge-guided mediation ,r|kotter|ed|neuroscience|databases|practical|guide|kluwer|academic|publishers,m martone|b ludascher|i zaslavsky|m ellisman
+2,39,Emergent Semantics through Interaction in Image Databases ,ieee|trans|knowl|data|eng,r jain|s santini
+2,72,A Practical Approach for Microscopy Imaging Data Management MIDM in Neuroscience ,ssdbm|statistical|scientific|database|management,m martone|s zhang|x qian
+2,73, Collection-based persistent digital archives ,|d|lib|magazine|corporation|national|research|initiatives,r moore|c baru|a rajasekar|b lud�scher|r marciano|m wan|w schroeder
+2,74, Navigating Virtual Information Sources with Know-ME,|proc|conference|extending|database|technology|edbt|extending|database|technology|prague,x qian|b lud�scher|m martone
+2,75," Conceptual Integration of Multiple Partial Geometric Models,",|st|international|conference|conceptual|modeling|er|international|conference|conceptual|modeling|entity|relationship|approach|tampere,s santini
+2,76,A Data Model for Querying Wavelet Features in Image Databases ,multimedia|information|systems,s santini
+2,77, GeMBASE: A Geometric Mediator for Brain Analysis with Surface Ensembles,|intl|conf|very|large|databases|vldb|very|large|data|bases|hong|kong,s santini
+2,78,Querying Multiple Perspective Video,|proceedings|spie|international|society|optical|engineering|storage|retrieval|image|video|databases|vii|san|jose,s santini|r jain
+2,79, Emergent Semantics through Interaction in Image Databases,|ieee|trans|knowledge|data|engineering,s santini|r jain
+2,40,An Extended Object-Oriented Data Model for Large Image Bases ,ssd|symposium|large|spatial|databases,r jain|t weymouth
+2,41,In Search of Information in Visual Media ,commun|acm,r jain|s santini
+2,42,Semantic Queries in Image Databases ,vdb|visual|database|systems,r jain|t weymouth
+2,43,Semantic Queries with Pictures: The VIMSYS Model ,vldb|very|large|data|bases,r jain|t weymouth
+2,44,Semiorder Database for Complex Activity Recognition in Multi-Sensory Environments ,icde|international|conference|data|engineering,r jain|s bhonsle|s santini
+2,45,A User Interface for Emergent Sementics in Image Databases ,ds|discovery|science,r jain|s santini
+2,46,Interactive video on WWW: beyond VCR-like interfaces,|computer|networks|isdn|systems,a katkere|j schlenzig|r jain
+2,47,Visual Computing Meets Data Modeling: Defining Objects in Multicamera Video Databases ,storage|retrieval|image|video|databases|spie|international|society|optical|engineering,p kelly|r jain
+2,1,Modeling Shape and Topology of D Images of Biological Specimens,|proc|int|conf|image|proc|pattern|recog|icpr|international|conference|pattern|recognition,p alarcon|a pascual-montano|j carazo
+2,80, A Wavelet Data Model for Image Databases,|ieee|intl|conf|multimedia|expo|tokyo,s santini
+2,48,BIRN-M: A Semantic Mediator for Solving Real-World Neuroscience Problems ,sigmod|international|conference|management|data|conference,b lud&auml|s scher|m martone
+2,2, A Framework for Querying a Database for Structural Information on D Images of Macromolecules: A Web-Based Query-by-Content Prototype on the BioImage Macromolecular Server,|journal|structural|biology,p alarc�n|j carazo
+2,81,An Extensible Feature Management Engine for Image Retrieval,|proc|spie|international|society|optical|engineering|storage|retrieval|media|databases,s santini
+2,49,Compiling Abstract Scientific Workflows into Web Service Workflows ,ssdbm|statistical|scientific|database|management,b lud&auml|s scher|i altintas
+2,3, A Modeling and Execution Environment for Distributed Scientific Workflows,|int|conf|statistical|scientific|data|management|ssdbm|statistical|scientific|database|management,i altintas|s bhagwanani|d buttler|s chandra|m coleman|t critchlow|w han|l liu|b lud�scher|r moore|c pu|a shoshani|m vouk
+2,82,An Interpolated Volume Data Model ,vldb|very|large|data|bases,s santini|t wang
+2,4,The Virage Image Search Engine: an open framework for image management,|proc|storage|retrieval|still|image|video|databases|iv|san|jose|computer|animation,j bach|c fuller|a hampapur
+2,83, Principles of Schema Design in Multimedia Databases,|ieee|trans|multimedia|systems,s santini
+2,5,XML-Based Information Mediation for Digital Libraries,|proc|digital|libraries,c baru|b lud�scher|r marciano|y papakonstantinou|p velikhov|v chu
+2,84,"User Interfaces for Emergent Semantics in Image Databases,'' In Proceedings of the th IFIP Working Conference on Database Semantics DS- Rotorua New Zealand , January - ",,s santini|r jain
+2,6, XML-Based Information Mediation with MIX,|proc|acm|sigmod|international|conference|management|data,c baru|b lud�scher|r marciano|y apakonstantinou|p velikhov|v chu
+2,85,Toward feature Algebras in Visual Databases: The Case for a Histogram Algebra ,vdb|visual|database|systems,s santini
+2,7,Integrating GIS and Imagery Through XML-Based Information Mediation ,integrated|spatial|databases,c baru|i zaslavsky|r marciano
+2,86,A Modeling and Execution Environment for Distributed Scientific Workflows ,ssdbm|statistical|scientific|database|management,a shoshani|b lud&auml|s scher|c pu|d buttler|i altintas|l liu|m coleman|m vouk|r moore|s chandra|s bhagwanani|t critchlow|w han|z cheng
+2,8,Complex Visual Activity Recognition Using a Temporally Ordered Database,|proc|rd|int|conf|visual|lecture|notes|computer|science|springer,s bhonsle|s santini|m worring|r jain
+2,9, Semiorder Database for Complex Activity Recognition in Multi-sensory Environments,|proc|ieee|int|conf|data|engineering|san|diego|demonstration|paper,s bhonsle|s santini|r jain
+2,87,Content-Based Image Retrieval at the End of the Early Years ,ieee|transactions|pattern|analysis|machine|intelligence,a smeulders|m worring|r jain|s santini
+2,88,Database Architecture for Autonomous Transportation Agents for On-Scene Networked Incident Management ATON ,icpr|international|conference|pattern|recognition,m trivedi|s bhonsle
+2,89, An Interpolated Volume Data Model,|acm|conf|very|large|databases|vldb|very|large|data|bases|demonstration,t wang|s santini
+2,10,Towards a Federated Neuroscientific Knowledge Management System Using Brain Atlases,|computational|neuroscience|meeting|cns|poster|paper|brugge,g burns|k stephan|b lud�scher
+2,11, A Semantic Mediation Approach for Problems in Computational Molecular Biology,|ieee|computer|society|bioinformatics|conference|csb,m chagoyen|m kurul|p de-alarcon|s santini|b lud�scher|j carazo
+2,12, Modeling Shape and Topology of Low-resolution Density Maps of Biological Macromolecules,|biophysical|journal,p de-alarcon|a pascual-montano|j carazo
+2,13,General Medical Image online Description Grammar,|poster|american|association|ophthalmologists,m goldbaum|v kouznetsova|i zaslavsky|d nazafi
+2,14, BIRN-M: A Semantic Mediator for Solving Real-World Neuroscience Problems,|acm|conf|management|data|sigmod|international|conference|management|data|demonstration|page,b lud�scher|m martone|a rajasekar|e ross|x qian|s santini|h he|i zaslavsky
+2,15,Content-based retrieval of ophtalmological images,proc|international|conference|image|processing|lusanne,s moezzi|a taylor|s chatterjee|r jain|m goldbaum|s burgess
+2,16," Declarative Specification of Gene Regulatory Networks and Query Evaluation in PathSys,",proc|workshop|bioinformatics|conjunction|with|intl|conf|data|engineering|icde|international|conference|data|engineering,y yang|a bagchi|a ray
+2,17,A Hue Preserving Enhancement Scheme For A Class Of Colour Images,|pattern|recognition|letters,b chanda
+2,50,Knowledge-Based Integration of Neuroscience Data Sources ,ssdbm|statistical|scientific|database|management,b lud&auml|s scher|m martone
+2,18,Visual information retrieval,|communications|acm,r jain
+2,51,Query Evaluation and Presentation Planning within a Spatial Mediator: Extending XML-based Mediation to Heterogeneous Sources of GIS and Imagery Data Invited Address ,dexa|database|expert|systems|applications|workshop,b lud&auml|s scher|i zaslavsky|s tambawala
+2,19,Visual Information Retrieval: a Virage Perspective,|technical|report|virage|inc,
+2,52,Model-Based Mediation with Domain Maps ,icde|international|conference|data|engineering,b lud&auml|s scher|m martone
+2,53,Model-Based Information Integration in a Neuroscience Mediator System ,vldb|very|large|data|bases,b lud&auml|s scher|m martone
+2,54,Modeling Interactive Web Sources for Information Mediation ,er|international|conference|conceptual|modeling|entity|relationship|approach|workshops,b lud&auml|s scher
+2,55,XML-based Information Mediation for Digital Libraries ,acm|dl|digital|libraries,b lud&auml|s scher|c baru|p velikhov|r marciano|v chu|y papakonstantinou
+2,56,XML-Based Information Mediation with MIX ,sigmod|international|conference|management|data|conference,b lud&auml|s scher|c baru|p velikhov|r marciano|v chu|y papakonstantinou
+2,57,Navigating Virtual Information Sources with Know-ME ,edbt|extending|database|technology,b lud&auml|s scher|m martone|x qian
+2,90, An Interpolated Volume Model for Databases,|int|conf|conceptual|modeling|er|international|conference|conceptual|modeling|entity|relationship|approach,t wang|s santini
+2,58,An Extensible Model-Based Mediatior System with Domain Maps ,icde|international|conference|data|engineering|demo|sessions,b lud&auml|s scher|m martone
+2,91,Complex Visual Activity Recognition Using a Temporally Ordered Database ,visual|visual|information|information|systems,m worring|r jain|s bhonsle|s santini
+2,59,Ontology services for curriculum development in NSDL ,jcdl|acm|ieee|joint|conference|digital|libraries,b lud&auml|s scher|r moore
+2,92,Accuracy Mediation in a Spatial Wrapper Mediator System,|st|geographic|information|science|conference|extended|abstract,i zaslavsky|b lud�scher|r marciano
+2,93,Combined Query and Transformation Planning in Spatial Mediators,|spatial|data|handling,i zaslavsky|r marciano
+2,94, XML-based Spatial Data Mediation Infrastructure for Global Interoperability,|th|global|spatial|data|infrastructure|conference|cape|town|south|africa,i zaslavsky|r marciano|c baru
+2,95, A Practical Approach for Microscopy Imaging Data Management MIDM in Neuroscience,|int|conf|statistical|scientific|data|management|ssdbm|statistical|scientific|database|management,s zhang|x qian|m martone
+2,20,Learning object models in visual semantic networks,|proc|international|conference|tools|with|artificial|intelligence|tai|los|alamitos|computer|animation|ieee|comput|soc|press,a bagchi
+2,21,An Event Management Architecture for Activity Recognition in a Multistream Video Database,|proceedings|image|understanding|workshop|computer|animation,s bhonsle|s santini|r jain
+2,22,An extended object-oriented data model for large image bases,|proc|advances|spatial|databases|symposium|ssd|symposium|large|spatial|databases|zurich|edited|by|gunther|o|schek|h|j|springer|verlag,t weymouth|r jain
+2,23, An Extensible Information Model for Shared Scientific Data Collections,|future|generation|computer|systems,c baru
+2,24,On Summarization of Video,|international|conference|image|processing|ieee|santa|barbara,h hampapur|m gorkani|r jain
+2,25,In Search of Information in Visual Media,|communications|acm,s santini|r jain
+2,26, Integrating GIS and Imagery through XML-Based Information Mediation,|proc|nsf|international|workshop|integrated|spatial|databases|digital|images|gis|workshop|advances|geographic|information|systems|lecture|notes|computer|science|springer|verlag,r marciano|i zaslavsky|c baru
+2,27, Ontology Services for Curriculum Development in NSDL,|acm|ieee|cs|joint|conference|digital|libraries|jcdl|acm|ieee|joint|conference|digital|libraries,b lud�scher|r moore
+2,60,Registering Scientific Information Sources for Semantic Mediation ,er|international|conference|conceptual|modeling|entity|relationship|approach,b lud&auml|s scher|m martone
+2,28," Registering Scientific Information Sources for Semantic Mediation,",|st|international|conference|conceptual|modeling|er|international|conference|conceptual|modeling|entity|relationship|approach|tampere,b lud�scher|m martone
+2,61,A System for Managing Alternate Models in Model-Based Mediation ,bncod|british|national|conference|databases,b lud&auml|s scher|e ross|i zaslavsky|j tran|m martone|x qian
+2,29,Semantic queries in image databases,|ifip|international|federation|information|processing|transactions|computer|science|technology,t weymouth|r jain
+2,62,Time to Leave the Trees: From Syntactic to Conceptual Querying of XML ,edbt|extending|database|technology|workshops,b lud&auml|s scher|i altintas
+2,63,Towards a federated neuroscientific knowledge management system using brain atlases ,neurocomputing,b lud&auml|s scher|g burns|k stephan|r k&ouml|t tter
+2,64, Compiling Abstract Scientific Workflows into Web Service Workflows,|int|conf|statistical|scientific|data|management|ssdbm|statistical|scientific|database|management,b lud�scher|i altintas
+2,65, Model-Based Mediation with Domain Maps,|th|intl|conference|data|engineering|icde|international|conference|data|engineering|heidelberg|ieee|computer|society,b lud�scher|m martone
+2,66, A Model Based Mediator System for Scientific Data Management ,z|lacroix|t|critchlow|eds|bioinformatics|managing|scientific|data|morgan|kaufmann|publishers,b lud�scher|m martone
+2,67, Modeling Interactive Web Sources for Information Mediation,|proc|wwwcm|conceptual|modeling|world|wide|web,b lud�scher
+2,68, A Mediator System for Model-based Information Integration,|int|conf|vldb|very|large|data|bases|cairo,b lud�scher|m martone
+2,69, Time to Leave the Trees: From Syntactic to Conceptual Querying of XML,|proc|workshop|xml|data|management|xmldm|conjunction|with|intl|conf|extending|database|technology|edbt|extending|database|technology,b lud�scher|i altintas
+3,10,Efficient and Complete Tests for Database Integrity Constraint Checking ,ppcp|principles|practice|constraint|programming,j ullman|j widom|y sagiv
+3,11,Aggregate-Query Processing in Data Warehousing Environments ,vldb|very|large|data|bases,d quass|v harinarayan
+3,12,What is the Data Warehousing Problem? Are Materialized Views the Answer? ,vldb|very|large|data|bases,i mumick
+3,13,On the Computation of Multidimensional Aggregates ,vldb|very|large|data|bases,j naughton|p deshpande|r ramakrishnan|r agrawal|s agarwal|s sarawagi
+3,14,Validating Constraints with Partial Information: Research Overview ,daisd|deductive|approach|information|systems|databases,j ullman|j widom|y sagiv
+3,15,Maintenance and Self Maintenance of Outer-Join Views ,ngits|next|generation|information|technologies|systems,h jagadish|i mumick
+3,16,Counting solutions to the View Maintenance Problem ,workshop|deductive|databases|jicslp|joint|international|conference|symposium|logic|programming,d katiyar|i mumick
+3,17,Generalizing Conjunctive Query Containment for View Maintenance and Integrity Constraint Verification Abstract ,workshop|deductive|databases|jicslp|joint|international|conference|symposium|logic|programming,j ullman
+3,18,Adapting Materialized Views after Redefinitions ,sigmod|international|conference|management|data|conference,i mumick|k ross
+3,19,Maintaining Views Incrementally ,sigmod|international|conference|management|data|conference,i mumick|v subrahmanian
+3,1,Junglee: Integrating Data of All Shapes and Sizes ,icde|international|conference|data|engineering,na 
+3,2,Modeling Multidimensional Databases ,icde|international|conference|data|engineering,r agrawal|s sarawagi
+3,3,Virtual Database Technology ,icde|international|conference|data|engineering,a rajaraman|v harinarayan
+3,4,Optimization Using Tuple Subsumption ,icdt|international|conference|database|theory,v harinarayan
+3,5,Capabilities-Based Query Rewriting in Mediator Systems ,pdis|conference|parallel|distributed|information|systems,l haas|y papakonstantinou
+3,6,Making Views Self-Maintainable for Data Warehousing ,pdis|conference|parallel|distributed|information|systems,d quass|i mumick|j widom
+3,7,Constraint Checking with Partial Information ,pods|symposium|principles|database|systems,j ullman|j widom|y sagiv
+3,8,Entrepreneurship for Information Systems Researchers Abstract of Invited Tutorial ,pods|symposium|principles|database|systems,na 
+3,9,Magic-sets Transformation in Nonrecursive Systems ,pods|symposium|principles|database|systems,i mumick
+3,20,Local Verification of Global Integrity Constraints in Distributed Databases ,sigmod|international|conference|management|data|conference,j widom
+3,21,Adapting materialized views after redefinitions: techniques and a performance study ,inf|syst,i mumick|j rao|k ross
+3,22,Using Partial Information to Update Materialized Views ,inf|syst,j jos&eacute|a blakeley
+3,23,Capabilities-Based Query Rewriting in Mediator Systems ,distributed|parallel|databases,l haas|y papakonstantinou
+3,24,"Maintenance of Materialized Views: Problems, Techniques, and Applications ",ieee|data|eng|bull,i mumick
+3,25,Constraint Management On Distributed Design Databases ,ieee|data|eng|bull,s tiwari
+3,26,Virtual Database technology ,sigmod|international|conference|management|data|record,a rajaraman|v harinarayan
+3,27,Distributed Constraint Management for Collaborative Engineering Databases ,cikm|international|conference|information|knowledge|management,s tiwari
+3,28,Data Integration using Self-Maintainable Views ,edbt|extending|database|technology,h jagadish|i mumick
+3,29,A Query Translation Scheme for Rapid Implementation of Wrappers ,dood|deductive|object|oriented|databases,h garcia-molina|j ullman|y papakonstantinou
+3,30,E-Commerce and the Web ,workshop|web|information|data|management,na 
+3,31,Algorithms for Handling Skew in Parallel Task Scheduling ,j|parallel|distrib|comput,a swami|h young
+4,30,Finding Smallest Common Supertrees,|sixth|annual|international|symposium|algorithms|computation,n nishimura
+4,31,"A fast parallel algorithm for recognition of parenthesis languages,",technical|report|tr|department|computer|science|university|toronto,
+4,32,Vertex Partitioning Problems on Partial k-trees,|scandinavian|workshop|algorithmic|theory,d kaller|s mahajan|t shermer
+4,33,Linear-Time Algorithms for Partial k-Tree Complements,|algorithmica,d kaller|t shermer
+4,34, Embeddings of k-connected graphs of pathwidth k,|proceedings|th|annual|scandinavian|workshop|algorithm|theory,n nishimura|a proskurowski|p ragde
+4,35, On the complements of Partial k-Trees,|international|colloquium|automata|languages|programming,d kaller|t shermer
+4,36,An outline of the graph minors project : Wagner's Conjecture,technical|report|tr|department|computer|science|university|toronto,n nishimura
+4,37,"Parallel algorithms for vehicle routing problems,",|parallel|processing|letters,r krishnamurti
+4,38,"Parallel algorithms for vehicle routing problems,",hipc,r krishnamurti
+4,39,Sequential and Parallel Algorithms for Embedding Problems on Classes of Partial k-Trees,|scandinavian|workshop|algorithmic|theory,n nishimura
+4,40,"Sequential and parallel algorithms for embedding problems on k-connected partial k-trees,",|pages,n nishimura
+4,41,Using amplification to compute majority using small majority gates,|computational|complexity,s mahajan
+4,42,The complexity of subgraph isomorphism: Duality results for graphs of bounded path- and tree-width,|tcs|theoretical|computer|science,n nishimura
+4,43,The Generalized Matching Problem on Partial k-Trees,|contemporary|trends|discrete|math|ams|american|mathematical|society,d kaller|s mahajan|t shermer
+4,44,"The parallel complexity of tree embedding problems,",journal|algorithms|also|appeared|at|ninth|symposium|theoretical|aspects|computer|science|stacs|symposium|theoretical|aspects|computer|science,n nishimura
+4,45,Bounding the Size of Planar Intertwines ,siam|society|industrial|applied|mathematics|j|discrete|math,r impagliazzo
+4,46,Computing Planar Intertwines,focs|ieee|symposium|foundations|computer|science,r impagliazzo
+4,47,Vertex Partitioning Problems On Partial k-Trees ,swat|scandinavian|workshop|algorithm|theory,d kaller|s mahajan|t shermer
+4,48,Linear-Time Algorithms for Partial <i>k</i>-Tree Complements ,algorithmica,d kaller|t shermer
+4,49,On the Complements of Partial k-Trees ,icalp|automata|languages|programming,d kaller|t shermer
+4,10," Updating <=,<-chains",|information|processing|letters,j delgrande
+4,11,"Updating &lt;=, &lt;-chains ",inf|process|lett,j delgrande
+4,12,Point-Based Approaches to Qualitative Temporal Reasoning ,pricai|pacific|rim|international|conference|artificial|intelligence,j delgrande|t allen
+4,13,Point-Based Approaches to Qualitative Temporal Reasoning ,aaai|national|conference|artificial|intelligence|iaai|twelfth|innovative|applications|artificial|intelligence,j delgrande|t allen
+4,14, Point Based Approaches to Qualitative Temporal Reasoning,|american|association|artificial|intelligence,j delgrande|t allen
+4,15,"Revising TimeGraph II,",|th|canadian|conference|artificial|intelligence,j delgrande
+4,16,"A representation for constant time temporal reasoning,",aaai|national|conference|artificial|intelligence,j delgrande
+4,17,A Representation for Efficient Temporal Reasoning ,aaai|national|conference|artificial|intelligence|iaai|twelfth|innovative|applications|artificial|intelligence,j delgrande
+4,50,Regular factors in k-trees,|workshop|algorithms|data|structures,d kaller|t shermer
+4,18,The Complexity of Minimum Partial Truth Assignments and Implication in Negation-Free Formulae ,annals|mathematics|artificial|intelligence,j delgrande
+4,51,Regular-Factors In The Complements Of Partial k-Trees ,wads|workshop|algorithms|data|structures,d kaller|t shermer
+4,19,Two results in negation-free logic,applied|mathematical|letters,j delgrande
+4,52,The [chi lc gif] t-colouring problem,|th|annual|symposium|theoretical|aspects|computer|science,d kaller|na |t shermer
+4,53,The Chi-t-Coloring Problem ,stacs|symposium|theoretical|aspects|computer|science,d kaller|t shermer
+4,54,Using Amplification to Compute Majority with Small Majority Gates ,computational|complexity,s mahajan
+4,55,Characterizing the Complexity of Subgraph Isomorphism for Graphs of Bounded Path-Width ,stacs|symposium|theoretical|aspects|computer|science,n nishimura
+4,56,Finding Largest Common Embeddable Subtrees ,stacs|symposium|theoretical|aspects|computer|science,n nishimura
+4,57,Finding Largest Subtrees and Smallest Supertrees ,algorithmica,n nishimura
+4,58,finding Smallest Supertrees ,isaac|international|symposium|algorithms|computation,n nishimura
+4,59,Sequential and Parallel Algorithms for Embedding Problems on Classes of Partial k-Trees ,swat|scandinavian|workshop|algorithm|theory,n nishimura
+4,20,"Acyclic directed hypercubes may have exponential diameter,",information|processing|letters,h everett
+4,21,A / -approximation algorithm for scheduling vehicles on a path with release and handling times ,inf|process|lett,d gaur|r krishnamurti
+4,22,"Characterizing the complexity of subgraph isomorphism for graphs of bounded path-width,",|th|symposium|theoretical|aspects|computer|science,n nishimura
+4,23,Computing planar interwines,appeared|at|symposium|foundations|computer|science|focs|ieee|symposium|foundations|computer|science,r impagliazzo
+4,24,Computing planar interwines SIAM,journal|discrete|mathematics|also|appeared|at|symposium|foundations|computer|science|focs|ieee|symposium|foundations|computer|science,r impagliazzo
+4,25,"Computing planar intertwines,",siam|journal|discrete|mathematics,r impagliazzo
+4,26,Computing subtrees and supertrees,|algorithmica,n nishimura
+4,27,A constructive proof that trees are well-quasi ordered under minors,nerode|m|taitslin|editors|second|symposium|logical|foundations|computer|science|pages|springer|verlag,
+4,60,The Complexity of Subgraph Isomorphism for Classes of Partial k-Trees ,theor|comput|sci,n nishimura
+4,28,"Constructivity issues in tree minors,",technical|report|tr|department|computer|science|university|toronto|phd|dissertation,
+4,61,The Parallel Complexity of Tree Embedding Problems ,j|algorithms,n nishimura
+4,29,Finding Largest Common Embeddable Subtrees,|th|annual|symposium|theoretical|aspects|computer|science,n nishimura
+4,1,A Constructive Proof that Trees Are Well-Quasi-Ordered Under Minors ,lfcs|logical|foundations|computer|science,
+4,62,The Parallel Complexity of Tree Embedding Problems Extended Abstract ,stacs|symposium|theoretical|aspects|computer|science,n nishimura
+4,2,Finite Automata as Characterizations of Minor Closed Tree Families Extended Abstract ,icalp|automata|languages|programming,
+4,63,Embeddings of <i>k</i>-Connected Graphs of Pathwidth <i>k</i> ,swat|scandinavian|workshop|algorithm|theory,a proskurowski|n nishimura|p ragde
+4,3,"Qualitative Temporal Reasoning,",pacific|rim|international|conference|artificial|intelligence,t allen|j delgrande
+4,4,"Computational model of the development of neoplastic pre-invasive bronchial epithelial lesions,",|english|title|general|congress|computo|medical|informatics|city,a barranco-mendoza
+4,5,"An optimal parallel algorithm for formula evaluation,",siam|society|industrial|applied|mathematics|journal|computing,s buss|s cook|v ramachandran
+4,6,Algorithms and Data Structures,|springer|verlag|lecture|notes|computer|science|volume,f dehne|j sack|r tamassia
+4,7,"Complexity in negation free logic,",annals|mathematics|artificial|intelligence|invited|paper,j delgrande
+4,8,Complexity in negation-free logic,|aaai|national|conference|artificial|intelligence|workshop|complexity|ai|artificial|intelligence,j delgrande
+4,9,A comparison of point-based approaches to qualitative temporal reasoning,|artifical|intelligence|j,j delgrande|t allen
+5,10,"The Design, Implementation, and Evaluation of a Banded Linear Solver for Distributed-Memory Parallel Computers ",para|applied|parallel|computing,f gustavson|m joshi|s toledo
+5,11,"The Design, Implementation, and Evaluation of a Symmetric Banded Linear Solver for Distributed-Memory Parallel Computers ",acm|trans|math|softw,f gustavson|m joshi|s toledo
+5,12,WSSMP: A High-Performance Serial and Parallel Symmetric Sparse Linear Solver ,para|applied|parallel|computing,m joshi|v kumar
+5,13,Experience with a Recursive Perturbation Based Algorithm for Symmetric Indefinite Linear Systems ,euro|par,a karaivanov|f gustavson|j wasniewski|p yalamov
+5,14,A Highly Parallel Interior Point Algorithm ,ppsc|siam|conference|parallel|processing|scientific|computing,g karypis|v kumar
+5,15,Highly Scalable Parallel Algorithms for Sparse Matrix Factorization ,ieee|trans|parallel|distrib|syst,g karypis|v kumar
+5,16,A parallel formulation of interior point algorithms ,supercomputing,g karypis|v kumar
+5,17,Analysis of scalability of parallel algorithms and architectures: a survey ,ics|international|conference|supercomputing,v kumar
+5,18,Performance Properties of Large Scale Parallel Systems ,j|parallel|distrib|comput,v kumar
+5,19,Parallel Algorithms for Forward and Back Substitution in Direct Solution of Sparse Linear Systems ,supercomputing,v kumar
+5,20,Optimally Scalable Parallel Sparse Cholesky Factorization ,ppsc|siam|conference|parallel|processing|scientific|computing,v kumar
+5,21,A scalable parallel algorithm for sparse Cholesky factorization ,supercomputing,v kumar
+5,22,Scalability of Parallel Algorithms for Matrix Multiplication ,icpp|international|conference|parallel|processing,v kumar
+5,23,The Scalability of FFT on Parallel Computers ,ieee|trans|parallel|distrib|syst,v kumar
+5,24,Parallel Analysis of IC Power Distribution Networks ,ppsc|siam|conference|parallel|processing|scientific|computing,d moran|g ditlow|r williams|r moore|t wilkins
+5,25,An Experimental Comparison of some Direct Sparse Solver Packages ,ipdps|international|parallel|distributed|processing|symposium,y muliadi
+5,26,Fast practical algorithms for the Boolean-product-witness-matrix problem ,issac|international|symposium|symbolic|algebraic|computation,p rohatgi|r agarwal
+5,27,Performance and Scalability of Preconditioned Conjugate Gradient Methods on Parallel Computers ,ieee|trans|parallel|distrib|syst,a sameh|v kumar
+5,28,Performance and Scalability of Preconditioned Conjugate Gradient Methods on the CM- ,ppsc|siam|conference|parallel|processing|scientific|computing,a sameh|v kumar
+5,1,Recent Progress in General Sparse Direct Solvers ,international|conference|computational|science,
+5,2,Highly Scalable Parallel Algorithms for Sparse Matrix Factorization,ieee|transactions|parallel|distributed|systems, gupta|g karypis|v kumar
+5,3,Improved Symbolic and Numerical Factorization Algorithms for Unsymmetric Sparse Matrices,ibm|research|report|rc, gupta
+5,4,WSMP: A High-Performance Serial and Parallel Sparse Linear Solver,ibm|research|report|rc, gupta|m joshi|v kumar
+5,5,Recent Advances in Direct Methods for Solving Unsymmetric Sparse Systems of Linear Equations,ibm|research|report|rc, gupta
+5,6,Design and Implementation of a Scalable Parallel Direct Solver for Sparse Symmetric Positive Definite Systems: Preliminary Results ,ppsc|siam|conference|parallel|processing|scientific|computing,f gustavson|g karypis|m joshi|v kumar
+5,7,Fast Graph Partitioning and Its Application in Sparse Matrix Ordering ,para|applied|parallel|computing,f gustavson
+5,8,A New Parallel Algorithm for Tridiagonal Symmetric Positive Definite Systems of Equations ,para|applied|parallel|computing,f gustavson
+5,9,PSPASES: An Efficient and Scalable Parallel Sparse Direct Solver ,ppsc|siam|conference|parallel|processing|scientific|computing,f gustavson|g karypis|m joshi|v kumar
+6,30,Sorting and Selection with Structured Costs ,focs|ieee|symposium|foundations|computer|science,a kumar
+6,31,Steiner nodes in Trees don't really help ,soda|symposium|discrete|algorithms,
+6,32,Tree Based MPLS Routing ,spaa|acm|symposium|parallel|algorithms|architectures,a kumar|m thorup
+6,33,"Traveling with a Pez Dispenser or, Routing Issues in MPLS ",focs|ieee|symposium|foundations|computer|science,a kumar|r rastogi
+6,34,Building Edge-Failure Resilient Networks ,ipco|integer|programming|combinatorial|optimization,a kumar|c chekuri|d raz|j naor
+6,35,A Constant-Factor Approximation Algorithm for the Multicommodity ,focs|ieee|symposium|foundations|computer|science,a kumar|t roughgarden
+6,36,Exploring the trade-off between label size and stack depth in MPLS Routing ,infocom|conference|computer|communications,a kumar|r rastogi
+6,37,Approximation Via Cost-Sharing: A Simple Approximation Algorithm for the Multicommodity Rent-or-Buy Problem ,focs|ieee|symposium|foundations|computer|science,a kumar|m p&aacute|l l|t roughgarden
+6,38,Provisioning a virtual private network: a network design problem for multicommodity flow ,stoc|acm|symposium|theory|computing,a kumar|b b&uuml|l yener|j kleinberg|r rastogi
+6,39,Simpler and better approximation algorithms for network design ,stoc|acm|symposium|theory|computing,a kumar|t roughgarden
+6,40,Sorting and Selection with Structured Costs ,focs|ieee|symposium|foundations|computer|science,a kumar
+6,41,Tree based MPLS routing ,spaa|acm|symposium|parallel|algorithms|architectures,a kumar|m thorup
+6,42,"Traveling with a Pez Dispenser Or, Routing Issues in MPLS ",focs|ieee|symposium|foundations|computer|science,a kumar|r rastogi
+6,43,"Bounded Geometries, Fractals, and Low-Distortion Embeddings ",focs|ieee|symposium|foundations|computer|science,j lee|r krauthgamer
+6,1,A constant factor approximation algorithm for a class of classification problems ,stoc|acm|symposium|theory|computing,& &eacute|v tardos
+6,44,"Cuts, Trees and l<sub> </sub>-Embeddings of Graphs ",focs|ieee|symposium|foundations|computer|science,a sinclair|i newman|y rabinovich
+6,2,Embedding Tree Metrics Into Low Dimensional Euclidean Spaces ,stoc|acm|symposium|theory|computing,
+6,45,Embedding k-outerplanar graphs into l ,soda|symposium|discrete|algorithms,a sinclair|c chekuri|i newman|y rabinovich
+6,3,Improved bandwidth approximation for trees ,soda|symposium|discrete|algorithms,
+6,46,Counting inversions in lists ,soda|symposium|discrete|algorithms,f zane
+6,4,Improved Bandwidth Approximation for Trees and Chordal Graphs ,j|algorithms,
+6,5,Improved results for directed multicut ,soda|symposium|discrete|algorithms,
+6,6,Steiner points in tree metrics don't really help ,soda|symposium|discrete|algorithms,
+6,7,Lower bounds for embedding edit distance into normed spaces ,soda|symposium|discrete|algorithms,a andoni|m deza|p indyk|s raskhodnikova
+6,8,Approximation Algorithms for the Unsplittable Flow Problem ,approx,a chakrabarti|a kumar|c chekuri
+6,9,An elementary proof of a theorem of Johnson and Lindenstrauss ,random|structures|algorithms,s dasgupta
+6,10,"Bounded geometries, fractals, and low-distortion embeddings ",focs|ieee|symposium|foundations|computer|science,r krauthgamer|j lee
+6,11,A Constant Factor Approximation Algorithm for the Multicommodity Rent-or-Buy Problem ,focs|ieee|symposium|foundations|computer|science,a kumar|t roughgarden
+6,12,Constant Factor Approximation Algorithms for a Class of Classification Problems ,stoc|acm|symposium|theory|computing,� tardos
+6,13,Counting Inversions in Streams,soda|symposium|discrete|algorithms,f zane
+6,14,"Cuts, Trees and l Embeddings ",focs|ieee|symposium|foundations|computer|science,i newman|y rabinovich|a sinclair
+6,15,Designing Edge-Failure Resilient Networks ,ipco|integer|programming|combinatorial|optimization,c chekuri|a kumar|j naor|d raz
+6,16,Lower bounds for embedding edit distance into normed spaces,soda|symposium|discrete|algorithms,a andoni|m deza|p indyk|s raskhodnikova
+6,17,Embedding k-Outerplanar graphs into l,soda|symposium|discrete|algorithms,c chekuri|i newman|y rabinovich|a sinclair
+6,18,Embeddings of Finite Metrics ,ph|d|thesis|university,
+6,19,Embedding Trees into Low Dimensional Euclidean Spaces ,stoc|acm|symposium|theory|computing|discrete|computational|geometry,
+6,20,Exploring the trade-off between label size and stack depth in MPLS routing ,infocom|conference|computer|communications,a kumar|r rastogi
+6,21,Improved Bandwidth Approximation for Trees and Chordal graphs ,soda|symposium|discrete|algorithms|journal|algorithms,
+6,22,Improved Results for Directed Multicut ,soda|symposium|discrete|algorithms,
+6,23,An elementary proof of the Johnson Lindenstrauss lemma ,random|structures|algorithms|icsi|tr,s dasgupta
+6,24,On the Covering Steiner Problem,fst|tcs|theoretical|computer|science,a srinivasan
+6,25,Approximating average distortion for embeddings into the line,stacs|symposium|theoretical|aspects|computer|science,k dhamdhere|r ravi
+6,26,Approximation Via Cost-Sharing: A Simple Approximation Algorithm for the Multicommodity Rent-or-Buy Problem ,focs|ieee|symposium|foundations|computer|science,a kumar|m pal|t roughgarden
+6,27,Approximation Algorithms for the Unsplittable Flow Problem ,approx,a chakrabarti|c chekuri|a kumar
+6,28,Provisioning a Virtual Private Network: A Network Design problem for Multicommodity flows ,stoc|acm|symposium|theory|computing,j kleinberg|a kumar|r rastogi|b yener
+6,29,Simpler and Better Approximation Algorithms for Network Design ,|stoc|acm|symposium|theory|computing,a kumar|t roughgarden
+7,10,Load Balances Priority Queues on Distributed Memory Machines ,parle|parallel|architectures|languages|europe,a photiou
+7,11,Compact Hypercubes: Properties and Recognition ,icci|international|conference|computing|information,a boals|j hashmi|n sherwani
+7,12,An Efficient Approximation Algorithm for Hypercube Scheduling ,icci|international|conference|computing|information,a boals|j hashmi|n sherwani
+7,13,On Optimal Embeddings into Incomplete Hypercubes ,ipps|international|parallel|processing|symposium,a boals|n sherwani
+7,14,Latin Cubes and Parallel Array Access ,ipps|international|parallel|processing|symposium,c fan|j liu
+7,15,On Embedding Ternary Trees into Boolean Hypercubes ,spdp|symposium|parallel|distributed|processing,h wang
+7,16,Load balanced tree embeddings ,parallel|computing,s hambrusch
+7,17,Embedding Complete Binary Trees into Butterfly Networks ,ieee|trans|computers,s hambrusch
+7,18,Optimal Three-Dimensional Layouts of Complete Binary Trees ,inf|process|lett,s hambrusch
+7,1,Development of a parallel and distributed integration package - PART ,hpcn|european|international|conference|high|performance|computing|networking|europe,e doncker|k rathbun|p ealy
+7,2,Two Methods for Load Balanced Distributed Adaptive Integration ,hpcn|european|international|conference|high|performance|computing|networking|europe,e doncker|p ealy
+7,19,Efficient embeddings of ternary trees into hypercubes ,j|parallel|distrib|comput,d nelson|h wang
+7,3,Multivariate Integration on Hypercubic and Mesh Networks ,parallel|computing,e doncker
+7,4,Coarse Grain Preconditioned Conjugate Gradient Solver for Large Sparse Systems ,ppsc|siam|conference|parallel|processing|scientific|computing,e doncker
+7,5,ParInt: A Software Package for Parallel Integration ,international|conference|supercomputing,a genz|e doncker|j ball|p ealy
+7,6,Mutual Exclusion on a Hypercube ,j|parallel|distrib|comput,s bruell|s ghosh
+7,7,Scheduling Tasks in Multiprocessor Systems Using Evolutionary Strategies ,international|conference|evolutionary|computation,g greenwood|k mcsweeney
+7,8,Generalized Compressed Tree Machines ,ipps|international|parallel|processing|symposium,h wang
+7,9,Efficient Design of Boltzmann Machines ,nips|neural|information|processing|systems,w maass
+7,20,Multiple Network Embedding into Hypercubes ,j|parallel|distrib|comput,s hambrusch
+7,21,Parallel organization and performance of an information system ,sac|selected|areas|cryptography,d motzkin
+8,4,Using complete- -distinguishability for FSM equivalence checking ,acm|trans|design|autom|electr|syst,p ashar|s malik
+8,5,Toward Formalizing a Validation Methodology Using Simulation Coverage ,dac|design|automation|conference,p ashar|s malik
+8,6,Flexible Parallel Polygon Rendering ,icpp|international|conference|parallel|processing,a fisher
+8,7,Parametric Circuit Representation Using Inductive Boolean Functions ,cav|computer|aided|verification,a fisher
+8,8,Tradeoffs in Canonical Sequential Function Representations ,iccd|international|conference|computer|design,a fisher
+8,9,Dynamic Detection and Removal of Inactive Clauses in SAT with Application in Image Computation ,dac|design|automation|conference,p ashar|z yang
+8,10,Parametric circuit representation using inductive Boolean functions ,proceedings|conference|computer|aided|verification|lecture|notes|computer|science|springer|verlag,a fisher
+8,11,Representation and symbolic manipulation of linearly inductive Boolean functions ,proceedings|ieee|international|conference|computer|aided|design,a fisher
+8,12,SAT-Based Image Computation with Application in Reachability Analysis ,fmcad|formal|methods|computer|aided|design,p ashar|z yang
+8,13,Tradeoffs in canonical sequential function representations ,proceedings|international|conference|computer|design,a fisher
+8,14,Formal hardware verification methods: A survey ,formal|methods|system|design|nos|kluwer|academic|publishers,
+8,15,Property-specific witness graph generation for guided simulation ,date|design|automation|test|europe,a mukaiyama|a casavant|k wakabayashi|p ashar|s liu
+8,16,Property-Specific Testbench Generation for Guided Simulation ,vlsi|very|large|scale|integration|design,a mukaiyama|a casavant|k wakabayashi|p ashar|x liu
+8,17,Verification of Scheduling in the Presence of Loops Using Uninterpreted Symbolic Simulation ,iccd|international|conference|computer|design,a raghunathan|p ashar|s bhattacharya
+8,18,Abstraction and BDDs Complement SAT-Based BMC in DiVer ,cav|computer|aided|verification,c wang|m ganai|p ashar|z yang
+8,19,Learning from BDDs in SAT-based bounded model checking ,dac|design|automation|conference,c wang|m ganai|p ashar|z yang
+8,20,Combining strengths of circuit-based and CNF-based algorithms for a high-performance SAT solver ,dac|design|automation|conference,l zhang|m ganai|p ashar|s malik
+8,21,Partition-Based Decision Heuristics for Image Computation Using SAT and BDDs ,iccad|international|conference|computer|aided|design,l zhang|p ashar|s malik|z yang
+8,1,Formal Hardware Verification Methods: A Survey ,formal|methods|system|design,
+8,2,Exploiting Retiming in a Guided Simulation Based Validation Methodology ,charme|conference|correct|hardware|design|verification|methods,p ashar|s malik
+8,3,Using complete- -distinguishability for FSM equivalence checking ,iccad|international|conference|computer|aided|design,p ashar|s malik
+9,10,Towards an Active Schema Integration Architecture for Heterogeneous Database Systems ,ride|research|issues|data|engineering|ims|interoperability|multidatabase|systems,m reddy|m siegel
+9,11,Formulating Global Integrity Constraints During Derivation of Global Schema ,data|knowl|eng,b prasad|m reddy
+9,12,A Methodology for Integration of Heterogeneous Databases ,ieee|trans|knowl|data|eng,b prasad|m reddy|p reddy
+9,13,A Taxonomy for Classifying Commercial Approaches to Information Integration in Heterogeneous Environments ,ieee|data|eng|bull,s madnick
+9,1,An Integrated Framework to Support Distributed CAD over the Internet ,wetice|workshop|enabling|technologies|infrastructure|collaborative|enterprises,f pe&ntilde|a a-mora|j yeung|s vadhavkar
+9,2,Directions for Web and E-Commerce Applications Security ,wetice|workshop|enabling|technologies|infrastructure|collaborative|enterprises,b thuraisingham|c clifton|e ferrari|e bertino
+9,3,Brief Application Description Neural Networks Based Forecasting Techniques for Inventory Control Applications ,data|mining|knowledge|discovery,k bansal|s vadhavkar
+9,4,Data mining techniques for optimizing inventories for electronic commerce ,kdd|knowledge|discovery|data|mining,a dhond|s vadhavkar
+9,5,"Why the Information Explosion Can Be Bad for Data Mining, and How Data Fusion Provides a Way Out ",sdm|siam|international|conference|data|mining,j kok|p putten
+9,6,A self-configuring and self-administering name system with dynamic address assignment ,acm|trans|internet|techn,m butler|m feng|p huck
+9,7,Detection of courtesy amount block on bank checks ,icdar|international|conference|document|analysis,a agarwal|k hussein|l granowetter|p wang
+9,8,An Integrated Architecture for Recognition of Totally Unconstrained Handwritten Numerals ,ijprai|international|journal|pattern|recognition|artificial|intelligence,a liu|m nagendraprasad|p wang|s ayyadurai
+9,9,An Adaptive Modular Neural Network with Application to Unconstrained Character Recognition ,ijprai|international|journal|pattern|recognition|artificial|intelligence,a agarwal|l mui|p wang
