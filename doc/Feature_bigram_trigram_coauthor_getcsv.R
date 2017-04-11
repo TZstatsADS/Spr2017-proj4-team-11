@@ -3,9 +3,11 @@ library(stringr)
 
 df_bigram <- function(df){
   num <- nrow(df)
-  score <- data.frame(matrix(0, ncol = num, nrow = num))
-  colnames(score) <- paste("(0,", 0:(num-1), ")", sep = "")
-  rownames(score) <- paste("(", 0:(num-1), ",0)", sep = "")
+  score <- data.frame(matrix(0, ncol = 3, nrow = num^2))
+  colnames(score) <- c("bigram","i","j")
+  rownames(score) <- paste("(", rep(0:(num-1), each = num),",", rep(0:(num-1), num), ")", sep = "")
+  score["i"] <- rep(1:num, each = num)
+  score["j"] <- rep(1:num, num)
   
   title_list <- list(NA)
   for (i in 1:num) {
@@ -38,13 +40,12 @@ df_bigram <- function(df){
       for (a in 1:(length(unlist(title_list[[i]]))-1) ) {
         for (b in 1:(length(unlist(title_list[[j]]))-1) ) {
           if (paste(title_list[[i]][a], title_list[[i]][a+1], sep = "") == paste(title_list[[j]][b], title_list[[j]][b+1], sep = "")) {
-            score[i,j] <- score[i,j]+1
+            score[score$i == i & score$j == j, "bigram"] <- score[score$i == i & score$j == j, "bigram"] + 1
           }
         }
       }
     }
   }
-  
   return(score)
 }
 
@@ -52,9 +53,11 @@ df_bigram <- function(df){
 
 df_trigram <- function(df){
   num <- nrow(df)
-  score <- data.frame(matrix(0, ncol = num, nrow = num))
-  colnames(score) <- paste("(0,", 0:(num-1), ")", sep = "")
-  rownames(score) <- paste("(", 0:(num-1), ",0)", sep = "")
+  score <- data.frame(matrix(0, ncol = 3, nrow = num^2))
+  colnames(score) <- c("trigram","i","j")
+  rownames(score) <- paste("(", rep(0:(num-1), each = num),",", rep(0:(num-1), num), ")", sep = "")
+  score["i"] <- rep(1:num, each = num)
+  score["j"] <- rep(1:num, num)
   
   title_list <- list(NA)
   for (i in 1:num) {
@@ -86,13 +89,13 @@ df_trigram <- function(df){
     for (j in 1:num) {
       for (a in 1:(length(unlist(title_list[[i]]))-2) ) {
         for (b in 1:(length(unlist(title_list[[j]]))-2) ) {
-            score[i,j] <- ifelse( paste(title_list[[i]][a], title_list[[i]][a+1], title_list[[i]][a+2], sep = "") == paste(title_list[[j]][b], title_list[[j]][b+1], title_list[[j]][b+2], sep = ""),
-                                  score[i,j]+1, score[i,j])
+          score[score$i == i & score$j == j, "trigram"] <- ifelse( paste(title_list[[i]][a], title_list[[i]][a+1], title_list[[i]][a+2], sep = "") == paste(title_list[[j]][b], title_list[[j]][b+1], title_list[[j]][b+2], sep = ""),
+                                                                 score[score$i == i & score$j == j, "trigram"] + 1, 
+                                                                 score[score$i == i & score$j == j, "trigram"])
         }
       }
     }
   }
-  
   return(score)
 }
 
@@ -100,9 +103,11 @@ df_trigram <- function(df){
 
 df_coauthor <- function(df){
   num <- nrow(df)
-  score <- data.frame(matrix(0, ncol = num, nrow = num))
-  colnames(score) <- paste("(0,", 0:(num-1), ")", sep = "")
-  rownames(score) <- paste("(", 0:(num-1), ",0)", sep = "")
+  score <- data.frame(matrix(0, ncol = 3, nrow = num^2))
+  colnames(score) <- c("coauthor","i","j")
+  rownames(score) <- paste("(", rep(0:(num-1), each = num),",", rep(0:(num-1), num), ")", sep = "")
+  score["i"] <- rep(1:num, each = num)
+  score["j"] <- rep(1:num, num)
   
   coauthor_list <- list(NA)
   for (i in 1:num) {
@@ -115,28 +120,23 @@ df_coauthor <- function(df){
     for (j in 1:num) {
       for (a in 1:length(unlist(coauthor_list[[i]])) ) {
         for (b in 1:length(unlist(coauthor_list[[j]])) ) {
-          score[i,j] <- ifelse(coauthor_list[[i]][a] == coauthor_list[[j]][b],
-                                      score[i,j]+1, score[i,j])
+          score[score$i== i & score$j == j, "coauthor"] <- ifelse(coauthor_list[[i]][a] == coauthor_list[[j]][b],
+                                                                 score[score$i== i & score$j == j, "coauthor"]+1, 
+                                                                 score[score$i== i & score$j == j, "coauthor"])
         }
       }
     }
   }
-  
   return(score)
 }
 
 
-for (i in 1:14) {
-  output <- df_bigram(data[[i]])
-  write.csv(output, file = paste("../data/bigram_", i, ".csv", sep = ""))
+for (i in 1) {
+  output1 <- df_bigram(data[[i]])
+  output2 <- df_trigram(data[[i]])
+  output3 <- df_coauthor(data[[i]])
+  output <- cbind(output1,output2,output3)
+  output <- output[, c(1,4,7)]
+  write.csv(output, file = paste("../data/feature_bi_tri_coauth_", i, ".csv", sep = ""))
 }
 
-for (i in 1:14) {
-  output <- df_trigram(data[[i]])
-  write.csv(output, file = paste("../data/trigram_", i, ".csv", sep = ""))
-}
-
-for (i in 1:14) {
-  output <- df_coauthor(data[[i]])
-  write.csv(output, file = paste("../data/coauthor_", i, ".csv", sep = ""))
-}
