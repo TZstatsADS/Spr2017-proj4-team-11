@@ -14,8 +14,7 @@ def cleanData(dpath='../data/text1.csv'):
     features = ['coauthor','journalTitle']
     label = 'authorNum'
     my_df = df[features]
-    labels = df[label].tolist()
-    my_df.loc['label'] = labels
+    my_df = my_df.assign(label=df[label].values)
     return(my_df)
 
 def p_sml(r1,r2):
