@@ -30,7 +30,6 @@ For each record in the dataset, there are some information we want to extract an
 After generated a list of 14 elements using Professor Zheng's code, we reorganizes it into a list of 14 dataframes for easier access and processing.
 ```{r}
 source("../lib/dataclean.R")
-# load("../data/data.RData")
 ```
 
 ## Step 2: Feature design
@@ -39,19 +38,24 @@ source("../lib/dataclean.R")
 Paper 1 : Following the section 5.2 in the paper .. Specificially, each name occurrence is represented by a set of his/her coauthor names. We first find out the 
 
 ```{r}
-start.time <- Sys.time()
 source("../lib/coauthormatrix.R")
+start.time <- Sys.time()
+simmatrix.list <- NULL
+simmatrix.list <- llply(data,coauthor_matrix)
 end.time <- Sys.time()
 time_coauthormatrix <- end.time-start.time
+time_coauthormatrix
 ```
 
 # Clustering
 ```{r}
-start.time <- Sys.time()
 source("../lib/singlelink.R")
+start.time <- Sys.time()
+cluster_temp.list <- NULL
+cluster_temp.list <- llply(simmatrix.list,singlecluster)
 end.time <- Sys.time()
 time_scluter <- end.time - start.time
-table(result_sclust)
+# table(result_sclust)
 ```
 
 Paper 5 :

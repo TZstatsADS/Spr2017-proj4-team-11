@@ -52,6 +52,7 @@ singlecluster <- function(ssim){
   return(a)
 }
 
+# treat each single-element cluster as one cluster 
 splitcluster <- function(df){
   abc <- as.data.frame(table(df))
   abc <- abc[order(abc$Freq,decreasing = T),]
