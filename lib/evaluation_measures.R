@@ -6,7 +6,7 @@
 ### Project 4
 ### ADS Spring 2017
 
-matching_matrix <- function(G,M){
+matching_matrix <- function(Gmatrix,M){
   
   ### Compute the matching matrix following the paper Kang et at.(2009)
   ### The notations are same as in the paper
@@ -14,7 +14,8 @@ matching_matrix <- function(G,M){
   ### Input: G: Gold standard clusters, numeric vector, same length as number of citations
   ###        M: Machine generated clusters, numeric vector, same length as G
   ### Output: matching matrix as decribed in paper Kang et at.(2009)
-  
+ 
+  G <- Gmatrix$authorNum
   ### n is the number of citations
   n <- length(G)
   
