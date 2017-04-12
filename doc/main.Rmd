@@ -47,7 +47,7 @@ load("../data/sim_matrix.RData")
 source("../lib/singlelink.R")
 start.time <- Sys.time()
 cluster_temp.list <- NULL
-cluster_temp.list <- llply(simmatrix.list,singlecluster,theta=1)
+cluster_temp.list <- llply(simmatrix.list,singlecluster,theta=5)
 # cluster_temp2.list <- llply(simmatrix.list,singlecluster,theta=2)
 cluster.combined <- NULL
 cluster.combined <- llply(cluster_temp.list,comninecluster)
@@ -103,12 +103,19 @@ for (i in 1:14){
 }
 
 
-clustering_errors_singlelink <- clustering_errors(matching_matrix_singlelink)
+clustering_errors_singlelink <- clustering_errors(matching_matrix_single[[8]])
 
 ```
 
 ```{r}
-
+acc.c.5 <- accuracy.list.combined
+acc.s.5 <- accuracy.list.single
+save(acc.c.5,file="../output/temp_acc/acc_c_5.RData")
+save(acc.s.5,file="../output/temp_acc/acc_s_5.RData")
+f1.c.5 <- f1.list.combined
+f1.s.5 <- f1.list.single
+save(f1.c.5,file="../output/temp_f1_c/f1_c_5.RData")
+save(f1.s.5,file="../output/temp_f1_s/f1_s_5.RData")
 
 ```
 
