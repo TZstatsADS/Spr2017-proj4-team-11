@@ -1,4 +1,4 @@
-singlecluster <- function(ssim){
+singlecluster <- function(ssim,theta){
   Lm <- as.data.frame(ssim*(-1))
   Lm[is.na(Lm)] <- 0
   N <- nrow(Lm)
@@ -16,7 +16,7 @@ singlecluster <- function(ssim){
     
     # The which() function returns the row and column position of the pair
     d <- which(Lm == min(Lm), arr.ind = TRUE)[1,,drop=FALSE]
-    if (min(Lm) <= (-1)){
+    if (min(Lm) <= (-theta)){
       height[m] <- min(Lm) # The height is the value of the pair with the most common coauthors 
       
       # The row and column position of the most common pair is stored as sequence m in the merge object

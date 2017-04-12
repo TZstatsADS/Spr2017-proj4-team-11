@@ -25,5 +25,8 @@ coauthor_matrix <- function(df){
  return(ssim)   
 }
   
+simmatrix.list <- NULL
+simmatrix.list <- llply(data,coauthor_matrix)
+save(simmatrix.list,file="sim_matrix.RData")
 
   
