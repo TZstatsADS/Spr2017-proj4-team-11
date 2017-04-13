@@ -6,60 +6,68 @@ output:
   pdf_document: default
   html_notebook: default
   html_document: default
-
 ---
 
 # Summary:
-#### In this project, we implemented, evaluated and compared the algorithms in paper 1 and paper 5 for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. Paper 1 used a single-link agglomerative clusering algorithm and each name occurrence is represented by a set of his/her coauthor names. Specifically, we set the number of overlapping coauthors to 1. 
-
-Team This file is currently a template for implementing one of the suggested papers, Han, Zha, & Giles (2005). Due to the nature of the method, we only implement the method on a subset of the data, "AKumar.txt". In your project, you need to work on the whole dataset. You should follow the same structure as in this tutorial, but update it according to the papers you are assigned.
+#### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. Paper 1 suggested a single-link agglomerative clusering algorithm and each name occurrence is represented by a set of his/her coauthor names. Specifically, we set the number of overlapping coauthors to 1. We also used hierarchical clustering. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, .....
 
 ## Step 0: Load the packages, specify directories
 
 ```{r}
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(text2vec, qlcMatrix, kernlab, knitr)
-
+pacman::p_load(text2vec, plyr,qlcMatrix, kernlab, knitr)
 setwd("~/Spr2017-proj4-team-11/doc")
 ```
 
 ## Step 1: Load and process the data
 
-For each record in the dataset, there are some information we want to extract and store them in a regular form: canonical author id, coauthors, paper title, publication venue title. 
+### For each record in the dataset, there are some information we want to extract and store them in a regular form: canonical author id, coauthors, paper title, publication venue title. 
 
-After generated a list of 14 elements using Professor Zheng's code, we reorganizes it into a list of 14 dataframes for easier access and processing.
-```{r}
+### After generated a list of 14 elements using Professor Zheng's code, we reorganizes it into a list of 14 dataframes for easier access and processing.
+```{r,warning=FALSE}
 source("../lib/dataclean.R")
 ```
 
 ## Step 2: Feature design
 
 # Feature design 
-Paper 1 : Following the section 5.2 in the paper .. Specificially, each name occurrence is represented by a set of his/her coauthor names. We first find out the 
+Paper 1 : Following the section 5.2, that each name occurrence is represented by a set of his/her coauthor names. 
+
+Paper 5: We want to use coauthors, paper titles and journey titles to design features for citations. We count the same-coauthor occurrences, and used bigram, trigram, TF-IDF, edit distance... to extract features from paper title and journey title. 
 
 ```{r}
 # source("../lib/coauthormatrix.R")
 load("../data/sim_matrix.RData")
 ```
 
-# Clustering
+## Step 3: Clustering
+
+We used a hierarchical clustering method for both paper 1 and paper 5.
+The algorithm also follows section 5.2 in paper 1. 
+
+\includegraphics[width=450pt]{algorithm2.png}
+
+For paper 1, we considered two scenarios : we combine all the single-element cluster; or we don't combine them. 
 ```{r}
 source("../lib/singlelink.R")
 start.time <- Sys.time()
-cluster_temp.list <- NULL
-cluster_temp.list <- llply(simmatrix.list,singlecluster,theta=6)
-# cluster_temp2.list <- llply(simmatrix.list,singlecluster,theta=2)
+# cluster_temp.list <- NULL
+# cluster_temp.list <- llply(simmatrix.list,singlecluster,theta=1)
+load("../doc/cluster_temp_1.RData")
 cluster.combined <- NULL
 cluster.combined <- llply(cluster_temp.list,comninecluster)
 cluster.notcombined <- NULL
 cluster.notcombined <- llply(cluster_temp.list,splitcluster)
 end.time <- Sys.time()
 time_scluter <- end.time - start.time
-# combind cluster table for first author 
+# combind cluster table for AGupta
 table(cluster.combined[[1]])
 # do not combine single-element cluster 
 table(cluster.notcombined[[1]])
 ```
+Here, I only showed the cluster result of a subset of the data, "AGupta.txt" to further illustrate the difference of these two scenarios. 
+
+
 
 # Evlatuion 
 
@@ -95,6 +103,8 @@ f1.list.single <- NULL
 accuracy.list.single <- NULL
 f1.list.combined <- NULL
 accuracy.list.combined <- NULL
+clustering_errors_single <- NULL
+clustering_errors_combined <- NULL
 for (i in 1:14){
   f1.list.single[i] <- performance_statistics(matching_matrix_single[[i]])$f1
   f1.list.combined[i] <- performance_statistics(matching_matrix_combined[[i]])$f1
@@ -103,97 +113,12 @@ for (i in 1:14){
 }
 
 
-clustering_errors_singlelink <- clustering_errors(matching_matrix_single[[8]])
-
 ```
 
-```{r}
-acc.c.6 <- accuracy.list.combined
-acc.s.6 <- accuracy.list.single
-save(acc.c.6,file="../output/temp_acc/acc_c_6.RData")
-save(acc.s.6,file="../output/temp_acc/acc_s_6.RData")
-f1.c.6 <- f1.list.combined
-f1.s.6 <- f1.list.single
-save(f1.c.6,file="../output/temp_f1_c/f1_c_6.RData")
-save(f1.s.6,file="../output/temp_f1_s/f1_s_6.RData")
-
-```
-
-
-Following the section 3.1 in the paper, we want to use paper titles to design features for citations. As the notation used in the paper, we want to find a $m$-dimensional citation vector $\alpha_i$ for each citation $i$, $i=1,...,n$. In this dataset, $n=$ `r nrow(AKumar)`. We study "TF-IDF" (term frequency-inverse document frequency) as suggested in the paper.
-
-TF-IDF is a numerical statistics that is intended to reflect how important a word is to a document in a collection or corpus. It is often used as a weighting factor in information retrieval, text mining, and user modeling. The TF-IDF value increases proportionally to the number of times a word appears in the document, but is offset by the frequency of the word in the corpus, which helps to adjust for the fact that some words appear more frequently in general.
-
-$$
-\begin{aligned}
-\mbox{TF}(t) &=\frac{\mbox{Number of times term $t$ appears in a document}}{\mbox{Total number of terms in the document}}\\
-\mbox{IDF}(t) &=\log{\frac{\mbox{Total number of documents}}{\mbox{Number of documents with term $t$ in it}}}\\
-\mbox{TF-IDF}(t) &=\mbox{TF}(t)\times\mbox{IDF}(t)
-\end{aligned}
-$$
-
-To compute TF-IDF, we first need to construct a document-term matrix (DTM). In other words, the first step is to vectorize text by creating a map from words to a vector space. There are some good packages you could use for text mining (probably you have tried during first project, you don't need to follow my code if you are familiar with other package), e.g. *text2vec, tm, tidytext*. Here, we are going to use *text2vec* package. A good tutorial can be found here, <https://cran.r-project.org/web/packages/text2vec/vignettes/text-vectorization.html>.
-
-Let’s first create a vocabulary-based DTM. Here we collect unique terms from all documents and mark each of them with a unique ID using the  `create_vocabulary()` function. We use an iterator to create the vocabulary.
-```{r}
-it_train <- itoken(AKumar$Paper, 
-             preprocessor = tolower, 
-             tokenizer = word_tokenizer,
-             ids = AKumar$PaperID,
-             # turn off progressbar because it won't look nice in rmd
-             progressbar = FALSE)
-vocab <- create_vocabulary(it_train, stopwords = c("a", "an", "the", "in", "on",
-                                                   "at", "of", "above", "under"))
-
-vocab
-```
-
-Here, we remove pre-defined stopwords, the words like “a”, “the”, “in”, “I”, “you”, “on”, etc, which do not provide much useful information. 
-
-Now that we have a vocabulary list, we can construct a document-term matrix.
-```{r}
-vectorizer <- vocab_vectorizer(vocab)
-dtm_train <- create_dtm(it_train, vectorizer)
-```
-
-Now we have DTM and can check its dimensions.
-```{r}
-dim(dtm_train)
-```
-
-As you can see, the DTM has `r nrow(dtm_train)` rows, equal to the number of citations, and `r ncol(dtm_train)`, equal to the number of unique terms excluding stopwords.
-
-Then, we want to use DTM to compute TF-IDF transformation on DTM.
-```{r}
-tfidf <- TfIdf$new()
-dtm_train_tfidf <- fit_transform(dtm_train, tfidf)
-```
 
 ## Step 3: Clustering
 
 Following suggestion in the paper, we carry out spectral clustering on the Gram matrix of the citation vectors by using R function `specc()` in *kernlab*. The number of clusters is assumed known as stated in the paper.
-```{r}
-start.time <- Sys.time()
-result_sclust <- specc(as.matrix(dtm_train_tfidf), 
-                       centers=length(unique(AKumar$AuthorID)))
-end.time <- Sys.time()
-time_sclust <- end.time - start.time
-table(result_sclust)
-```
-
-We can also using hierarchical clustering method under the cosine distance. The intention of using a different clustering method is just to let you know how to compare performance between various methods. 
-```{r}
-start.time <- Sys.time()
-docsdissim <- cosSparse(t(dtm_train_tfidf))
-rownames(docsdissim) <- c(1:nrow(dtm_train_tfidf))
-colnames(docsdissim) <- c(1:nrow(dtm_train_tfidf))
-#compute pairwise cosine similarities using cosSparse function in package qlcMatrix
-h <- hclust(as.dist(docsdissim), method = "ward.D")
-result_hclust <- cutree(h,length(unique(AKumar$AuthorID)))
-end.time <- Sys.time()
-time_hclust <- end.time - start.time
-table(result_hclust)
-```
 
 ## Step 4: Evaluation
 
@@ -212,23 +137,4 @@ $$
 \end{aligned}
 $$
 
-```{r}
-source("../lib/evaluation_measures.R")
-
-#### paper 1 
-matching_matrix_singlelink <- matching_matrix(AKumar$AuthorID,result_hclust)
-performance_singlelink <- performance_statistics(matching_matrix_singlelink)
-clustering_errors_singlelink <- clustering_errors(matching_matrix_singlelink)
-
-#### paper 5 
-matching_matrix_sclust <- matching_matrix(AKumar$AuthorID,result_sclust)
-performance_sclust <- performance_statistics(matching_matrix_sclust)
-compare_df <- data.frame(method=c("sinlgelink","hClust"),
-                         precision=c(performance_singlelink$precision, performance_hclust$precision),
-                         recall=c(performance_singlelink$recall, performance_hclust$recall),
-                         f1=c(performance_singlelink$f1, performance_hclust$f1),
-                         accuracy=c(performance_singlelink$accuracy, performance_hclust$accuracy),
-                         time=c(time_singlelink,time_hclust))
-kable(compare_df,caption="Comparision of performance for two clustering methods",digits = 2)
-```
 

@@ -89,10 +89,6 @@ comninecluster <- function(df){
       a <- which(df==abc$df[i])
       cluster.result[a] <- i
     }
-    else{
-      cluster.result[a] <- 0
-    }
-    
   }
   return(cluster.result)
 }
