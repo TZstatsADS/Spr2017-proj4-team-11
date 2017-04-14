@@ -1,16 +1,16 @@
 ---
-title: "Project 4 - Example Main Script"
+title: "Project 4 - Entity Resolution "
 author: "Team 11"
 date: "04/14/2017"
 output:
-  word_document: default
-  html_notebook: default
   pdf_document: default
+  html_notebook: default
   html_document: default
+  word_document: default
 ---
 
 # Summary:
-#### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. We used hierarchical clustering for both papers. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, we find out that for large dataset, paper 5 performed better than Paper1 did. For instance, algorithm in paper 5 offered much better results than paper 1 when tackling datasets of which author names are 'JLee', 'JSmith', 'SLee' and 'YChen' with the number of observations 1419, 927, 1464 and 1265 respectively.
+#### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. We used hierarchical clustering for both papers. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, we find out that for large dataset, paper 5 performed better(higher f1 and accuracy) than Paper1 did. For instance, algorithm in paper 5 offered much better results than paper 1 when tackling datasets of which author names are 'CChen', 'JLee', 'JSmith', and 'SLee'with the number of observations 801, 1419, 927, and 1464 respectively.
 
 ## Step 0: Load the packages, specify directories
 
@@ -40,8 +40,7 @@ source("../lib/dataclean.R")
 ####•	Edit distance: Compute the approximate string distance between character vectors. The distance is a generalized Levenshtein (edit) distance, giving the minimal possibly weighted number of insertions, deletions and substitutions needed to transform one string into another
 ####• Bigram and Trigram: Count the Frequency of Pairs/Triple characters
 ####•	Journey Title Similarity 
-####•	
-####•	
+	
 
 ```{r}
 # source("../lib/coauthormatrix.R")
@@ -72,7 +71,7 @@ time_scluter
 ```
 
 
-We also considered two scenarios : all the single-element cluster are combined; or we don't combine them. Here, I only showed the cluster result of a subset of the data, "AGupta.txt" to further illustrate the difference of these two scenarios. 
+We also considered two scenarios : all the single-element cluster are combined; or we don't combine them. Here, I only showed the cluster result of a subset of the data, "AGupta.txt" to further illustrate the difference between these two scenarios. 
 ```{r}
 # combind cluster table for AGupta
 table(cluster.combined[[1]])
@@ -81,10 +80,11 @@ table(cluster.notcombined[[1]])
 ```
 
 
+### Paper 5: 
 ### Procedure: 
 ####•	An initial guess, $\lambda$, assigns weights to each feature. We used odds ratio as our initial guess. 
 
-\includegraphics[width=450pt]{algorithm2.png}
+\includegraphics[width=450pt]{odds_ratio.png}
 
 ####•	Error-driven Trainging: We use hierarchical clustering. After first iteration, we have a partition T hat. We calculate a score S and a true socre(accuracy) for our partition. T star is a partition with higher true score in the neigborhood of T hat, and the existence of T star means that T hat is not the best partition and therefore we need to update $\lambda$. 
 ####• Ranking MIRA: We update $\lambda$ with three constratins. The optimization is solved using Python through the quadratic program. 
@@ -171,11 +171,31 @@ ggplot()+
 
 ```
 
-#### Performance on paper 5,8 and 13 is really bad. So, we use these papers as test sets for algorithm in paper 5. And here are the f1 and accuracy results for these papers. 
+#### Paper 3,5,8 and 13 have low accuracy and f1. So, we use these papers as test sets for algorithm in paper 5. And here are the f1 and accuracy results for these papers. 
 
-\includegraphics[width=500pt]{matching_matrix.png}
+\includegraphics[width=270pt]{3acc.png}
+\includegraphics[width=270pt]{3f1.png}
+\includegraphics[width=270pt]{5acc.png}
+\includegraphics[width=270pt]{5f1.png}
+\includegraphics[width=270pt]{8acc.png}
+\includegraphics[width=270pt]{8f1.png}
+\includegraphics[width=270pt]{13acc.png}
+\includegraphics[width=270pt]{13f1.png}
+
+```{r}
+# Data from python notebook, filename TrainingAndPredict
+aa = c(0.964,0.967,0.849,0.919)
+bbb = c(0.27,0.268,0.234,0.172)
+cccc = 150
+compare_df <- data.frame(method=c("singlelink","hcluster"),
+                         accuracy=c(mean(accuracy.list.combined),mean(aa)),
+                         f1=c(mean(f1.list.combined),mean(bbb)),
+                         time=c(time_scluter,cccc))
+kable(compare_df,caption="Comparision of performance for two clustering methods", digits=2)
+                         
+```
 
 # Conclusion 
-#### Compared two methods, method in paper 1 doesn't do well in large dataset. On the other hand, method in paper 5 solves the issue and increases the accuracy. 
+#### Compared two methods, method in paper 1 doesn't do well in large dataset and the performance is not consistent. On the other hand, method in paper 5 solves the issue and increases both the accuracy and f1. However, paper 1 seems to be more efficient than paper 5. Everytime we update $\lambda$, we always start from the beginning and sometimes it takes a relatively long time.  
 
 
