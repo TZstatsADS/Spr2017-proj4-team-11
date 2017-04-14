@@ -17,7 +17,7 @@ Term: Spring 2017
 
 + We usd Python to realize the algorithm and in order to run Algorithms.py successfully please install the packages 'numpy','pandas' and 'scipy' in Python first.
 
-title.jpg
+
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
