@@ -196,6 +196,6 @@ kable(compare_df,caption="Comparision of performance for two clustering methods"
 ```
 
 # Conclusion 
-#### Compared two methods, method in paper 1 doesn't do well in large dataset and the performance is not consistent. On the other hand, method in paper 5 solves the issue and increases both the accuracy and f1. However, paper 1 seems to be more efficient than paper 5. Everytime we update $\lambda$, we always start from the beginning and sometimes it takes a relatively long time.  
+#### Compared two methods, method in paper 1 doesn't do well in large dataset and the performance is not consistent. On the other hand, method in paper 5 solves the issue and increases the accuracy significantly. However, paper 1 seems to be more efficient than paper 5. Everytime we update $\lambda$, we always start from the beginning and sometimes it takes a relatively long time.  
 
 
