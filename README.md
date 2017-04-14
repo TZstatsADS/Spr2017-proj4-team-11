@@ -12,7 +12,8 @@ Term: Spring 2017
 	+ Bo Peng
 	+ Song Wang
 	+ Shuyi Tang
-+ Project summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: In this project, we studied and implemented algorithms in Paper1 and Paper5. Paper 1 suggested a single-link agglomerative clusering algorithm according to the number of overlappling coauthor names. Paper 5 discussed about an error-driven algorithm with scoring function and more features including number of overlapping bigram and trigram, cosine similarity and edit distance. Moreover, we compared performance of two algorithms on accuracy and f1. We found that the algorithm in Paper 5 can produce much better accuracy and f1 than the one in Paper1 when dealing with relatively large dataset. For instance, algorithm in Paper5 offered much better results than Paper1 when tackling dataset in which author names are 'JLee', 'JSmith', 'SLee' and 'YChen' with the number of observations 1419, 927, 1464 and 1265 respectively.
+
 
 + We usd Python to realize the algorithm and in order to run Algorithms.py successfully please install the packages 'numpy','pandas' and 'scipy' in Python first.
 	
