@@ -1,0 +1,203 @@
+---
+title: "Project 4 - Entity Resolution "
+author: "Team 11"
+date: "04/14/2017"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+  word_document: default
+---
+
+# Summary:
+#### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. We used hierarchical clustering for both papers. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, we find out that for large dataset, paper 5 performed better(higher f1 and accuracy) than Paper1 did. For instance, algorithm in paper 5 offered much better results than paper 1 when tackling datasets of which author names are 'CChen', 'JLee', 'JSmith', and 'SLee'with the number of observations 801, 1419, 927, and 1464 respectively.
+
+## Step 0: Load the packages, specify directories
+
+```{r}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(text2vec, plyr,qlcMatrix, kernlab, knitr)
+setwd("~/Spr2017-proj4-team-11/doc")
+library(ggplot2)
+```
+
+## Step 1: Load and process the data
+
+For each record in the dataset, there are some information we want to extract and store them in a regular form: canonical author id, coauthors, paper title, publication venue title. 
+
+After generated a list of 14 elements using Professor Zheng's code, we reorganizes it into a list of 14 dataframes for easier access and processing.
+```{r,warning=FALSE}
+source("../lib/dataclean.R")
+```
+
+## Step 2: Feature design
+
+### Paper 1 : Following the section 5.2, that each name occurrence is represented by a set of his/her coauthor names. We count the number of matched coauthors between two authors. 
+
+### Paper 5: We want to use coauthors, paper titles and journey titles to design features for citations.
+####•	TF-IDF and cosine similarity: Term Frequency/Inverse Document Frequency weighting
+####•	Same-Coauthor occurrences
+####•	Edit distance: Compute the approximate string distance between character vectors. The distance is a generalized Levenshtein (edit) distance, giving the minimal possibly weighted number of insertions, deletions and substitutions needed to transform one string into another
+####• Bigram and Trigram: Count the Frequency of Pairs/Triple characters
+####•	Journey Title Similarity 
+	
+
+```{r}
+# source("../lib/coauthormatrix.R")
+load("../data/sim_matrix.RData")
+```
+
+## Step 3: Clustering
+
+We used a hierarchical clustering method for both paper 1 and paper 5.
+The algorithm also follows section 5.2 in paper 1. 
+
+\includegraphics[width=450pt]{algorithm2.png}
+
+We set the number of overlapping coauthors to 1.
+```{r}
+source("../lib/singlelink.R")
+start.time <- Sys.time()
+cluster_temp.list <- NULL
+cluster_temp.list <- llply(simmatrix.list,singlecluster,theta=1)
+# load("../doc/cluster_temp_1.RData")
+cluster.combined <- NULL
+cluster.combined <- llply(cluster_temp.list,comninecluster)
+cluster.notcombined <- NULL
+cluster.notcombined <- llply(cluster_temp.list,splitcluster)
+end.time <- Sys.time()
+time_scluter <- end.time - start.time
+time_scluter
+```
+
+
+We also considered two scenarios : all the single-element cluster are combined; or we don't combine them. Here, I only showed the cluster result of a subset of the data, "AGupta.txt" to further illustrate the difference between these two scenarios. 
+```{r}
+# combind cluster table for AGupta
+table(cluster.combined[[1]])
+# do not combine single-element cluster 
+table(cluster.notcombined[[1]])
+```
+
+
+### Paper 5: 
+### Procedure: 
+####•	An initial guess, $\lambda$, assigns weights to each feature. We used odds ratio as our initial guess. 
+
+\includegraphics[width=450pt]{odds_ratio.png}
+
+####•	Error-driven Trainging: We use hierarchical clustering. After first iteration, we have a partition T hat. We calculate a score S and a true socre(accuracy) for our partition. T star is a partition with higher true score in the neigborhood of T hat, and the existence of T star means that T hat is not the best partition and therefore we need to update $\lambda$. 
+####• Ranking MIRA: We update $\lambda$ with three constratins. The optimization is solved using Python through the quadratic program. 
+####• After iterations and updates, we have our final $\lambda$ 
+
+
+
+## Step 4: Evaluation
+
+To evaluate the performance of the method, it is required to calculate the degree of agreement between a set of system-output partitions and a set of true partitions. In general, the agreement between two partitioins is measured for a pair of entities within partitions. The basic unit for which pair-wise agreement is assessed is a pair of entities (authors in our case) which belongs to one of the four cells in the following table (Kang et at.(2009)):
+
+\includegraphics[width=500pt]{matching_matrix.png}
+
+Let $M$ be the set of machine-generated clusters, and $G$ the set of gold standard clusters. Then. in the table, for example, $a$ is the number of pairs of entities that are assigned to the same cluster in each of $M$ and $G$. Hence, $a$ and $d$ are interpreted as agreements, and $b$ and $c$ disagreements. When the table is considered as a confusion matrix for a two-class prediction problem, the standard "Precision", "Recall","F1", and "Accuracy" are defined as follows.
+
+$$
+\begin{aligned}
+\mbox{Precision} &=\frac{a}{a+b}\\
+\mbox{Recall}&=\frac{a}{a+c}\\
+\mbox{F1} &=\frac{2\times\mbox{Precision}\times\mbox{Recall}}{\mbox{Precision}+\mbox{Recall}}\\
+\mbox{Accuracy}&=\frac{a+d}{a+b+c+d}
+\end{aligned}
+$$
+
+```{r}
+source("../lib/evaluation_measures.R")
+
+#### paper 1 
+matching_matrix_single <- NULL
+matching_matrix_combined <- NULL
+for (i in 1:14){
+  matching_matrix_single[[i]] <- matching_matrix(data[[i]],cluster.notcombined[[i]])
+  matching_matrix_combined[[i]] <- matching_matrix(data[[i]],cluster.combined[[i]])
+}
+
+f1.list.single <- NULL
+accuracy.list.single <- NULL
+f1.list.combined <- NULL
+accuracy.list.combined <- NULL
+clustering_errors_single <- NULL
+clustering_errors_combined <- NULL
+for (i in 1:14){
+  f1.list.single[i] <- performance_statistics(matching_matrix_single[[i]])$f1
+  f1.list.combined[i] <- performance_statistics(matching_matrix_combined[[i]])$f1
+  accuracy.list.single[i] <- performance_statistics(matching_matrix_single[[i]])$accuracy
+  accuracy.list.combined[i] <- performance_statistics(matching_matrix_combined[[i]])$accuracy
+}
+
+
+f1.combined <- as.data.frame(f1.list.combined)
+f1.combined$index <-c(1:14)
+f1.single <- as.data.frame(f1.list.single)
+f1.single$index <- c(1:14)
+acc.combined <- as.data.frame(accuracy.list.combined)
+acc.combined$index <-c(1:14)
+acc.single <- as.data.frame(accuracy.list.single)
+acc.single$index <- c(1:14)
+
+# f1 result
+ggplot()+
+  geom_point(mapping=aes(x=index,y=f1.list.combined,colour="f1.list.combined"), data=f1.combined)+ 
+  geom_line(mapping=aes(x=index,y=f1.list.combined,colour="f1.list.combined"), data=f1.combined)+
+  geom_point(mapping=aes(x=index,y=f1.list.single,colour="f1.list.single"),
+             data=f1.single)+
+  geom_line(mapping=aes(x=index,y=f1.list.single, colour="f1.list.single"),
+            data=f1.single)+
+  labs(title="F1 result for 14 datasets",
+       x="index",
+       y="f1")+
+  scale_color_manual(values=c(f1.list.combined="red",f1.list.single="blue"))
+  
+# Accuracy result 
+ggplot()+
+  geom_point(mapping=aes(x=index,y=accuracy.list.combined,colour="accuracy.list.combined"), data=acc.combined)+ 
+  geom_line(mapping=aes(x=index,y=accuracy.list.combined,colour="accuracy.list.combined"), data=acc.combined)+
+  geom_point(mapping=aes(x=index,y=accuracy.list.single,colour="accuracy.list.single"),
+             data=acc.single)+
+  geom_line(mapping=aes(x=index,y=accuracy.list.single, colour="accuracy.list.single"),
+            data=acc.single)+
+  labs(title="Accuracy result for 14 datasets",
+       x="index",
+       y="accuracy")+
+  scale_color_manual(values=c(accuracy.list.combined="red",accuracy.list.single="blue"))
+
+```
+
+#### Paper 3,5,8 and 13 have low accuracy and f1. So, we use these papers as test sets for algorithm in paper 5. And here are the f1 and accuracy results for these papers. 
+
+\includegraphics[width=270pt]{3acc.png}
+\includegraphics[width=270pt]{3f1.png}
+\includegraphics[width=270pt]{5acc.png}
+\includegraphics[width=270pt]{5f1.png}
+\includegraphics[width=270pt]{8acc.png}
+\includegraphics[width=270pt]{8f1.png}
+\includegraphics[width=270pt]{13acc.png}
+\includegraphics[width=270pt]{13f1.png}
+
+```{r}
+# Data from python notebook, filename TrainingAndPredict
+aa = c(0.964,0.967,0.849,0.919)
+bbb = c(0.27,0.268,0.234,0.172)
+cccc = 5
+compare_df <- data.frame(method=c("singlelink","hcluster"),
+                         accuracy=c(mean(accuracy.list.combined),mean(aa)),
+                         f1=c(mean(f1.list.combined),mean(bbb)),
+                         traning_time=c(time_scluter,cccc),
+                         predict_time=c("NA","0.896s"))
+                         
+kable(compare_df,caption="Comparision of performance for two clustering methods", digits=2)
+                         
+```
+
+# Conclusion 
+#### Compared two methods, method in paper 1 doesn't do well in large dataset and the performance is not consistent. On the other hand, method in paper 5 solves the issue and increases the accuracy significantly. However, the algorithm in paper 5 is not always effective. Everytime we update $\lambda$, we always start from the beginning and sometimes it takes a relatively long time.  
+
+
