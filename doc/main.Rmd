@@ -115,37 +115,6 @@ for (i in 1:14){
   accuracy.list.combined[i] <- performance_statistics(matching_matrix_combined[[i]])$accuracy
 }
 
-# f1 result plot
-plot(f1.list.combined,
-     xlab="index of dataset", 
-     ylab="f1",
-     type="b",
-     col="1",
-     ylim = range(0,1),
-     main="f1 result for 14 datasets")
-points(f1.list.single,
-       type="b",
-       col="2")
-legend("bottomleft",
-       c("Combined","Not Combined"),
-       fill=c("1","2"),
-       cex=0.45)
-
-# accuracy result plot
-plot(accuracy.list.combined,
-     xlab="index of dataset", 
-     ylab="accuracy",
-     type="b",
-     col="1",
-     ylim = range(0,1),
-     main="Accuracy for 14 datasets")
-points(accuracy.list.single,
-       type="b",
-       col="2")
-legend("bottomleft",
-       c("Combined","Not Combined"),
-       fill=c("1","2"),
-       cex=0.45)
 
 f1.combined <- as.data.frame(f1.list.combined)
 f1.combined$index <-c(1:14)
@@ -155,13 +124,33 @@ acc.combined <- as.data.frame(accuracy.list.combined)
 acc.combined$index <-c(1:14)
 acc.single <- as.data.frame(accuracy.list.single)
 acc.single$index <- c(1:14)
+
+# f1 result
 ggplot()+
-  geom_point(mapping=aes(x=index,y=f1.list.combined),color="blue",data=f1.combined)+
-  geom_line(mapping=aes(x=index,y=f1.list.combined),data=f1,color="blue")+
-  geom_point(mapping=aes(x=index,y=f1.list.single),data=f1.single,color="red")+
-  geom_line(mapping=aes(x=index,y=f1.list.single),color="red")
+  geom_point(mapping=aes(x=index,y=f1.list.combined,colour="f1.list.combined"), data=f1.combined)+ 
+  geom_line(mapping=aes(x=index,y=f1.list.combined,colour="f1.list.combined"), data=f1.combined)+
+  geom_point(mapping=aes(x=index,y=f1.list.single,colour="f1.list.single"),
+             data=f1.single)+
+  geom_line(mapping=aes(x=index,y=f1.list.single, colour="f1.list.single"),
+            data=f1.single)+
+  labs(title="f1 result for 14 datasets",
+       x="index",
+       y="f1")+
+  scale_color_manual(values=c(f1.list.combined="red",f1.list.single="blue"))
   
-               
+# Accuracy result 
+ggplot()+
+  geom_point(mapping=aes(x=index,y=accuracy.list.combined,colour="accuracy.list.combined"), data=acc.combined)+ 
+  geom_line(mapping=aes(x=index,y=accuracy.list.combined,colour="accuracy.list.combined"), data=acc.combined)+
+  geom_point(mapping=aes(x=index,y=accuracy.list.single,colour="accuracy.list.single"),
+             data=acc.single)+
+  geom_line(mapping=aes(x=index,y=accuracy.list.single, colour="accuracy.list.single"),
+            data=acc.single)+
+  labs(title="accuracy result for 14 datasets",
+       x="index",
+       y="accuracy")+
+  scale_color_manual(values=c(accuracy.list.combined="red",accuracy.list.single="blue"))
+
 ```
 
 
