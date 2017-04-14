@@ -1,0 +1,43 @@
+---
+title: "Author Disambiguation"
+author: "Ziwei Meng"
+Date: "2017-04-07"
+output: 
+    html_notebook:
+        toc: TRUE
+        theme: journal
+---
+# Load packages and specify the directory
+```{r}
+# install the package if not installed
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(dplyr,plyr,data.table,tm,Rcpp,foreach,doSNOW)
+
+# set directory
+setwd('/Users/Zoe/documents/spring2017/GR5243/MyPrjs/Spr2017-proj4-team-11/doc')
+```
+
+# Clean up data
+```{r}
+#load('../data/profclean.RData')
+load('../data/data.RData')
+
+# do it with the first dataframe (14 in total)
+n = length(data)
+for (i in 1:n){
+  df <- data[[i]]
+  # coauthor names to lowercase
+  df$coauthor <- lapply(df$coauthor,tolower)
+  # JournalTitle to list of words and to lowercase, remove stopwords
+  stop_words <- c('a','an','and','or','for','to','of','the','in','what','how','why')
+  '%nin%' <- Negate('%in%')
+  df$journalTitle <- df$journalTitle %>% lapply(function(x){
+    t<-tolower(unlist(strsplit(x," "))) 
+    t[t %nin% stop_words]})
+  
+  fpath = paste0('../data/text',i,'.csv')
+  fwrite(df,fpath)
+}
+
+
+```
