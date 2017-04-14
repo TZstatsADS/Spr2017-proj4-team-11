@@ -16,8 +16,15 @@ Term: Spring 2017
 
 ![alt tag](https://github.com/TZstatsADS/Spr2017-proj4-team-11/blob/master/figs/matching_matrix.png)
 
-+ We usd Python to realize the algorithm and in order to run Algorithms.py successfully please install the packages 'numpy','pandas' and 'scipy' in Python first.
-	
++ We usd Python to realize the algorithm and in order to run TrainingAndPredict.ipynb successfully please install the packages 'numpy','pandas', 'scipy', 'matplotlib', 'cvxopt' and 'seaborn' in Python first.
+
++ Since the feature files are too large to upload into GitHub, the feature files for datasets 'JLee', 'SLee' and 'YChen' are not available in our GitHub. Please download feature files for these datasets through links below.
+
+  JLee:   https://s3.amazonaws.com/ads-proj4-features/feature5.csv
+  SLee:   https://s3.amazonaws.com/ads-proj4-features/feature13.csv
+  YChen:  https://s3.amazonaws.com/ads-proj4-features/feature14.csv
+  
+  
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
