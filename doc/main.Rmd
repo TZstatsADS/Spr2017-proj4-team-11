@@ -3,10 +3,10 @@ title: "Project 4 - Example Main Script"
 author: "Team 11"
 date: "04/14/2017"
 output:
-  pdf_document: default
-  html_notebook: default
-  html_document: default
   word_document: default
+  html_notebook: default
+  pdf_document: default
+  html_document: default
 ---
 
 # Summary:
