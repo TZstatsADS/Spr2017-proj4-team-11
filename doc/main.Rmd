@@ -11,6 +11,8 @@ output:
 
 # Summary:
 #### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. We used hierarchical clustering for both papers. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, we find out that for large dataset, paper 5 performed better(higher f1 and accuracy) than Paper1 did. For instance, algorithm in paper 5 offered much better results than paper 1 when tackling datasets of which author names are 'CChen', 'JLee', 'JSmith', and 'SLee'with the number of observations 801, 1419, 927, and 1464 respectively.
+# This is the result. If you want to read all the codes, please go to doc/TrainAndPredict.ipynb
+
 
 ## Step 0: Load the packages, specify directories
 
@@ -46,6 +48,7 @@ source("../lib/dataclean.R")
 # source("../lib/coauthormatrix.R")
 load("../data/sim_matrix.RData")
 ```
+For paper 5, we have r2py.RMD and PreprocessData.ipynb in doc/ to process RData. Feature extraction R.files are in lib/ 
 
 ## Step 3: Clustering
 
@@ -184,12 +187,15 @@ ggplot()+
 
 ```{r}
 # Data from python notebook, filename TrainingAndPredict
+a <- mean(accuracy.list.single[[3]],accuracy.list.single[[5]],accuracy.list.combined[[8]],accuracy.list.single[[13]])
+b <- mean(f1.list.single[[3]],f1.list.single[[5]],f1.list.single[[8]],f1.list.single[[13]])
+time_scluter <- time_scluter/14
 aa = c(0.964,0.967,0.849,0.919)
 bbb = c(0.27,0.268,0.234,0.172)
 cccc = 5
 compare_df <- data.frame(method=c("singlelink","hcluster"),
-                         accuracy=c(mean(accuracy.list.combined),mean(aa)),
-                         f1=c(mean(f1.list.combined),mean(bbb)),
+                         accuracy=c(a,mean(aa)),
+                         f1=c(b,mean(bbb)),
                          traning_time=c(time_scluter,cccc),
                          predict_time=c("NA","0.896s"))
                          
