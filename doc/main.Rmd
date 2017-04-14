@@ -6,10 +6,11 @@ output:
   pdf_document: default
   html_notebook: default
   html_document: default
+  word_document: default
 ---
 
 # Summary:
-#### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. We used hierarchical clustering for both papers. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, .....
+#### In this project, we implemented, evaluated and compared the algorithms in paper 1 : Information Processing and Management (Kang 2009), and paper 5: Author Disambiguation using Error-driven Machine Learning with a Ranking Loss Function(Culotta 2007) for Entity Resolution. We created an author disambiguation system that divides the same-name author occurrences in citation data into different clusters, each of which are expected to correspond to a real individual. We used hierarchical clustering for both papers. In addition, we implemented Cluster Scoring Function, Error-driven Online Training, and Ranking MIRA. After comparing these two methods, we find out that for large dataset, paper 5 performed better than Paper1 did. For instance, algorithm in paper 5 offered much better results than paper 1 when tackling datasets of which author names are 'JLee', 'JSmith', 'SLee' and 'YChen' with the number of observations 1419, 927, 1464 and 1265 respectively.
 
 ## Step 0: Load the packages, specify directories
 
@@ -31,9 +32,16 @@ source("../lib/dataclean.R")
 
 ## Step 2: Feature design
 
-Paper 1 : Following the section 5.2, that each name occurrence is represented by a set of his/her coauthor names. We count the number of matched coauthors between two authors. 
+### Paper 1 : Following the section 5.2, that each name occurrence is represented by a set of his/her coauthor names. We count the number of matched coauthors between two authors. 
 
-Paper 5: We want to use coauthors, paper titles and journey titles to design features for citations. We count the same-coauthor occurrences, and used bigram, trigram, TF-IDF, edit distance... to extract features from paper title and journey title. 
+### Paper 5: We want to use coauthors, paper titles and journey titles to design features for citations.
+####•	TF-IDF and cosine similarity: Term Frequency/Inverse Document Frequency weighting
+####•	Same-Coauthor occurrences
+####•	Edit distance: Compute the approximate string distance between character vectors. The distance is a generalized Levenshtein (edit) distance, giving the minimal possibly weighted number of insertions, deletions and substitutions needed to transform one string into another
+####• Bigram and Trigram: Count the Frequency of Pairs/Triple characters
+####•	Journey Title Similarity 
+####•	
+####•	
 
 ```{r}
 # source("../lib/coauthormatrix.R")
@@ -47,8 +55,7 @@ The algorithm also follows section 5.2 in paper 1.
 
 \includegraphics[width=450pt]{algorithm2.png}
 
-We set the number of overlapping coauthors to 1. We also considered two scenarios : all the single-element cluster are combined; or we don't combine them. 
-
+We set the number of overlapping coauthors to 1.
 ```{r}
 source("../lib/singlelink.R")
 start.time <- Sys.time()
@@ -62,17 +69,28 @@ cluster.notcombined <- llply(cluster_temp.list,splitcluster)
 end.time <- Sys.time()
 time_scluter <- end.time - start.time
 time_scluter
+```
+
+
+We also considered two scenarios : all the single-element cluster are combined; or we don't combine them. Here, I only showed the cluster result of a subset of the data, "AGupta.txt" to further illustrate the difference of these two scenarios. 
+```{r}
 # combind cluster table for AGupta
 table(cluster.combined[[1]])
 # do not combine single-element cluster 
 table(cluster.notcombined[[1]])
 ```
-Here, I only showed the cluster result of a subset of the data, "AGupta.txt" to further illustrate the difference of these two scenarios. 
 
-For paper 5, 
-```{r}
 
-```
+### Procedure: 
+####•	An initial guess, $\lambda$, assigns weights to each feature. We used odds ratio as our initial guess. 
+
+\includegraphics[width=450pt]{algorithm2.png}
+
+####•	Error-driven Trainging: We use hierarchical clustering. After first iteration, we have a partition T hat. We calculate a score S and a true socre(accuracy) for our partition. T star is a partition with higher true score in the neigborhood of T hat, and the existence of T star means that T hat is not the best partition and therefore we need to update $\lambda$. 
+####• Ranking MIRA: We update $\lambda$ with three constratins. The optimization is solved using Python through the quadratic program. 
+####• After iterations and updates, we have our final $\lambda$ 
+
+
 
 ## Step 4: Evaluation
 
@@ -133,7 +151,7 @@ ggplot()+
              data=f1.single)+
   geom_line(mapping=aes(x=index,y=f1.list.single, colour="f1.list.single"),
             data=f1.single)+
-  labs(title="f1 result for 14 datasets",
+  labs(title="F1 result for 14 datasets",
        x="index",
        y="f1")+
   scale_color_manual(values=c(f1.list.combined="red",f1.list.single="blue"))
@@ -146,15 +164,18 @@ ggplot()+
              data=acc.single)+
   geom_line(mapping=aes(x=index,y=accuracy.list.single, colour="accuracy.list.single"),
             data=acc.single)+
-  labs(title="accuracy result for 14 datasets",
+  labs(title="Accuracy result for 14 datasets",
        x="index",
        y="accuracy")+
   scale_color_manual(values=c(accuracy.list.combined="red",accuracy.list.single="blue"))
 
 ```
 
+#### Performance on paper 5,8 and 13 is really bad. So, we use these papers as test sets for algorithm in paper 5. And here are the f1 and accuracy results for these papers. 
 
-## Step 3: Clustering
+\includegraphics[width=500pt]{matching_matrix.png}
 
-Following suggestion in the paper, we carry out spectral clustering on the Gram matrix of the citation vectors by using R function `specc()` in *kernlab*. The number of clusters is assumed known as stated in the paper.
+# Conclusion 
+#### Compared two methods, method in paper 1 doesn't do well in large dataset. On the other hand, method in paper 5 solves the issue and increases the accuracy. 
+
 
